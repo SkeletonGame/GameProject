@@ -1,0 +1,141 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://ass/Matt/matt2.png" type="Texture" id=1]
+[ext_resource path="res://ass/Matt/matt1.png" type="Texture" id=2]
+[ext_resource path="res://src/matt/Matt.gd" type="Script" id=3]
+[ext_resource path="res://ass/Matt/contact_l.png" type="Texture" id=4]
+[ext_resource path="res://ass/Matt/pass_r.png" type="Texture" id=5]
+[ext_resource path="res://ass/Matt/contact_r.png" type="Texture" id=6]
+[ext_resource path="res://ass/Matt/pass_l.png" type="Texture" id=7]
+[ext_resource path="res://ass/Matt/eyes/idle1.png" type="Texture" id=8]
+[ext_resource path="res://ass/Matt/eyes/idle2.png" type="Texture" id=9]
+[ext_resource path="res://ass/Matt/eyes/mad2.png" type="Texture" id=10]
+[ext_resource path="res://ass/Matt/eyes/mad1.png" type="Texture" id=11]
+[ext_resource path="res://ass/Matt/eyes/quizz2.png" type="Texture" id=12]
+[ext_resource path="res://ass/Matt/eyes/quizz1.png" type="Texture" id=13]
+[ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=14]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=16]
+[ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=17]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 80, 380.549 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "strut",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "quizz",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "mad",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+font_data = ExtResource( 16 )
+
+[node name="Matt" type="KinematicBody2D"]
+position = Vector2( 16, 0 )
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 8, -464 )
+offset = Vector2( 0, -80 )
+current = true
+zoom = Vector2( 1.23, 1.23 )
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -392 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 8, -392 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Eyes" type="AnimatedSprite" parent="."]
+position = Vector2( 8, -392 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Speech Bubble" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Speech Bubble"]
+position = Vector2( 15.874, -400.025 )
+frames = SubResource( 6 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Label2" type="Label" parent="Speech Bubble"]
+margin_left = -331.0
+margin_top = -1080.0
+margin_right = 298.0
+margin_bottom = -886.0
+custom_fonts/font = SubResource( 5 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="Label" parent="Speech Bubble"]
+margin_left = -331.0
+margin_top = -1080.0
+margin_right = 298.0
+margin_bottom = -886.0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 4 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
