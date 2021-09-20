@@ -3,9 +3,9 @@ extends Maus
 func _ready():
 	OS.window_fullscreen = 1
 
-func loadfile():
+func loadfile(filename):
 	var file = File.new()
-	file.open("save.dat", File.READ)
+	file.open("datafiles/" + filename + ".dat", File.READ)
 	var content = file.get_as_text()
 	file.close()
 	return content
@@ -21,8 +21,3 @@ func _process(delta):
 	if Input.is_action_just_pressed("escape"):
 		OS.window_fullscreen = 1 - 1 #int(OS.window_fullscreen)
 
-
-func _on_badingus_body_entered(body: Node) -> void:
-	print(body)
-	print("lmao ahaha 435")
-	print("lmao ahaha 425")

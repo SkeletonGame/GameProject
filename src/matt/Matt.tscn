@@ -19,10 +19,10 @@
 [ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=17]
 [ext_resource path="res://src/matt/AreaMatt.gd" type="Script" id=18]
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 579.379, 630.215 )
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 341.482, 518.479 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 14 ) ],
 "loop": true,
@@ -30,18 +30,18 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=3]
 size = 70
 font_data = ExtResource( 15 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 70
 font_data = ExtResource( 16 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 80, 380.549 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
@@ -54,41 +54,41 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "mad",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "quizz",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "mad",
 "speed": 5.0
 } ]
 
 [node name="Matt" type="Node2D"]
 
 [node name="AreaMatt" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 2
 script = ExtResource( 18 )
 
 [node name="CollisionArea2D" type="CollisionShape2D" parent="AreaMatt"]
-position = Vector2( -3.41882, -642.554 )
-shape = SubResource( 7 )
+position = Vector2( 0.581177, -520.554 )
+shape = SubResource( 1 )
 
 [node name="Speech Bubble" type="Node2D" parent="AreaMatt"]
 position = Vector2( 16, 0 )
 
 [node name="Bubble" type="AnimatedSprite" parent="AreaMatt/Speech Bubble"]
-position = Vector2( 15.874, -400.025 )
-frames = SubResource( 4 )
+position = Vector2( 38.5014, -394.368 )
+frames = SubResource( 2 )
 animation = "idle"
 frame = 1
 playing = true
@@ -98,7 +98,7 @@ margin_left = -331.0
 margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 3 )
 text = "hello there
 "
 align = 1
@@ -114,7 +114,7 @@ margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "hello there
 "
 align = 1
@@ -140,18 +140,21 @@ smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
-shape = SubResource( 1 )
+shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
-frames = SubResource( 2 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
-frames = SubResource( 3 )
+frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
 
 [connection signal="body_entered" from="AreaMatt" to="KinematicMatt" method="_on_AreaMatt_body_entered"]
+[connection signal="body_exited" from="AreaMatt" to="KinematicMatt" method="_on_AreaMatt_body_exited"]

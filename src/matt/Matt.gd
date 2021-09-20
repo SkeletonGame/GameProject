@@ -88,6 +88,7 @@ func velocity_handler(delta):
 	ground_check()
 	velocity.y += grav
 	mattPosition = position
+	eye_mood = get_parent().get_node("AreaMatt").emotion
 
 var mattPosition = position
 
@@ -95,6 +96,9 @@ func _physics_process(delta: float) -> void:
 	animation_handler()
 	velocity_handler(delta)
 
-
+var touched = ""
 func _on_AreaMatt_body_entered(body: Node) -> void:
-	print(str(body.name)+" entered matts area")
+	touched = body.name
+
+func _on_AreaMatt_body_exited(body: Node) -> void:
+	touched = ""
