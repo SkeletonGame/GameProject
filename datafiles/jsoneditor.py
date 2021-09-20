@@ -143,11 +143,22 @@ def editor(data, filename, path):
 
 def parsejson(filename='interactables.json', path=''):
     if path == '':
-        with open(filename, 'r') as f:
-            return editor(json.load(f), filename, path)
+        if os.path.isfile(filename):
+            with open(filename, 'r') as f:
+                return editor(json.load(f), filename, path)
+        else:
+            with open(filename, 'w') as f:
+                f.write('{}')
+            return editor({}, filename, path)
+
     else:
-        with open(os.path.join(path, filename)) as f:
-            return editor(json.load(f), filename, path)
+        if os.path.isfile(os.path.join(path, filename)):
+            with open(os.path.join(path, filename), 'r') as f:
+                return editor(json.load(f), filename, path)
+        else:
+            with open(os.path.join(path, filename), 'w') as f:
+                f.write('{}')
+            return editor({}, filename, path)
 
 
 def parsesysargs(indict, dict):
@@ -168,7 +179,7 @@ def sysargs():
         if len(arglist) == 0:
             parsejson()
         if 'f' in arglist:
-            parsejson(argopts['f'])
+            parsejson(argopts['f'][0])
 
 if __name__ == '__main__':
     sysargs()
