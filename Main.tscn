@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/Logic_Code/main_node.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://ass/Characters/Ben/ben.png" type="Texture" id=15]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe2.png" type="Texture" id=16]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=17]
+[ext_resource path="res://ass/alert.png" type="Texture" id=18]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -49,7 +50,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 544, 96 )
+extents = Vector2( 581.949, 96 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 248, 424 )
@@ -101,7 +102,7 @@ position = Vector2( -544, -1048 )
 texture = ExtResource( 13 )
 
 [node name="Poster" type="AnimatedSprite" parent="Bedroom/Wall/ParallaxLayer"]
-position = Vector2( 408, -688 )
+position = Vector2( -1128.63, -888.101 )
 frames = SubResource( 1 )
 animation = "idle"
 frame = 1
@@ -120,7 +121,7 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="floor" type="Sprite" parent="Bedroom/Floor"]
-position = Vector2( -128, -784 )
+position = Vector2( -108.973, 267.259 )
 texture = ExtResource( 14 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom/Floor"]
@@ -136,56 +137,68 @@ position = Vector2( -2216, -896 )
 shape = SubResource( 4 )
 
 [node name="BedBounce!" type="KinematicBody2D" parent="Bedroom"]
-position = Vector2( 0, -24 )
+position = Vector2( -788.844, -197.431 )
 collision_layer = 6
 collision_mask = 0
 collision/safe_margin = 25.859
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Bedroom/BedBounce!"]
-position = Vector2( 616, -456 )
+position = Vector2( 15.8633, -161.732 )
 frames = SubResource( 5 )
 animation = "idle"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom/BedBounce!"]
-position = Vector2( -888, -296 )
+position = Vector2( 19.0273, -147.462 )
 shape = SubResource( 6 )
 one_way_collision = true
 one_way_collision_margin = 8.5
 script = ExtResource( 10 )
 
+[node name="Alert" type="Sprite" parent="Bedroom/BedBounce!"]
+position = Vector2( -237.51, -817.557 )
+texture = ExtResource( 18 )
+centered = false
+
 [node name="Wardrobe" type="KinematicBody2D" parent="Bedroom"]
-position = Vector2( -1872, -856 )
+position = Vector2( -1899.56, -158.709 )
 collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom/Wardrobe"]
-position = Vector2( 8, 256 )
+position = Vector2( 16.0835, -470.776 )
 shape = SubResource( 7 )
 one_way_collision = true
 script = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Bedroom/Wardrobe"]
-position = Vector2( 448, 224 )
+position = Vector2( 12.3077, -464.057 )
 frames = SubResource( 8 )
 playing = true
 
+[node name="Alert" type="Sprite" parent="Bedroom/Wardrobe"]
+position = Vector2( -241.285, -1463.17 )
+texture = ExtResource( 18 )
+centered = false
+
 [node name="KinematicDoor" type="KinematicBody2D" parent="."]
-position = Vector2( -432, -536 )
+position = Vector2( 1489.14, -179.238 )
 collision_layer = 4
 collision_mask = 0
 
 [node name="Door" type="AnimatedSprite" parent="KinematicDoor"]
+position = Vector2( 4.75684, -475.683 )
 frames = SubResource( 9 )
 animation = "idle"
 frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicDoor"]
-position = Vector2( 1920, -96 )
+position = Vector2( 60.0803, -495.574 )
 shape = SubResource( 10 )
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
+visible = false
 position = Vector2( -168, -144 )
 
 [node name="ben" type="Sprite" parent="."]
