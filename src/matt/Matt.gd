@@ -87,43 +87,14 @@ func velocity_handler(delta):
 		bounce_phys(delta)
 	ground_check()
 	velocity.y += grav
+	mattPosition = position
 
-var speech_visible = 1
-var label_switch = 0
-var switch_timer = 0
-func label_switcher(delta):
-	if speech_visible:
-		switch_timer += delta
-		if switch_timer > 0.4:
-			label_switch += 1
-			if label_switch == 2:
-				label_switch = 0
-			switch_timer = 0
-			if label_switch:
-				get_node("Speech Bubble/Label1").set_visible(true)
-				get_node("Speech Bubble/Label2").set_visible(false)
-			else:
-				get_node("Speech Bubble/Label1").set_visible(false)
-				get_node("Speech Bubble/Label2").set_visible(true)
-
-var display_text = ""
-var char_counter = 0
-var char_timer = 0
-func char_time(delta, text):
-	char_timer += delta
-	if char_timer > 0.08 and char_counter < text.length():
-		char_timer = 0
-		display_text += text[char_counter]
-		char_counter += 1
-	get_node("Speech Bubble/Label1").set_text(display_text)
-	get_node("Speech Bubble/Label2").set_text(display_text)
-
-var text = "Big Big Chungus"
-func text_handler(delta):
-	label_switcher(delta)
-	char_time(delta, text)
+var mattPosition = position
 
 func _physics_process(delta: float) -> void:
 	animation_handler()
 	velocity_handler(delta)
-	text_handler(delta)
+
+
+func _on_AreaMatt_body_entered(body: Node) -> void:
+	print(str(body.name)+" entered matts area")
