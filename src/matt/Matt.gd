@@ -92,10 +92,22 @@ var mattPosition = position
 func _physics_process(delta: float) -> void:
 	animation_handler()
 	velocity_handler(delta)
+	touched_list_handler()
 
 var touched = ""
+var touched_list = []
+var touched_remove = []
 func _on_AreaMatt_body_entered(body: Node) -> void:
-	touched = body.name
+	touched_list.append(body.name)
 
 func _on_AreaMatt_body_exited(body: Node) -> void:
-	touched = ""
+	touched_remove.append(body.name)
+
+func touched_list_handler():
+	if touched_list.size() > 0:
+		touched = touched_list[0]
+		if touched_remove.size() > 0:
+			touched_list.erase(touched_remove[0])
+			touched_remove.erase(touched_remove[0])
+	else:
+		touched = ""

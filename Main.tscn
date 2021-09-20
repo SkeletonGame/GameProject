@@ -101,17 +101,15 @@ position = Vector2( -544, -1048 )
 texture = ExtResource( 13 )
 
 [node name="Poster" type="AnimatedSprite" parent="Bedroom/Wall/ParallaxLayer"]
-position = Vector2( 2080, -504 )
+position = Vector2( 408, -688 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Window" type="AnimatedSprite" parent="Bedroom/Wall/ParallaxLayer"]
-position = Vector2( -112, -904 )
+position = Vector2( -104, -904 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Floor" type="KinematicBody2D" parent="Bedroom"]
@@ -145,6 +143,7 @@ collision/safe_margin = 25.859
 position = Vector2( 616, -456 )
 frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom/BedBounce!"]
@@ -156,7 +155,7 @@ script = ExtResource( 10 )
 
 [node name="Wardrobe" type="KinematicBody2D" parent="Bedroom"]
 position = Vector2( -1872, -856 )
-collision_layer = 4
+collision_layer = 6
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bedroom/Wardrobe"]
@@ -168,6 +167,7 @@ script = ExtResource( 10 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Bedroom/Wardrobe"]
 position = Vector2( 448, 224 )
 frames = SubResource( 8 )
+frame = 1
 playing = true
 
 [node name="KinematicDoor" type="KinematicBody2D" parent="."]
@@ -178,7 +178,6 @@ collision_mask = 0
 [node name="Door" type="AnimatedSprite" parent="KinematicDoor"]
 frames = SubResource( 9 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicDoor"]

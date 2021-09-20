@@ -21,7 +21,7 @@
 [ext_resource path="res://src/matt/CameraLogic.gd" type="Script" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 341.482, 518.479 )
+extents = Vector2( 247.875, 463.254 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -81,7 +81,7 @@ collision_mask = 2
 script = ExtResource( 18 )
 
 [node name="CollisionArea2D" type="CollisionShape2D" parent="AreaMatt"]
-position = Vector2( 0.581177, -520.554 )
+position = Vector2( 3.9447, -466.737 )
 shape = SubResource( 1 )
 
 [node name="Speech Bubble" type="Node2D" parent="AreaMatt"]
@@ -147,12 +147,14 @@ shape = SubResource( 5 )
 position = Vector2( 8, -392 )
 frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
 frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CameraLogic" type="Node2D" parent="."]
