@@ -1,7 +1,20 @@
-{"BedBounce!":
-  {"Dialogue_Lines":
-    {"0":
-      {"Line": "Ah, my sweet bed. As bouncy as it is soft."},
-    "1": {
-        "Line": "...what kind of springs are in this mattress?",
-        "Emotion": "quizz"}}}}
+{
+    "BedBounce!": {
+        "Dialogue_Lines": {
+            "0": {
+                "Line": "Ah, my sweet bed. As bouncy as it is soft."
+            },
+            "1": {
+                "Line": "...what kind of springs are in this mattress?",
+                "Emotion": "quizz"
+            }
+        }
+    },
+    "Wardrobe": {
+        "Dialogue_Lines": {
+            "0": {
+                "Line": "All my reddish-brown hoodies are in there!"
+            }
+        }
+    }
+}
