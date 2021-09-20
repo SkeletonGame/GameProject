@@ -38,7 +38,7 @@ func char_time(delta, text):
 		char_counter = 0
 		char_timer = 0
 		text_v = text
-	if char_timer > 0.1 and char_counter < text.length():
+	if char_timer > 0.055 and char_counter < text.length():
 		char_time_done = 0
 		char_timer = 0
 		display_text += text[char_counter]
@@ -65,20 +65,21 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			char_counter = text.length()
 	
 	file = loadjson("interactables")
-	dialogue_lines = file[inter_arg]["Dialogue_Lines"]
-	line_of_dialogue = String(line_of_dialogue)
-	if line_of_dialogue in dialogue_lines:
-		if "Emotion" in dialogue_lines[line_of_dialogue]:
-			emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+	if inter_arg in file:
+		dialogue_lines = file[inter_arg]["Dialogue_Lines"]
+		line_of_dialogue = String(line_of_dialogue)
+		if line_of_dialogue in dialogue_lines:
+			if "Emotion" in dialogue_lines[line_of_dialogue]:
+				emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+			else:
+				emotion = "idle"
+			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			emotion = "idle"
-		return dialogue_lines[line_of_dialogue]["Line"]
-	else:
-		emotion = "idle"
-		speech_interactable = ""
-		speech_trigger = 0
-		line_of_dialogue = 0
-		return ""
+			speech_interactable = ""
+			speech_trigger = 0
+			line_of_dialogue = 0
+			return ""
 
 var text = ""
 var interactable = ""

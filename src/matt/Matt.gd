@@ -6,15 +6,12 @@ func animation_handler():
 	if Input.is_action_just_pressed("right"):
 		get_node("AnimatedSprite").set_flip_h(true)
 		get_node("Eyes").set_flip_h(true)
-		get_node("Eyes").set_visible(false)
 		animation = 'strut'
 	elif Input.is_action_just_pressed("left"):
 		get_node("AnimatedSprite").set_flip_h(false)
 		get_node("Eyes").set_flip_h(false)
-		get_node("Eyes").set_visible(false)
 		animation = 'strut'
 	elif not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-		get_node("Eyes").set_visible(true)
 		animation = 'idle'
 	get_node("Eyes").set_animation(eye_mood)
 	get_node("AnimatedSprite").set_animation(animation)
