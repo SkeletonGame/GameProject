@@ -20,4 +20,3 @@ func _process(delta):
 	GDict['m2_t'] = m2_t
 	if Input.is_action_just_pressed("escape"):
 		OS.window_fullscreen = 1 - 1 #int(OS.window_fullscreen)
-

@@ -85,11 +85,18 @@ var text = ""
 var interactable = ""
 var speech_trigger = 0
 var speech_interactable = ""
+var temp_interactable = interactable
 func text_processer(delta):
 	interactable = get_parent().get_node("KinematicMatt").touched
-	if interactable != "" and Input.is_action_just_pressed("interact"):
-		speech_trigger = 1
-		speech_interactable = interactable
+	if interactable != temp_interactable and not temp_interactable == "":
+		get_parent().get_parent().get_node(temp_interactable).get_node("interactable").set_visible(false)
+		temp_interactable = ""
+	if interactable != "":
+		temp_interactable = interactable
+		get_parent().get_parent().get_node(interactable).get_node("interactable").set_visible(true)
+		if Input.is_action_just_pressed("interact"):
+			speech_trigger = 1
+			speech_interactable = interactable
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable)
 		dialogue_lines = {}

@@ -22,7 +22,7 @@
 [ext_resource path="res://src/matt/Matt_mainnode.gd" type="Script" id=20]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 247.875, 463.254 )
+extents = Vector2( 153.511, 391.903 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -78,12 +78,11 @@ animations = [ {
 script = ExtResource( 20 )
 
 [node name="AreaMatt" type="Area2D" parent="."]
-collision_layer = 0
 collision_mask = 2
 script = ExtResource( 18 )
 
 [node name="CollisionArea2D" type="CollisionShape2D" parent="AreaMatt"]
-position = Vector2( 3.9447, -466.737 )
+position = Vector2( 25.3633, -467.997 )
 shape = SubResource( 1 )
 
 [node name="Speech Bubble" type="Node2D" parent="AreaMatt"]
@@ -93,7 +92,6 @@ position = Vector2( 16, 0 )
 position = Vector2( 38.5014, -394.368 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Label2" type="Label" parent="AreaMatt/Speech Bubble"]
@@ -129,7 +127,6 @@ __meta__ = {
 
 [node name="KinematicMatt" type="KinematicBody2D" parent="."]
 position = Vector2( 16, 0 )
-collision_layer = 0
 collision_mask = 6
 script = ExtResource( 3 )
 
@@ -150,12 +147,14 @@ shape = SubResource( 5 )
 position = Vector2( 8, -392 )
 frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
 frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CameraLogic" type="Node2D" parent="."]

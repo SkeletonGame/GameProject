@@ -105,7 +105,7 @@ func _on_AreaMatt_body_exited(body: Node) -> void:
 
 func touched_list_handler():
 	if touched_list.size() > 0:
-		touched = touched_list[0]
+		touched = touched_list[touched_list.size() - 1]
 		if touched_remove.size() > 0:
 			touched_list.erase(touched_remove[0])
 			touched_remove.erase(touched_remove[0])

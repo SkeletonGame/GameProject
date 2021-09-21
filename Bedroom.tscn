@@ -1,0 +1,231 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=3]
+[ext_resource path="res://ass/Rooms/Bedroom/door1.png" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Bedroom/wardrobe2.png" type="Texture" id=5]
+[ext_resource path="res://ass/Rooms/Bedroom/poster2.png" type="Texture" id=6]
+[ext_resource path="res://ass/Rooms/Bedroom/bed1.png" type="Texture" id=7]
+[ext_resource path="res://ass/Rooms/Bedroom/poster1.png" type="Texture" id=8]
+[ext_resource path="res://ass/Rooms/Bedroom/color.png" type="Texture" id=9]
+[ext_resource path="res://ass/Rooms/Bedroom/lights.png" type="Texture" id=10]
+[ext_resource path="res://ass/Rooms/Bedroom/window2.png" type="Texture" id=11]
+[ext_resource path="res://ass/Rooms/Bedroom/tree2.png" type="Texture" id=12]
+[ext_resource path="res://ass/Rooms/Bedroom/window1.png" type="Texture" id=13]
+[ext_resource path="res://ass/Rooms/Bedroom/bed2.png" type="Texture" id=14]
+[ext_resource path="res://ass/Rooms/Bedroom/door2.png" type="Texture" id=15]
+[ext_resource path="res://ass/Rooms/Bedroom/floor.png" type="Texture" id=16]
+[ext_resource path="res://ass/eye1.png" type="Texture" id=17]
+[ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=18]
+[ext_resource path="res://interactable.gd" type="Script" id=19]
+[ext_resource path="res://ass/eye2.png" type="Texture" id=20]
+[ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2136, 64 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 72, 944 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 581.949, 79.107 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 248, 410.515 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 170.78, 984.426 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Bedroom" type="Node2D"]
+
+[node name="Outside" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.6, 0.9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Outside"]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Outside/ParallaxLayer"]
+position = Vector2( 608, -752 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="Wall" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.85, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Wall"]
+motion_offset = Vector2( 200, 0 )
+
+[node name="color" type="Sprite" parent="Wall/ParallaxLayer"]
+position = Vector2( -544, -1048 )
+texture = ExtResource( 9 )
+
+[node name="Poster" type="AnimatedSprite" parent="Wall/ParallaxLayer"]
+position = Vector2( -1128.63, -888.101 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Window" type="AnimatedSprite" parent="Wall/ParallaxLayer"]
+position = Vector2( -104, -904 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Floor" type="KinematicBody2D" parent="."]
+position = Vector2( -400, -248 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="floor" type="Sprite" parent="Floor"]
+position = Vector2( -112, 232 )
+texture = ExtResource( 16 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -8, 144 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -32, -1696 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -2216, -896 )
+shape = SubResource( 5 )
+
+[node name="BedBounce!" type="KinematicBody2D" parent="."]
+position = Vector2( -1128, -192 )
+collision_layer = 6
+collision_mask = 0
+collision/safe_margin = 25.859
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BedBounce!"]
+position = Vector2( 15.8633, -161.732 )
+frames = SubResource( 6 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BedBounce!"]
+position = Vector2( 19.0273, -147.462 )
+shape = SubResource( 7 )
+one_way_collision = true
+one_way_collision_margin = 8.5
+script = ExtResource( 3 )
+
+[node name="interactable" type="AnimatedSprite" parent="BedBounce!"]
+position = Vector2( 32, -112 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+script = ExtResource( 19 )
+
+[node name="Wardrobe" type="KinematicBody2D" parent="."]
+position = Vector2( -2184, -160 )
+collision_layer = 6
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wardrobe"]
+position = Vector2( 16.0835, -470.776 )
+shape = SubResource( 9 )
+one_way_collision = true
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Wardrobe"]
+position = Vector2( 12.3077, -464.057 )
+frames = SubResource( 10 )
+playing = true
+
+[node name="interactable" type="AnimatedSprite" parent="Wardrobe"]
+position = Vector2( 32, -696 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+script = ExtResource( 19 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 672, -1032 )
+shape = SubResource( 11 )
+
+[node name="Door" type="AnimatedSprite" parent="Area2D"]
+position = Vector2( 604.757, -659.683 )
+frames = SubResource( 12 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Matt" parent="." instance=ExtResource( 2 )]
+position = Vector2( -168, -144 )
+script = null
+
+[node name="Lights" type="ParallaxBackground" parent="."]
+layer = 100
+scroll_base_scale = Vector2( 1.15, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Lights"]
+motion_offset = Vector2( 200, 0 )
+
+[node name="lights" type="Sprite" parent="Lights/ParallaxLayer"]
+position = Vector2( -1328, -864 )
+texture = ExtResource( 10 )
