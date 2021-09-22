@@ -63,14 +63,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "quizz",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "mad",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "quizz",
 "speed": 5.0
 } ]
 

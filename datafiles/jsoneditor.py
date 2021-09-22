@@ -21,13 +21,13 @@ def jsonsave(data, filename = 'interactables.json', path = ''):
     print(data)
     if path == '':
         with open(filename, 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, separators=(',', ': '))
+            json.dump(data, f, indent = 4, separators=(',', ': '))
     else:
         with open(os.path.join(path, filename), 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4, separators=(',', ': '))
+            json.dump(data, f, indent = 4, separators=(',', ': '))
 
 def editor(data, filename, path):
-    stage=0
+    stage = 0
     emotelist = ["mad", "quizz", ""]
     while True:
         if not stage:
@@ -46,7 +46,7 @@ def editor(data, filename, path):
         if diolouge == 'REMOVE DIALOGUE':
             rmdiolougelist = list(data.keys())
             diolougelist.append("BACK")
-            rmdiolouge=makemenu(rmdiolougelist, 'Which DIALOGUE would you like to REMOVE?')
+            rmdiolouge = makemenu(rmdiolougelist, 'Which DIALOGUE would you like to REMOVE?')
             if rmdiolouge == 'EXIT': return 0
             if rmdiolouge == 'BACK': stage = 0; continue
             data.pop(rmdiolouge, None)
@@ -54,7 +54,7 @@ def editor(data, filename, path):
             stage = 0; continue
         if 'Dialogue_Lines' in data[diolouge]:
             if stage == 1:
-                opts=[]
+                opts = []
                 for i in data[diolouge]['Dialogue_Lines'].keys():
                     emotion = ''
                     if 'Emotion' in data[diolouge]['Dialogue_Lines'][i]:
@@ -124,10 +124,10 @@ def editor(data, filename, path):
                 clear()
                 while True:
                     print("Please type the EMOTION.  Leave blank for idle")
-                    EMOTION = input(str(emotelist)+':')
+                    EMOTION = input(str(emotelist) + ':')
                     if not EMOTION in emotelist:
                         EMOTION = 0
-                        print("That EMOTION is not recognised! please use one of the following: "+emotelist)
+                        print("That EMOTION is not recognised! please use one of the following: " + emotelist)
                         continue
                     else:
                         if EMOTION == '':

@@ -1,6 +1,6 @@
 extends Node2D
 
-const SceneTwo = preload("res://src/scenes/void.tscn")
+const SceneTwo = preload("res://src/scenes/Living Room.tscn")
 
 
 func start_transition():

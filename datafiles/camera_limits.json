@@ -1,0 +1,8 @@
+{
+  "Bedroom":
+  {
+    "limit_l": -2600,
+    "limit_r": 610,
+    "limit_t": -1815
+  }
+}
