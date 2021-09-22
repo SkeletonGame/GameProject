@@ -21,7 +21,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Skeleton"
-run/main_scene="res://Bedroom.tscn"
+run/main_scene="res://Main.tscn"
+boot_splash/image="res://icon.png"
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.188235, 0.12549, 0.192157, 1 )
 config/icon="res://icon.png"
 
 [autoload]

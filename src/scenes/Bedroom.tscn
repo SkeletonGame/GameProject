@@ -1,6 +1,6 @@
 [gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://door.gd" type="Script" id=1]
+[ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=3]
 [ext_resource path="res://ass/Rooms/Bedroom/door1.png" type="Texture" id=4]
@@ -18,7 +18,7 @@
 [ext_resource path="res://ass/Rooms/Bedroom/floor.png" type="Texture" id=16]
 [ext_resource path="res://ass/eye1.png" type="Texture" id=17]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=18]
-[ext_resource path="res://interactable.gd" type="Script" id=19]
+[ext_resource path="res://src/Logic_Code/interactable.gd" type="Script" id=19]
 [ext_resource path="res://ass/eye2.png" type="Texture" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
 
@@ -220,7 +220,7 @@ position = Vector2( -168, -144 )
 script = null
 
 [node name="Lights" type="ParallaxBackground" parent="."]
-layer = 100
+layer = 50
 scroll_base_scale = Vector2( 1.15, 1 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Lights"]
