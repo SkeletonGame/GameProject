@@ -82,7 +82,7 @@ collision_mask = 2
 script = ExtResource( 18 )
 
 [node name="CollisionArea2D" type="CollisionShape2D" parent="AreaMatt"]
-position = Vector2( 25.3633, -467.997 )
+position = Vector2( 24, -464 )
 shape = SubResource( 1 )
 
 [node name="Speech Bubble" type="Node2D" parent="AreaMatt"]
@@ -92,6 +92,7 @@ position = Vector2( 16, 0 )
 position = Vector2( -12.8248, -975.487 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Label2" type="Label" parent="AreaMatt/Speech Bubble"]
@@ -144,10 +145,9 @@ position = Vector2( 8, -392 )
 shape = SubResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicMatt"]
-position = Vector2( 8, -392 )
+position = Vector2( 8, -396 )
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]

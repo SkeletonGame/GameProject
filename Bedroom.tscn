@@ -52,10 +52,10 @@ extents = Vector2( 2136, 64 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 72, 944 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 581.949, 79.107 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 14 ) ],
 "loop": true,
@@ -104,6 +104,7 @@ scroll_base_scale = Vector2( 0.6, 0.9 )
 position = Vector2( 608, -752 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Wall" type="ParallaxBackground" parent="."]
@@ -120,14 +121,12 @@ texture = ExtResource( 9 )
 position = Vector2( -1128.63, -888.101 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Window" type="AnimatedSprite" parent="Wall/ParallaxLayer"]
 position = Vector2( -104, -904 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Floor" type="KinematicBody2D" parent="."]
@@ -159,22 +158,22 @@ collision/safe_margin = 25.859
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedBounce!"]
 position = Vector2( 19.0273, -147.462 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 one_way_collision = true
 one_way_collision_margin = 8.5
 script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BedBounce!"]
 position = Vector2( 15.8633, -161.732 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="BedBounce!"]
 position = Vector2( 17.7456, -354.324 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -192,13 +191,13 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Wardrobe"]
 position = Vector2( 12.3077, -464.057 )
 frames = SubResource( 10 )
+frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="Wardrobe"]
 position = Vector2( 14.1819, -973.96 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -214,7 +213,6 @@ shape = SubResource( 11 )
 position = Vector2( 604.757, -659.683 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
