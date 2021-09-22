@@ -33,6 +33,10 @@ MainNode="*res://src/Logic_Code/main_node.gd"
 window/size/width=1920
 window/size/height=1080
 
+[global]
+
+filter=false
+
 [input]
 
 escape={

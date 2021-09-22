@@ -1,5 +1,6 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
+[ext_resource path="res://door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=3]
 [ext_resource path="res://ass/Rooms/Bedroom/door1.png" type="Texture" id=4]
@@ -51,6 +52,9 @@ extents = Vector2( 2136, 64 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 72, 944 )
 
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 581.949, 79.107 )
+
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 14 ) ],
@@ -58,9 +62,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 581.949, 79.107 )
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
@@ -156,12 +157,6 @@ collision_layer = 6
 collision_mask = 0
 collision/safe_margin = 25.859
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="BedBounce!"]
-position = Vector2( 15.8633, -161.732 )
-frames = SubResource( 6 )
-animation = "idle"
-playing = true
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedBounce!"]
 position = Vector2( 19.0273, -147.462 )
 shape = SubResource( 7 )
@@ -169,8 +164,14 @@ one_way_collision = true
 one_way_collision_margin = 8.5
 script = ExtResource( 3 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BedBounce!"]
+position = Vector2( 15.8633, -161.732 )
+frames = SubResource( 6 )
+animation = "idle"
+playing = true
+
 [node name="interactable" type="AnimatedSprite" parent="BedBounce!"]
-position = Vector2( 32, -112 )
+position = Vector2( 17.7456, -354.324 )
 frames = SubResource( 8 )
 animation = "idle"
 frame = 1
@@ -194,7 +195,7 @@ frames = SubResource( 10 )
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="Wardrobe"]
-position = Vector2( 32, -696 )
+position = Vector2( 14.1819, -973.96 )
 frames = SubResource( 8 )
 animation = "idle"
 frame = 1
@@ -203,6 +204,7 @@ script = ExtResource( 19 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
+script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 672, -1032 )
@@ -229,3 +231,5 @@ motion_offset = Vector2( 200, 0 )
 [node name="lights" type="Sprite" parent="Lights/ParallaxLayer"]
 position = Vector2( -1328, -864 )
 texture = ExtResource( 10 )
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]

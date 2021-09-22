@@ -63,14 +63,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "mad",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "quizz",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "mad",
 "speed": 5.0
 } ]
 
@@ -89,7 +89,7 @@ shape = SubResource( 1 )
 position = Vector2( 16, 0 )
 
 [node name="Bubble" type="AnimatedSprite" parent="AreaMatt/Speech Bubble"]
-position = Vector2( 38.5014, -394.368 )
+position = Vector2( -12.8248, -975.487 )
 frames = SubResource( 2 )
 animation = "idle"
 playing = true
@@ -154,7 +154,6 @@ playing = true
 position = Vector2( 8, -392 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CameraLogic" type="Node2D" parent="."]
