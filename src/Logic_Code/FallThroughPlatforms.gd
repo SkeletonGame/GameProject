@@ -9,3 +9,5 @@ func _process(delta: float) -> void:
 		wait = count
 	if disabled and count > wait + 0.04:
 		disabled = false
+
+

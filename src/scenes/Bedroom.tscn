@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://ass/Rooms/Bedroom/bed1.png" type="Texture" id=7]
 [ext_resource path="res://ass/Rooms/Bedroom/poster1.png" type="Texture" id=8]
 [ext_resource path="res://ass/Rooms/Bedroom/color.png" type="Texture" id=9]
-[ext_resource path="res://ass/Rooms/Bedroom/lights.png" type="Texture" id=10]
+[ext_resource path="res://ass/Rooms/Bedroom/lights1.png" type="Texture" id=10]
 [ext_resource path="res://ass/Rooms/Bedroom/window2.png" type="Texture" id=11]
 [ext_resource path="res://ass/Rooms/Bedroom/tree2.png" type="Texture" id=12]
 [ext_resource path="res://ass/Rooms/Bedroom/window1.png" type="Texture" id=13]
@@ -21,6 +21,7 @@
 [ext_resource path="res://src/Logic_Code/interactable.gd" type="Script" id=19]
 [ext_resource path="res://ass/eye2.png" type="Texture" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
+[ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -88,6 +89,14 @@ extents = Vector2( 170.78, 984.426 )
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 10 ), ExtResource( 22 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -218,7 +227,7 @@ frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
-position = Vector2( -168, -144 )
+position = Vector2( 256, -160 )
 script = null
 
 [node name="Lights" type="ParallaxBackground" parent="."]
@@ -228,8 +237,11 @@ scroll_base_scale = Vector2( 1.15, 1 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Lights"]
 motion_offset = Vector2( 200, 0 )
 
-[node name="lights" type="Sprite" parent="Lights/ParallaxLayer"]
-position = Vector2( -1328, -864 )
-texture = ExtResource( 10 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Lights/ParallaxLayer"]
+position = Vector2( -1296, -1440 )
+frames = SubResource( 13 )
+animation = "idle"
+frame = 1
+playing = true
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
