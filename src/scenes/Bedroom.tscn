@@ -236,7 +236,7 @@ scroll_base_scale = Vector2( 1.15, 1 )
 motion_offset = Vector2( 200, 0 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Lights/ParallaxLayer"]
-position = Vector2( -1296, -1440 )
+position = Vector2( -1296, -1452.71 )
 frames = SubResource( 13 )
 animation = "idle"
 playing = true

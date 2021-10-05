@@ -2,23 +2,17 @@ extends KinematicBody2D
 
 var eye_mood = 'idle'
 var animation = 'idle'
-var direction = 'left'
+var direction = 'none'
 func animation_handler():
-	if Input.is_action_just_pressed("right") and not motion_lock:
-		direction = 'right'
-		animation = 'strut'
-	elif Input.is_action_just_pressed("left") and not motion_lock:
-		direction = 'left'
-		animation = 'strut'
-	elif not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
-		animation = 'idle'
 	get_node("Eyes").set_animation(eye_mood)
-	if motion_lock:
+	if motion_lock or direction == 'none':
 		animation = "idle"
 	elif direction == 'left':
+		animation = "strut"
 		get_node("AnimatedSprite").set_flip_h(false)
 		get_node("Eyes").set_flip_h(false)
 	elif direction == 'right':
+		animation = "strut"
 		get_node("AnimatedSprite").set_flip_h(true)
 		get_node("Eyes").set_flip_h(true)
 	get_node("AnimatedSprite").set_animation(animation)
@@ -94,6 +88,12 @@ func velocity_handler(delta):
 	else:
 		velocity.x *= 0.88
 	ground_check()
+	if velocity.x > 150:
+		direction = "right"
+	elif velocity.x < -150:
+		direction = "left"
+	else:
+		direction = "none"
 	velocity.y += grav
 	mattPosition = position
 	eye_mood = get_parent().get_node("AreaMatt").emotion
