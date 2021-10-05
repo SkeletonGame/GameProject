@@ -75,6 +75,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				emotion = "idle"
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
+			get_parent().get_node("KinematicMatt").motion_lock = false
 			emotion = "idle"
 			speech_interactable = ""
 			speech_trigger = 0
@@ -95,6 +96,7 @@ func text_processer(delta):
 		temp_interactable = interactable
 		get_parent().get_parent().get_node(interactable).get_node("interactable").set_visible(true)
 		if Input.is_action_just_pressed("interact"):
+			get_parent().get_node("KinematicMatt").motion_lock = true
 			speech_trigger = 1
 			speech_interactable = interactable
 	if speech_trigger:

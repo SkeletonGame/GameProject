@@ -2,18 +2,25 @@ extends KinematicBody2D
 
 var eye_mood = 'idle'
 var animation = 'idle'
+var direction = 'left'
 func animation_handler():
-	if Input.is_action_just_pressed("right"):
-		get_node("AnimatedSprite").set_flip_h(true)
-		get_node("Eyes").set_flip_h(true)
+	if Input.is_action_just_pressed("right") and not motion_lock:
+		direction = 'right'
 		animation = 'strut'
-	elif Input.is_action_just_pressed("left"):
-		get_node("AnimatedSprite").set_flip_h(false)
-		get_node("Eyes").set_flip_h(false)
+	elif Input.is_action_just_pressed("left") and not motion_lock:
+		direction = 'left'
 		animation = 'strut'
 	elif not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
 		animation = 'idle'
 	get_node("Eyes").set_animation(eye_mood)
+	if motion_lock:
+		animation = "idle"
+	elif direction == 'left':
+		get_node("AnimatedSprite").set_flip_h(false)
+		get_node("Eyes").set_flip_h(false)
+	elif direction == 'right':
+		get_node("AnimatedSprite").set_flip_h(true)
+		get_node("Eyes").set_flip_h(true)
 	get_node("AnimatedSprite").set_animation(animation)
 
 var grav = 100.0
@@ -64,6 +71,7 @@ func bounce_phys(delta):
 		velocity.y -= (50 * jump_looper)
 		jump_looper -= 1
 
+var motion_lock = false
 func velocity_handler(delta):
 	velocity = move_and_slide(velocity)
 	if get_slide_count() > 0 and surface != get_slide_collision(0).collider.name:
@@ -78,10 +86,13 @@ func velocity_handler(delta):
 				print("Node " + surface + " has a special property that is not implemented or incorrectly written.")
 		else:
 			surface_property = "default"
-	if surface_property == "default":
-		default_phys(delta)
-	if surface_property == "bounce":
-		bounce_phys(delta)
+	if !motion_lock:
+		if surface_property == "default":
+			default_phys(delta)
+		if surface_property == "bounce":
+			bounce_phys(delta)
+	else:
+		velocity.x *= 0.88
 	ground_check()
 	velocity.y += grav
 	mattPosition = position
