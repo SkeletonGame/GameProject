@@ -13,7 +13,10 @@
     "Wardrobe": {
         "Dialogue_Lines": {
             "0": {
-                "Line": "All my reddish-brown hoodies are in there!"
+                "Line": "Yep, that's my closet."
+            },
+            "1": {
+                "Line": "Should I change?"
             }
         }
     }
