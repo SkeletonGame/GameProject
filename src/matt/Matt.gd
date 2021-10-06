@@ -30,6 +30,7 @@ func ground_check():
 		ground_check = 1
 	else:
 		ground_check = 0
+	print(ground_check)
 	ground_check_var = position.y
 
 func default_phys(delta):
@@ -68,7 +69,7 @@ func bounce_phys(delta):
 var motion_lock = false
 func velocity_handler(delta):
 	velocity = move_and_slide(velocity)
-	if get_slide_count() > 0 and surface != get_slide_collision(0).collider.name:
+	if get_slide_count() > 0 and surface != get_slide_collision(0).collider.name: ## detects if Matt is on a surface 
 		surface = get_slide_collision(0).collider.name
 		if surface[surface.length() - 1] == "!": #this exclamation point indicates a surface with special properties.
 			if surface.substr(surface.length() - 7, 6) == "Bounce":
@@ -80,7 +81,7 @@ func velocity_handler(delta):
 				print("Node " + surface + " has a special property that is not implemented or incorrectly written.")
 		else:
 			surface_property = "default"
-	if !motion_lock:
+	if !motion_lock: ## motion_lock stops motion
 		if surface_property == "default":
 			default_phys(delta)
 		if surface_property == "bounce":

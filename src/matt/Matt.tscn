@@ -92,7 +92,6 @@ position = Vector2( 16, 0 )
 position = Vector2( -12.8248, -975.487 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Label2" type="Label" parent="AreaMatt/Speech Bubble"]
