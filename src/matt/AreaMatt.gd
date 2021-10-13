@@ -48,6 +48,16 @@ func char_time(delta, text):  ## make things not all appear at once
 	get_node("Speech Bubble/Label1").set_text(display_text)
 	get_node("Speech Bubble/Label2").set_text(display_text)
 
+var option_list = []
+var option_count = 0
+func decision_maker():
+	option_list = dialogue_lines[line_of_dialogue]["Options"]
+	if Input.is_action_just_pressed("right") and option_count < option_list.size() - 1:
+		option_count += 1
+	if Input.is_action_just_pressed("left") and option_count > 0:
+		option_count -= 1
+	return option_list[option_count]["OP_Line"] # OP_Line = option line
+
 var file = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
@@ -63,17 +73,19 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		else:
 			display_text = text
 			char_counter = text.length()
-	
 	file = loadjson("interactables")
 	if inter_arg in file:
 		dialogue_lines = file[inter_arg]["Dialogue_Lines"]
-		line_of_dialogue = String(line_of_dialogue)
-		if line_of_dialogue in dialogue_lines:
+		line_of_dialogue = String(line_of_dialogue) # line of dialogue is the NUMBER of the line currently observed.
+		if line_of_dialogue in dialogue_lines:  # if the line of dialogue number is greater than the number of lines for a dialogue, then the dialogue ends
 			if "Emotion" in dialogue_lines[line_of_dialogue]:
 				emotion = dialogue_lines[line_of_dialogue]["Emotion"]
 			else:
 				emotion = "idle"
-			return dialogue_lines[line_of_dialogue]["Line"]
+			if "Line" in dialogue_lines[line_of_dialogue]:
+				return dialogue_lines[line_of_dialogue]["Line"]
+			elif "Options" in dialogue_lines[line_of_dialogue]:
+				return decision_maker()
 		else:
 			get_parent().get_node("KinematicMatt").motion_lock = false
 			emotion = "idle"

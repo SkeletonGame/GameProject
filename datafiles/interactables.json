@@ -17,6 +17,17 @@
             },
             "1": {
                 "Line": "Should I change?"
+            },
+            "2": {
+                "Options": [
+                  {
+                    "OP_Line": "Nah, maybe later."
+                  },
+                  {
+                    "OP_Line": "Yeah!",
+                    "Flag": "Wardrobe_Game"
+                  }
+                ]
             }
         }
     }

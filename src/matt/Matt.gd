@@ -30,7 +30,6 @@ func ground_check():
 		ground_check = 1
 	else:
 		ground_check = 0
-	print(ground_check)
 	ground_check_var = position.y
 
 func default_phys(delta):
