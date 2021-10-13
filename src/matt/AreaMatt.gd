@@ -50,12 +50,32 @@ func char_time(delta, text):  ## make things not all appear at once
 
 var option_list = []
 var option_count = 0
-func decision_maker():
+var decision_init = 1
+func decision_maker(): # dont worry about this function, it works
+	get_node("Speech Bubble/circles").set_visible(true)
 	option_list = dialogue_lines[line_of_dialogue]["Options"]
+	if decision_init:
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles1").set_animation("idle")
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles2").set_animation("idle")
+		if option_list.size() > 2:
+			get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles3").set_animation("idle")
+		if option_list.size() > 3:
+			get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles4").set_animation("idle")
+		decision_init = 0
+		option_count = 0
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
+	get_node("Speech Bubble/circles/2option").set_visible(false)
+	get_node("Speech Bubble/circles/3option").set_visible(false)
+	get_node("Speech Bubble/circles/4option").set_visible(false)
 	if Input.is_action_just_pressed("right") and option_count < option_list.size() - 1:
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("idle")
 		option_count += 1
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
 	if Input.is_action_just_pressed("left") and option_count > 0:
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("idle")
 		option_count -= 1
+		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
+	get_node("Speech Bubble/circles/" + String(option_list.size()) + "option").set_visible(true)
 	return option_list[option_count]["OP_Line"] # OP_Line = option line
 
 var file = ""
@@ -83,8 +103,11 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			else:
 				emotion = "idle"
 			if "Line" in dialogue_lines[line_of_dialogue]:
+				option_list = [] # this list NEEDS to be reset for the options to work. it resets when there isnt options.
 				return dialogue_lines[line_of_dialogue]["Line"]
 			elif "Options" in dialogue_lines[line_of_dialogue]:
+				if option_list.size() < 1:
+					decision_init = 1
 				return decision_maker()
 		else:
 			get_parent().get_node("KinematicMatt").motion_lock = false
@@ -127,13 +150,15 @@ var mattPos = Vector2.ZERO
 func text_handler(delta):
 	text_processer(delta)
 	if speech_visible:
-		get_node("Speech Bubble/Bubble").set_visible(true) ## speech bubble moment
+		get_node("Speech Bubble").set_visible(true) ## speech bubble moment
+		if option_list.size() > 0:
+			get_node("Speech Bubble/circles").set_visible(true)
+		else:
+			get_node("Speech Bubble/circles").set_visible(false)
 		label_switcher(delta)
 		char_time(delta, text)
 	else:
-		get_node("Speech Bubble/Bubble").set_visible(false)
-		get_node("Speech Bubble/Label2").set_visible(false)
-		get_node("Speech Bubble/Label1").set_visible(false)
+		get_node("Speech Bubble").set_visible(false)
 
 func area_follow(delta):
 	mattPos = get_parent().get_node("KinematicMatt").mattPosition
