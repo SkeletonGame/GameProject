@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://ass/eye2.png" type="Texture" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
 [ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
+[ext_resource path="res://music/ambient_guitar.wav" type="AudioStream" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -209,15 +210,15 @@ animation = "idle"
 playing = true
 script = ExtResource( 19 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Door2D" type="Area2D" parent="."]
 collision_layer = 0
 script = ExtResource( 1 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2D"]
 position = Vector2( 672, -1032 )
 shape = SubResource( 11 )
 
-[node name="Door" type="AnimatedSprite" parent="Area2D"]
+[node name="Door" type="AnimatedSprite" parent="Door2D"]
 position = Vector2( 604.757, -659.683 )
 frames = SubResource( 12 )
 animation = "idle"
@@ -240,4 +241,8 @@ frames = SubResource( 13 )
 animation = "idle"
 playing = true
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 23 )
+autoplay = true
+
+[connection signal="body_entered" from="Door2D" to="Door2D" method="_on_Area2D_body_entered"]

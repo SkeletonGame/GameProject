@@ -51,6 +51,8 @@ func char_time(delta, text):  ## make things not all appear at once
 var option_list = []
 var option_count = 0
 var decision_init = 1
+var flag_type = ""
+var flag_data = ""
 func decision_maker(): # dont worry about this function, it works
 	get_node("Speech Bubble/circles").set_visible(true)
 	option_list = dialogue_lines[line_of_dialogue]["Options"]
@@ -76,6 +78,12 @@ func decision_maker(): # dont worry about this function, it works
 		option_count -= 1
 		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
 	get_node("Speech Bubble/circles/" + String(option_list.size()) + "option").set_visible(true)
+	if "Flag" in option_list[option_count]:
+		flag_type = option_list[option_count]["Flag"].split("_")[0]
+		flag_data = option_list[option_count]["Flag"].split("_")[1]
+	else:
+		flag_type = ""
+		flag_data = ""
 	return option_list[option_count]["OP_Line"] # OP_Line = option line
 
 var file = ""
@@ -104,6 +112,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				emotion = "idle"
 			if "Line" in dialogue_lines[line_of_dialogue]:
 				option_list = [] # this list NEEDS to be reset for the options to work. it resets when there isnt options.
+				flag_type = ""
+				flag_data = ""
 				return dialogue_lines[line_of_dialogue]["Line"]
 			elif "Options" in dialogue_lines[line_of_dialogue]:
 				if option_list.size() < 1:
@@ -115,6 +125,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			speech_interactable = ""
 			speech_trigger = 0
 			line_of_dialogue = 0
+			if flag_type == "MG": # minigame
+				get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
 			return ""
 
 var text = ""

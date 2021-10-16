@@ -1,0 +1,100 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://ass/Minigames/Wardrobe/bg1.png" type="Texture" id=1]
+[ext_resource path="res://ass/Minigames/Wardrobe/bg2.png" type="Texture" id=2]
+[ext_resource path="res://ass/Minigames/Wardrobe/box1.png" type="Texture" id=3]
+[ext_resource path="res://src/scenes/minigames/Wardrobe_exit.gd" type="Script" id=4]
+[ext_resource path="res://ass/Minigames/Wardrobe/bar1.png" type="Texture" id=5]
+[ext_resource path="res://ass/Minigames/Wardrobe/bar2.png" type="Texture" id=6]
+[ext_resource path="res://ass/Minigames/Wardrobe/box2.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Wardrobe" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="bg" type="AnimatedSprite" parent="."]
+position = Vector2( 959.998, 539.983 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="bar" type="AnimatedSprite" parent="."]
+position = Vector2( 690.519, 377.801 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="box_h" type="AnimatedSprite" parent="."]
+position = Vector2( 705.592, 311.815 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="box_t" type="AnimatedSprite" parent="."]
+position = Vector2( 1037.87, 489.609 )
+frames = SubResource( 4 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="box_l" type="AnimatedSprite" parent="."]
+position = Vector2( 715.367, 703.569 )
+frames = SubResource( 5 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="box_s" type="AnimatedSprite" parent="."]
+position = Vector2( 1042.55, 896.249 )
+frames = SubResource( 6 )
+animation = "idle"
+playing = true
