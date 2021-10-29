@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -22,7 +22,6 @@
 [ext_resource path="res://ass/eye2.png" type="Texture" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
 [ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
-[ext_resource path="res://music/ambient_guitar.wav" type="AudioStream" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -240,9 +239,5 @@ position = Vector2( -1296, -1452.71 )
 frames = SubResource( 13 )
 animation = "idle"
 playing = true
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 23 )
-autoplay = true
 
 [connection signal="body_entered" from="Door2D" to="Door2D" method="_on_Area2D_body_entered"]
