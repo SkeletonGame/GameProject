@@ -18,7 +18,6 @@ func animation_handler():
 	get_node("AnimatedSprite").set_animation(animation)
 
 var grav = 100.0
-var innocous_variable;
 var velocity = Vector2(0, 0)
 var jump_looper = 0
 var ground_check_var = 0
@@ -110,6 +109,7 @@ var touched_list = []
 var touched_remove = []
 func _on_AreaMatt_body_entered(body: Node) -> void:
 	touched_list.append(body.name)
+	print(body.name)
 
 func _on_AreaMatt_body_exited(body: Node) -> void:
 	touched_remove.append(body.name)

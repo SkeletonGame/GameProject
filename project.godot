@@ -100,6 +100,7 @@ back={
 2d_physics/layer_1="player"
 2d_physics/layer_2="interactables"
 2d_physics/layer_3="terrain"
+2d_physics/layer_4="NPC"
 
 [physics]
 

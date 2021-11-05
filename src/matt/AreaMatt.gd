@@ -131,9 +131,12 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 
 var text = ""
 var interactable = ""
+var person = ""
 var speech_trigger = 0
 var speech_interactable = ""
 var temp_interactable = interactable
+var temp_person = person
+var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
 func text_processer(delta):
 	interactable = get_parent().get_node("KinematicMatt").touched
 	if interactable != temp_interactable and not temp_interactable == "":
@@ -146,6 +149,10 @@ func text_processer(delta):
 			get_parent().get_node("KinematicMatt").motion_lock = true ##stop player movement
 			speech_trigger = 1
 			speech_interactable = interactable
+			speech_type = "interaction"
+	person = get_parent().get_node("ConverseMatt").person
+	if person != "":
+		pass # i am not sure what to do from here lmao
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable) ## get diologue 
 		dialogue_lines = {}
@@ -179,4 +186,3 @@ func area_follow(delta):
 func _physics_process(delta: float) -> void:
 	text_handler(delta)
 	area_follow(delta)
-
