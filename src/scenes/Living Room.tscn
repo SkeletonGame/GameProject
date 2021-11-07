@@ -7,11 +7,12 @@
 [ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=5]
 [ext_resource path="res://ass/Rooms/Living Room/bedroom_door2.png" type="Texture" id=6]
 [ext_resource path="res://ass/Rooms/Living Room/bedroom_door1.png" type="Texture" id=7]
-[ext_resource path="res://src/scenes/bedroom_door.gd" type="Script" id=8]
+[ext_resource path="res://src/Logic_Code/bedroom_door.gd" type="Script" id=8]
 [ext_resource path="res://ass/Rooms/Living Room/stove1.png" type="Texture" id=9]
 [ext_resource path="res://ass/Rooms/Living Room/stove2.png" type="Texture" id=10]
 [ext_resource path="res://ass/Characters/Matt's Mom/mom2.png" type="Texture" id=11]
 [ext_resource path="res://ass/Characters/Matt's Mom/mom1.png" type="Texture" id=12]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6728, 64 )
