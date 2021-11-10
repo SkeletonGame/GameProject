@@ -150,9 +150,9 @@ func text_processer(delta):
 			speech_trigger = 1
 			speech_interactable = interactable
 			speech_type = "interaction"
-	person = get_parent().get_node("ConverseMatt").person
+	person = get_parent().get_node("DialogueLogic").person
 	if person != "":
-		print(person)
+		pass
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable) ## get diologue 
 		dialogue_lines = {}

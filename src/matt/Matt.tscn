@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://ass/Matt/matt2.png" type="Texture" id=1]
 [ext_resource path="res://ass/Matt/matt1.png" type="Texture" id=2]
@@ -25,9 +25,6 @@
 [ext_resource path="res://ass/Matt/circle/text_filled1.png" type="Texture" id=23]
 [ext_resource path="res://ass/Matt/circle/text_filled2.png" type="Texture" id=24]
 [ext_resource path="res://src/matt/ConverseMatt.gd" type="Script" id=25]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 629.283, 491.764 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -84,28 +81,19 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "mad",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "quizz",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "mad",
 "speed": 5.0
 } ]
 
 [node name="Matt" type="Node2D"]
 script = ExtResource( 20 )
-
-[node name="ConverseMatt" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 10
-script = ExtResource( 25 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ConverseMatt"]
-position = Vector2( 24.4618, -474.356 )
-shape = SubResource( 1 )
 
 [node name="AreaMatt" type="Area2D" parent="."]
 collision_layer = 0
@@ -119,7 +107,6 @@ position = Vector2( 16, 0 )
 position = Vector2( -13.2967, -976.017 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Label2" type="Label" parent="AreaMatt/Speech Bubble"]
@@ -257,7 +244,8 @@ playing = true
 [node name="CameraLogic" type="Node2D" parent="."]
 script = ExtResource( 19 )
 
-[connection signal="body_entered" from="ConverseMatt" to="ConverseMatt" method="_on_ConverseMatt_body_entered"]
-[connection signal="body_exited" from="ConverseMatt" to="ConverseMatt" method="_on_ConverseMatt_body_exited"]
+[node name="DialogueLogic" type="Node" parent="."]
+script = ExtResource( 25 )
+
 [connection signal="body_entered" from="AreaMatt" to="KinematicMatt" method="_on_AreaMatt_body_entered"]
 [connection signal="body_exited" from="AreaMatt" to="KinematicMatt" method="_on_AreaMatt_body_exited"]
