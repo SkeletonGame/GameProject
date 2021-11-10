@@ -31,6 +31,7 @@ var char_counter = 0
 var char_timer = 0
 var char_time_done = 0
 var text_v = ""
+var text_speed = 0.045
 func char_time(delta, text):  ## make things not all appear at once
 	char_timer += delta
 	if text_v != text: ## reset if text and text_v (the _v thing means previous, dont ask me, jons a madman)
@@ -38,7 +39,7 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_counter = 0
 		char_timer = 0
 		text_v = text
-	if char_timer > 0.055 and char_counter < text.length(): ## print another letter
+	if char_timer > text_speed and char_counter < text.length(): ## print another letter
 		char_time_done = 0
 		char_timer = 0
 		display_text += text[char_counter]
@@ -66,9 +67,8 @@ func decision_maker(): # dont worry about this function, it works
 		decision_init = 0
 		option_count = 0
 		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
-	get_node("Speech Bubble/circles/2option").set_visible(false)
-	get_node("Speech Bubble/circles/3option").set_visible(false)
-	get_node("Speech Bubble/circles/4option").set_visible(false)
+	for i in ["Speech Bubble/circles/2option", "Speech Bubble/circles/3option", "Speech Bubble/circles/4option"]:
+		get_node(i).set_visible(false)
 	if Input.is_action_just_pressed("right") and option_count < option_list.size() - 1:
 		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("idle")
 		option_count += 1
@@ -152,7 +152,7 @@ func text_processer(delta):
 			speech_type = "interaction"
 	person = get_parent().get_node("ConverseMatt").person
 	if person != "":
-		pass # i am not sure what to do from here lmao
+		print(person)
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable) ## get diologue 
 		dialogue_lines = {}

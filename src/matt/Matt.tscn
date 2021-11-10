@@ -26,10 +26,10 @@
 [ext_resource path="res://ass/Matt/circle/text_filled2.png" type="Texture" id=24]
 [ext_resource path="res://src/matt/ConverseMatt.gd" type="Script" id=25]
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 629.283, 491.764 )
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 14 ) ],
 "loop": true,
@@ -37,15 +37,15 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 70
 font_data = ExtResource( 15 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 70
 font_data = ExtResource( 16 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 21 ) ],
 "loop": true,
@@ -58,13 +58,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 202.978, 407.852 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 80, 380.549 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
@@ -77,21 +77,21 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "quizz",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "mad",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "quizz",
 "speed": 5.0
 } ]
 
@@ -100,12 +100,12 @@ script = ExtResource( 20 )
 
 [node name="ConverseMatt" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 10
 script = ExtResource( 25 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ConverseMatt"]
 position = Vector2( 24.4618, -474.356 )
-shape = SubResource( 9 )
+shape = SubResource( 1 )
 
 [node name="AreaMatt" type="Area2D" parent="."]
 collision_layer = 0
@@ -117,7 +117,7 @@ position = Vector2( 16, 0 )
 
 [node name="Bubble" type="AnimatedSprite" parent="AreaMatt/Speech Bubble"]
 position = Vector2( -13.2967, -976.017 )
-frames = SubResource( 1 )
+frames = SubResource( 2 )
 animation = "idle"
 frame = 1
 playing = true
@@ -127,7 +127,7 @@ margin_left = -331.0
 margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "hello there
 "
 align = 1
@@ -143,7 +143,7 @@ margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "hello there
 "
 align = 1
@@ -160,71 +160,68 @@ position = Vector2( -49.1681, -947.642 )
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/2option"]
 position = Vector2( -17.4828, 3.96851 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/2option"]
 position = Vector2( 76.989, 5.55591 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="3option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( -105.797, -943.011 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( -18.4685, -942.042 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="circles3" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( 74.3867, -942.447 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="4option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
 position = Vector2( -128.761, -942.735 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
 position = Vector2( -54.5162, -942.123 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles3" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
 position = Vector2( 23.5854, -940.817 )
-frames = SubResource( 4 )
-animation = "idle"
-playing = true
-
-[node name="circles4" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
-position = Vector2( 96.7374, -941.617 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
 frame = 1
 playing = true
 
+[node name="circles4" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
+position = Vector2( 96.7374, -941.617 )
+frames = SubResource( 5 )
+animation = "idle"
+playing = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMatt"]
 position = Vector2( 24.1769, -449.112 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="KinematicMatt" type="KinematicBody2D" parent="."]
 position = Vector2( 16, 0 )
@@ -242,19 +239,19 @@ smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicMatt"]
 position = Vector2( 8, -392 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 8, -396 )
-frames = SubResource( 7 )
+frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 7.73807, -392.794 )
-frames = SubResource( 8 )
+frames = SubResource( 9 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CameraLogic" type="Node2D" parent="."]

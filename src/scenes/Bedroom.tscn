@@ -139,23 +139,23 @@ animation = "idle"
 frame = 1
 playing = true
 
-[node name="StaticFloor2D" type="StaticBody2D" parent="."]
+[node name="StaticFloor" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
 
-[node name="floor" type="Sprite" parent="StaticFloor2D"]
+[node name="floor" type="Sprite" parent="StaticFloor"]
 position = Vector2( -512, -16 )
 texture = ExtResource( 16 )
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticFloor2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticFloor"]
 position = Vector2( -432, -1944 )
 shape = SubResource( 4 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticFloor2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticFloor"]
 position = Vector2( -2616, -1144 )
 shape = SubResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticFloor2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticFloor"]
 position = Vector2( -408, -104 )
 shape = SubResource( 4 )
 

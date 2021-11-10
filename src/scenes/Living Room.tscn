@@ -46,16 +46,16 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 256, 448 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 120, 392 )
+
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 320, 392 )
 
 [node name="Living Room" type="Node2D"]
 
@@ -125,20 +125,21 @@ position = Vector2( 352, -568 )
 shape = SubResource( 6 )
 script = ExtResource( 8 )
 
-[node name="StaticMom" type="StaticBody2D" parent="."]
+[node name="KinematicMom" type="KinematicBody2D" parent="."]
 position = Vector2( -2032, -456 )
-collision_layer = 0
+collision_layer = 8
 collision_mask = 0
 
-[node name="Mom" type="AnimatedSprite" parent="StaticMom"]
-frames = SubResource( 7 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicMom"]
+shape = SubResource( 7 )
+
+[node name="Mom" type="AnimatedSprite" parent="KinematicMom"]
+position = Vector2( 1, 0 )
+frames = SubResource( 8 )
 animation = "idle"
 frame = 1
 playing = true
 flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticMom"]
-shape = SubResource( 8 )
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
 position = Vector2( 16, -40 )

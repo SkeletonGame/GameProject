@@ -104,12 +104,13 @@ func _physics_process(delta: float) -> void:
 	velocity_handler(delta)
 	touched_list_handler()
 
+# This stuff down here is for AreaMatt
+
 var touched = ""
 var touched_list = []
 var touched_remove = []
 func _on_AreaMatt_body_entered(body: Node) -> void:
 	touched_list.append(body.name)
-	print(body.name)
 
 func _on_AreaMatt_body_exited(body: Node) -> void:
 	touched_remove.append(body.name)
