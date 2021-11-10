@@ -1,0 +1,21 @@
+{
+  "1": {
+    "Living Room": {
+      "Mom": {
+        "Interaction_Count": 0,
+        "Dialogues": {
+          "0": {
+            "0": {
+              "Person": "Matt",
+              "Line": "Hey mom, good morning!"
+            },
+            "1": {
+              "Person": "Mom",
+              "Line": "Good morning, son!"
+            }
+          }
+        }
+      }
+    }
+  }
+}

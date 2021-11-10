@@ -101,33 +101,37 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		else:
 			display_text = text
 			char_counter = text.length()
-	file = loadjson("interactables")
-	if inter_arg in file:
-		dialogue_lines = file[inter_arg]["Dialogue_Lines"]
-		line_of_dialogue = String(line_of_dialogue) # line of dialogue is the NUMBER of the line currently observed.
-		if line_of_dialogue in dialogue_lines:  # if the line of dialogue number is greater than the number of lines for a dialogue, then the dialogue ends
-			if "Emotion" in dialogue_lines[line_of_dialogue]:
-				emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+	if speech_type == "interaction":
+		file = loadjson("interactables")
+		if inter_arg in file:
+			dialogue_lines = file[inter_arg]["Dialogue_Lines"]
+			line_of_dialogue = String(line_of_dialogue) # line of dialogue is the NUMBER of the line currently observed.
+			if line_of_dialogue in dialogue_lines:  # if the line of dialogue number is greater than the number of lines for a dialogue, then the dialogue ends
+				if "Emotion" in dialogue_lines[line_of_dialogue]:
+					emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+				else:
+					emotion = "idle"
+				if "Line" in dialogue_lines[line_of_dialogue]:
+					option_list = [] # this list NEEDS to be reset for the options to work. it resets when there isnt options.
+					flag_type = ""
+					flag_data = ""
+					return dialogue_lines[line_of_dialogue]["Line"]
+				elif "Options" in dialogue_lines[line_of_dialogue]:
+					if option_list.size() < 1:
+						decision_init = 1
+					return decision_maker()
 			else:
+				get_parent().get_node("KinematicMatt").motion_lock = false
 				emotion = "idle"
-			if "Line" in dialogue_lines[line_of_dialogue]:
-				option_list = [] # this list NEEDS to be reset for the options to work. it resets when there isnt options.
-				flag_type = ""
-				flag_data = ""
-				return dialogue_lines[line_of_dialogue]["Line"]
-			elif "Options" in dialogue_lines[line_of_dialogue]:
-				if option_list.size() < 1:
-					decision_init = 1
-				return decision_maker()
-		else:
-			get_parent().get_node("KinematicMatt").motion_lock = false
-			emotion = "idle"
-			speech_interactable = ""
-			speech_trigger = 0
-			line_of_dialogue = 0
-			if flag_type == "MG": # minigame
-				get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
-			return ""
+				speech_interactable = ""
+				speech_trigger = 0
+				line_of_dialogue = 0
+				if flag_type == "MG": # minigame
+					get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
+				return ""
+	elif speech_type == "dialogue":
+		file = loadjson("dialogue")
+		pass
 
 var text = ""
 var interactable = ""
@@ -152,7 +156,9 @@ func text_processer(delta):
 			speech_type = "interaction"
 	person = get_parent().get_node("DialogueLogic").person
 	if person != "":
-		pass
+		speech_trigger = 1
+		speech_interactable = person
+		speech_type = "dialogue"
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable) ## get diologue 
 		dialogue_lines = {}
