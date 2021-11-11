@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Rooms/Living Room/couch2.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://ass/Characters/Matt's Mom/mom2.png" type="Texture" id=11]
 [ext_resource path="res://ass/Characters/Matt's Mom/mom1.png" type="Texture" id=12]
 [ext_resource path="res://src/scenes/NPCdetection.gd" type="Script" id=13]
+[ext_resource path="res://ass/UI/interactable_speech1.png" type="Texture" id=14]
+[ext_resource path="res://ass/UI/interactable_speech2.png" type="Texture" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6728, 64 )
@@ -58,6 +60,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
 [node name="Living Room" type="Node2D"]
 
 [node name="Floor" type="KinematicBody2D" parent="."]
@@ -90,6 +100,7 @@ collision_mask = 0
 position = Vector2( 0, -240 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
@@ -108,7 +119,6 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1864, -552 )
 frames = SubResource( 4 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="BedroomDoor" type="Area2D" parent="."]
@@ -119,15 +129,13 @@ collision_layer = 0
 position = Vector2( 352, -568 )
 frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoor"]
 position = Vector2( 352, -568 )
 shape = SubResource( 6 )
 script = ExtResource( 8 )
-
-[node name="Matt" parent="." instance=ExtResource( 1 )]
-position = Vector2( 16, -40 )
 
 [node name="Mom" type="Area2D" parent="."]
 position = Vector2( -2032, -456 )
@@ -139,9 +147,18 @@ script = ExtResource( 13 )
 [node name="Mom" type="AnimatedSprite" parent="Mom"]
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
+
+[node name="Speechable" type="AnimatedSprite" parent="Mom"]
+position = Vector2( 8, -512 )
+frames = SubResource( 9 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Matt" parent="." instance=ExtResource( 1 )]
+position = Vector2( 16, -40 )
 
 [connection signal="body_entered" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_entered"]
 [connection signal="body_exited" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_exited"]

@@ -126,6 +126,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 					return decision_maker()
 			else:
 				get_parent().get_node("KinematicMatt").motion_lock = false
+				speech_type = ""
 				emotion = "idle"
 				speech_interactable = ""
 				speech_trigger = 0
@@ -146,6 +147,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		else:
 			speech_trigger = 0
 			line_of_dialogue = 0
+			speech_type = ""
+			get_parent().get_node("KinematicMatt").motion_lock = false
 			return ""
 
 var text = ""
@@ -158,10 +161,10 @@ var temp_person = person
 var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
 func text_processer(delta):
 	interactable = get_parent().get_node("KinematicMatt").touched
-	if interactable != temp_interactable and not temp_interactable == "":
+	if (interactable != temp_interactable and not temp_interactable == "") or person != "":
 		get_parent().get_parent().get_node(temp_interactable).get_node("interactable").set_visible(false)
 		temp_interactable = ""
-	if interactable != "":
+	if interactable != "" and person == "":
 		temp_interactable = interactable
 		get_parent().get_parent().get_node(interactable).get_node("interactable").set_visible(true) ##if interactable show the eye
 		if Input.is_action_just_pressed("interact"):
@@ -170,7 +173,7 @@ func text_processer(delta):
 			speech_interactable = interactable
 			speech_type = "interaction"
 	person = get_parent().get_node("DialogueLogic").person
-	if person != "":
+	if person != "" and Input.is_action_just_pressed("interact"):
 		get_parent().get_node("KinematicMatt").motion_lock = true ##stop player movement
 		speech_trigger = 1
 		speech_interactable = person
