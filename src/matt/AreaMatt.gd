@@ -31,7 +31,7 @@ var char_counter = 0
 var char_timer = 0
 var char_time_done = 0
 var text_v = ""
-var text_speed = 0.045
+var text_speed = 0.047
 func char_time(delta, text):  ## make things not all appear at once
 	char_timer += delta
 	if text_v != text: ## reset if text and text_v (the _v thing means previous, dont ask me, jons a madman)
@@ -39,7 +39,7 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_counter = 0
 		char_timer = 0
 		text_v = text
-	if char_timer > text_speed and char_counter < text.length(): ## print another letter
+	if char_timer > text_speed and char_counter < text.length(): ## add another letter
 		char_time_done = 0
 		char_timer = 0
 		display_text += text[char_counter]
@@ -91,6 +91,10 @@ var dialogue_lines = {}
 var line_of_dialogue = 0
 var emotion = "idle"
 var text_getter_counter = 0
+var day = 0 # day will eventually be retrieved from somewhere else, and will affect dialogue and stuff
+var room = ""
+var rf = {}
+var IC = 0
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 	text_getter_counter += delta
 	if Input.is_action_just_pressed("interact"):
@@ -131,7 +135,18 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				return ""
 	elif speech_type == "dialogue":
 		file = loadjson("dialogue")
-		pass
+		day = 1 # day will eventually be retrieved from somewhere else, and will affect dialogue and stuff
+		room = get_parent().get_parent().name
+		rf = file[String(day)][room][person] # reference
+		IC = rf["Interaction_Count"]
+		dialogue_lines = rf["Dialogues"][String(IC)]
+		line_of_dialogue = String(line_of_dialogue)
+		if line_of_dialogue in dialogue_lines:
+			return dialogue_lines[line_of_dialogue]["Line"]
+		else:
+			speech_trigger = 0
+			line_of_dialogue = 0
+			return ""
 
 var text = ""
 var interactable = ""
@@ -156,6 +171,7 @@ func text_processer(delta):
 			speech_type = "interaction"
 	person = get_parent().get_node("DialogueLogic").person
 	if person != "":
+		get_parent().get_node("KinematicMatt").motion_lock = true ##stop player movement
 		speech_trigger = 1
 		speech_interactable = person
 		speech_type = "dialogue"
