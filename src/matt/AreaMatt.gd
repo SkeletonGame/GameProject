@@ -161,7 +161,7 @@ var temp_person = person
 var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
 func text_processer(delta):
 	interactable = get_parent().get_node("KinematicMatt").touched
-	if (interactable != temp_interactable and not temp_interactable == "") or person != "":
+	if (interactable != temp_interactable and not temp_interactable == "") or (person != "" and not temp_interactable == ""):
 		get_parent().get_parent().get_node(temp_interactable).get_node("interactable").set_visible(false)
 		temp_interactable = ""
 	if interactable != "" and person == "":
