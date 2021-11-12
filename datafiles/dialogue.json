@@ -6,11 +6,11 @@
         "Dialogues": {
           "0": {
             "0": {
-              "Person": "Matt",
+              "Speaker": "Matt",
               "Line": "Hey mom, good morning!"
             },
             "1": {
-              "Person": "Mom",
+              "Speaker": "Mom",
               "Line": "Good morning, son!"
             }
           }
