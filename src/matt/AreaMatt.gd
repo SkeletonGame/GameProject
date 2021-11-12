@@ -95,6 +95,8 @@ var day = 0 # day will eventually be retrieved from somewhere else, and will aff
 var room = ""
 var rf = {}
 var IC = 0
+var speaker = ""
+var speaker_v = "" #previous speaker
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 	text_getter_counter += delta
 	if Input.is_action_just_pressed("interact"):
@@ -143,6 +145,13 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		dialogue_lines = rf["Dialogues"][String(IC)]
 		line_of_dialogue = String(line_of_dialogue)
 		if line_of_dialogue in dialogue_lines:
+			speaker_v = speaker
+			speaker = dialogue_lines[line_of_dialogue]["Speaker"]
+			if speaker != "Matt":
+				visibility_exception = true
+				get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
+			if speaker != speaker_v and speaker_v != "Matt" and speaker_v != "":
+				get_parent().get_parent().get_node(speaker_v).get_node("NPC Collision").speaking = false
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			speech_trigger = 0
@@ -159,7 +168,9 @@ var speech_interactable = ""
 var temp_interactable = interactable
 var temp_person = person
 var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
+var visibility_exception = false
 func text_processer(delta):
+	visibility_exception = false
 	interactable = get_parent().get_node("KinematicMatt").touched
 	if (interactable != temp_interactable and not temp_interactable == "") or (person != "" and not temp_interactable == ""):
 		get_parent().get_parent().get_node(temp_interactable).get_node("interactable").set_visible(false)
@@ -188,7 +199,10 @@ func text_processer(delta):
 		char_timer = 0
 		char_time_done = 0
 	else:
-		speech_visible = 1
+		if not visibility_exception:
+			speech_visible = 1
+		else:
+			speech_visible = 0
 
 var mattPos = Vector2.ZERO
 func text_handler(delta):
