@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Rooms/Living Room/couch2.png" type="Texture" id=2]
@@ -10,13 +10,15 @@
 [ext_resource path="res://src/Logic_Code/bedroom_door.gd" type="Script" id=8]
 [ext_resource path="res://ass/Rooms/Living Room/stove1.png" type="Texture" id=9]
 [ext_resource path="res://ass/Rooms/Living Room/stove2.png" type="Texture" id=10]
-[ext_resource path="res://ass/Characters/Matt's Mom/mom2.png" type="Texture" id=11]
-[ext_resource path="res://ass/Characters/Matt's Mom/mom1.png" type="Texture" id=12]
+[ext_resource path="res://ass/Characters/Matt_s Mom/mom2.png" type="Texture" id=11]
+[ext_resource path="res://ass/Characters/Matt_s Mom/mom1.png" type="Texture" id=12]
 [ext_resource path="res://src/scenes/NPC Collision.gd" type="Script" id=13]
 [ext_resource path="res://ass/UI/interactable_speech1.png" type="Texture" id=14]
 [ext_resource path="res://ass/UI/interactable_speech2.png" type="Texture" id=15]
 [ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=16]
 [ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=17]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6728, 64 )
@@ -78,6 +80,14 @@ animations = [ {
 "speed": 2.5
 } ]
 
+[sub_resource type="DynamicFont" id=12]
+size = 70
+font_data = ExtResource( 19 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 70
+font_data = ExtResource( 18 )
+
 [node name="Living Room" type="Node2D"]
 
 [node name="Floor" type="KinematicBody2D" parent="."]
@@ -110,6 +120,7 @@ collision_mask = 0
 position = Vector2( 0, -240 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
@@ -128,7 +139,6 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1864, -552 )
 frames = SubResource( 4 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="BedroomDoor" type="Area2D" parent="."]
@@ -139,6 +149,7 @@ collision_layer = 0
 position = Vector2( 352, -568 )
 frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoor"]
@@ -147,7 +158,7 @@ shape = SubResource( 6 )
 script = ExtResource( 8 )
 
 [node name="Mom" type="Area2D" parent="."]
-position = Vector2( -2032, -456 )
+position = Vector2( -2088, -464 )
 
 [node name="NPC Collision" type="CollisionShape2D" parent="Mom"]
 shape = SubResource( 7 )
@@ -156,7 +167,6 @@ script = ExtResource( 13 )
 [node name="Mom" type="AnimatedSprite" parent="Mom"]
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 
@@ -171,6 +181,37 @@ position = Vector2( 8, -568 )
 frames = SubResource( 10 )
 animation = "idle"
 playing = true
+
+[node name="Label1" type="Label" parent="Mom"]
+margin_left = -312.0
+margin_top = -680.0
+margin_right = 317.0
+margin_bottom = -486.0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 12 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Mom"]
+margin_left = -312.0
+margin_top = -680.0
+margin_right = 317.0
+margin_bottom = -486.0
+custom_fonts/font = SubResource( 11 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
 position = Vector2( 16, -40 )

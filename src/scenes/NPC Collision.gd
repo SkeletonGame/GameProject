@@ -6,8 +6,18 @@ func _on_Mom_body_entered(body: Node) -> void:
 func _on_Mom_body_exited(body: Node) -> void:
 	get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_remove.append(get_parent().name)
 
+func loadjson(filename):
+	var file = File.new()
+	file.open("datafiles/" + filename + ".json", file.READ)  ## read json files
+	var data = {}
+	var text = file.get_as_text()
+	data = parse_json(text)
+	file.close()
+	return data ## return data
+
 var hovered = false # hovered over, this boolean checks if this NPC is the one Matt is currently selecting for dialogue
 var speaking = false # this variable will be changed by Matt's code when the dialogue marks this NPC as the speaker
+var init = false
 func _process(delta: float) -> void:
 	if get_parent().name == get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person and not get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").motion_lock:
 		hovered = true
@@ -17,15 +27,14 @@ func _process(delta: float) -> void:
 		speaking = false
 		init = false
 	get_parent().get_node("Speechable").set_visible(hovered)
-<<<<<<< Updated upstream
 	get_parent().get_node("Speech Bubble").set_visible(speaking)
-=======
 	if speaking:
 		label_switcher(delta)
 		get_parent().get_node("Speech Bubble").set_visible(true)
 		if text_display(delta) == "done":
+			init = false
 			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").visibility_exception = false
-		speaking = false
+			speaking = false
 		if not init:
 			dialogue_lines = loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Dialogues"][String(loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Interaction_Count"])]
 			line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
@@ -93,4 +102,3 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_time_done = 1
 	get_parent().get_node("Label1").set_text(display_text)
 	get_parent().get_node("Label2").set_text(display_text)
->>>>>>> Stashed changes
