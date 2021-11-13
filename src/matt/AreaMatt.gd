@@ -149,6 +149,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 			if speaker != "Matt":
 				visibility_exception = true
+				get_parent().get_parent().get_node(speaker).get_node("NPC Collision").init = false
 				get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
 			if speaker != speaker_v and speaker_v != "Matt" and speaker_v != "":
 				get_parent().get_parent().get_node(speaker_v).get_node("NPC Collision").speaking = false
