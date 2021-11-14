@@ -26,6 +26,9 @@ func _process(delta: float) -> void:
 	if not get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").motion_lock:
 		speaking = false
 		init = false
+		text = ""
+		dialogue_lines = {}
+		line_of_dialogue = 0
 	get_parent().get_node("Speechable").set_visible(hovered)
 	get_parent().get_node("Speech Bubble").set_visible(speaking)
 	if speaking:
@@ -38,6 +41,11 @@ func _process(delta: float) -> void:
 		if not init:
 			dialogue_lines = loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Dialogues"][String(loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Interaction_Count"])]
 			line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
+			display_text = ""
+			text = ""
+			get_parent().get_node("Label1").set_text(display_text)
+			get_parent().get_node("Label2").set_text(display_text)
+			get_parent().get_node("Label2").set_visible(true)
 			init = true
 	else:
 		for this in ["Speech Bubble", "Label1", "Label2"]:

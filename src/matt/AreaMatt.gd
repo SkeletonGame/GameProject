@@ -46,6 +46,8 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_counter += 1
 	if char_counter >= text.length():
 		char_time_done = 1
+	else:
+		char_time_done = 0
 	get_node("Speech Bubble/Label1").set_text(display_text)
 	get_node("Speech Bubble/Label2").set_text(display_text)
 
@@ -90,15 +92,14 @@ var file = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
 var emotion = "idle"
-var text_getter_counter = 0
 var day = 0 # day will eventually be retrieved from somewhere else, and will affect dialogue and stuff
 var room = ""
 var rf = {}
 var IC = 0
 var speaker = ""
 var speaker_v = "" #previous speaker
+var dialogue_init = false
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
-	text_getter_counter += delta
 	if Input.is_action_just_pressed("interact"):
 		if char_time_done:
 			line_of_dialogue = int(line_of_dialogue)
@@ -149,15 +150,24 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 			if speaker != "Matt":
 				visibility_exception = true
-				get_parent().get_parent().get_node(speaker).get_node("NPC Collision").init = false
-				get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
-			if speaker != speaker_v and speaker_v != "Matt" and speaker_v != "":
-				get_parent().get_parent().get_node(speaker_v).get_node("NPC Collision").speaking = false
+				display_text = ""
+				if not dialogue_init:
+					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").init = false
+					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
+					dialogue_init = true
+			elif speaker == "Matt":
+				dialogue_init = false
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			speech_trigger = 0
 			line_of_dialogue = 0
 			speech_type = ""
+			speaker = ""
+			speaker_v = ""
+			person = ""
+			emotion = "idle"
+			dialogue_init = false
+			visibility_exception = false
 			get_parent().get_node("KinematicMatt").motion_lock = false
 			return ""
 
@@ -167,7 +177,6 @@ var person = ""
 var speech_trigger = 0
 var speech_interactable = ""
 var temp_interactable = interactable
-var temp_person = person
 var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
 var visibility_exception = false
 func text_processer(delta):
@@ -187,6 +196,7 @@ func text_processer(delta):
 	person = get_parent().get_node("DialogueLogic").person
 	if person != "" and Input.is_action_just_pressed("interact"):
 		get_parent().get_node("KinematicMatt").motion_lock = true ##stop player movement
+		line_of_dialogue = 0
 		speech_trigger = 1
 		speech_interactable = person
 		speech_type = "dialogue"
@@ -217,6 +227,10 @@ func text_handler(delta):
 		label_switcher(delta)
 		char_time(delta, text)
 	else:
+		text = ""
+		display_text = ""
+		get_node("Speech Bubble/Label1").set_text(display_text)
+		get_node("Speech Bubble/Label2").set_text(display_text)
 		get_node("Speech Bubble").set_visible(false)
 
 func area_follow(delta):

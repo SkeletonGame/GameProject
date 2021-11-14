@@ -6,12 +6,20 @@
         "Dialogues": {
           "0": {
             "0": {
-              "Speaker": "Matt",
-              "Line": "Hey mom, good morning!"
+              "Speaker": "Mom",
+              "Line": "Hey!"
             },
             "1": {
               "Speaker": "Mom",
               "Line": "Good morning, son!"
+            },
+            "2": {
+              "Speaker": "Matt",
+              "Line": "I'm going to Ben's. I'll see you later!"
+            },
+            "3": {
+              "Speaker": "Mom",
+              "Line": "Ok!"
             }
           }
         }
