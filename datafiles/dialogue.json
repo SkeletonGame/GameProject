@@ -6,8 +6,8 @@
         "Dialogues": {
           "0": {
             "0": {
-              "Speaker": "Mom",
-              "Line": "Hey!"
+              "Speaker": "Matt",
+              "Line": "Hey, Mom!"
             },
             "1": {
               "Speaker": "Mom",
@@ -20,6 +20,14 @@
             "3": {
               "Speaker": "Mom",
               "Line": "Ok!"
+            },
+            "4": {
+              "Speaker": "Matt",
+              "Line": "Do you want me to take the trash out when I leave?"
+            },
+            "5": {
+              "Speaker": "Mom",
+              "Line": "Yeah, that would be great. It's over there."
             }
           }
         }

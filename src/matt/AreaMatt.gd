@@ -98,9 +98,10 @@ var rf = {}
 var IC = 0
 var speaker = ""
 var speaker_v = "" #previous speaker
+var speaker_init = false
 var dialogue_init = false
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
-	if Input.is_action_just_pressed("interact"):
+	if Input.is_action_just_pressed("interact") and not speaker_init:
 		if char_time_done:
 			line_of_dialogue = int(line_of_dialogue)
 			line_of_dialogue += 1
@@ -145,25 +146,27 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		IC = rf["Interaction_Count"]
 		dialogue_lines = rf["Dialogues"][String(IC)]
 		line_of_dialogue = String(line_of_dialogue)
-		if line_of_dialogue in dialogue_lines:
-			speaker_v = speaker
+		if not dialogue_init:
 			speaker = dialogue_lines[line_of_dialogue]["Speaker"]
-			if speaker != "Matt":
-				visibility_exception = true
+			dialogue_init = true
+		if line_of_dialogue in dialogue_lines:
+			if dialogue_lines[line_of_dialogue]["Speaker"] != "Matt":
+				speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 				display_text = ""
-				if not dialogue_init:
+				if not speaker_init:
 					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").init = false
 					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
-					dialogue_init = true
-			elif speaker == "Matt":
-				dialogue_init = false
+					speaker_init = true
+			else:
+				speaker_init = false
+			if speaker != "Matt":
+				visibility_exception = true
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			speech_trigger = 0
 			line_of_dialogue = 0
 			speech_type = ""
 			speaker = ""
-			speaker_v = ""
 			person = ""
 			emotion = "idle"
 			dialogue_init = false
@@ -196,7 +199,6 @@ func text_processer(delta):
 	person = get_parent().get_node("DialogueLogic").person
 	if person != "" and Input.is_action_just_pressed("interact"):
 		get_parent().get_node("KinematicMatt").motion_lock = true ##stop player movement
-		line_of_dialogue = 0
 		speech_trigger = 1
 		speech_interactable = person
 		speech_type = "dialogue"
