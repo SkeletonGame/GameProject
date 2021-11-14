@@ -154,8 +154,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 				display_text = ""
 				if not speaker_init:
-					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").init = false
-					get_parent().get_parent().get_node(speaker).get_node("NPC Collision").speaking = true
+					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").init = false
+					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").speaking = true
 					speaker_init = true
 			else:
 				speaker_init = false
