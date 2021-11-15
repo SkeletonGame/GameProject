@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://ass/Minigames/Wardrobe/bg1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Minigames/Wardrobe/bg2.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ass/Minigames/Wardrobe/bar1.png" type="Texture" id=5]
 [ext_resource path="res://ass/Minigames/Wardrobe/bar2.png" type="Texture" id=6]
 [ext_resource path="res://ass/Minigames/Wardrobe/box2.png" type="Texture" id=7]
+[ext_resource path="res://src/scenes/minigames/bar.gd" type="Script" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,6 +16,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 584.258, 31.2677 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -65,12 +69,19 @@ frames = SubResource( 1 )
 animation = "idle"
 playing = true
 
-[node name="bar" type="AnimatedSprite" parent="."]
+[node name="bar" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar"]
+position = Vector2( 694.238, 312.62 )
+shape = SubResource( 7 )
+
+[node name="bar" type="AnimatedSprite" parent="bar"]
 position = Vector2( 690.519, 377.801 )
 frames = SubResource( 2 )
 animation = "idle"
 frame = 1
 playing = true
+script = ExtResource( 8 )
 
 [node name="box_h" type="AnimatedSprite" parent="."]
 position = Vector2( 705.592, 311.815 )
