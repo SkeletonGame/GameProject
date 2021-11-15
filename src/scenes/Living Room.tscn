@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Rooms/Living Room/couch2.png" type="Texture" id=2]
@@ -20,11 +20,21 @@
 [ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=19]
 [ext_resource path="res://ass/Rooms/Living Room/kitchen wall.png" type="Texture" id=20]
+[ext_resource path="res://ass/Rooms/Living Room/painting2.png" type="Texture" id=21]
+[ext_resource path="res://ass/Rooms/Living Room/painting1.png" type="Texture" id=22]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 6728, 64 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
@@ -32,10 +42,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 488, 72 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
 "loop": true,
@@ -43,7 +53,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
 "loop": true,
@@ -51,13 +61,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 256, 448 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 512, 448 )
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 12 ), ExtResource( 11 ) ],
 "loop": true,
@@ -65,7 +75,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
@@ -73,7 +83,7 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
 "loop": true,
@@ -81,11 +91,11 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 size = 70
 font_data = ExtResource( 19 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 70
 font_data = ExtResource( 18 )
 
@@ -94,6 +104,12 @@ font_data = ExtResource( 18 )
 [node name="kitchen wall" type="Sprite" parent="."]
 position = Vector2( -1760, -920 )
 texture = ExtResource( 20 )
+
+[node name="Painting" type="AnimatedSprite" parent="."]
+position = Vector2( -1240, -912 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
 
 [node name="Floor" type="KinematicBody2D" parent="."]
 position = Vector2( -400, -120 )
@@ -114,7 +130,7 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( -72, 144 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="CouchBounce!" type="StaticBody2D" parent="."]
 position = Vector2( -1240, -32 )
@@ -123,13 +139,14 @@ collision_mask = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="CouchBounce!"]
 position = Vector2( 0, -240 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
 position = Vector2( 0, -200 )
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 one_way_collision = true
 script = ExtResource( 5 )
 
@@ -141,9 +158,8 @@ motion_offset = Vector2( 200, 0 )
 
 [node name="Stove2" type="AnimatedSprite" parent="Kitchen/ParallaxLayer"]
 position = Vector2( -1864, -552 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="BedroomDoor" type="Area2D" parent="."]
@@ -152,38 +168,38 @@ collision_layer = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="BedroomDoor"]
 position = Vector2( 352, -568 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoor"]
 position = Vector2( 352, -568 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 script = ExtResource( 8 )
 
 [node name="Mom" type="Area2D" parent="."]
 position = Vector2( -2176, -432 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Mom"]
-shape = SubResource( 7 )
+shape = SubResource( 8 )
 script = ExtResource( 13 )
 
 [node name="Mom" type="AnimatedSprite" parent="Mom"]
-frames = SubResource( 8 )
+frames = SubResource( 9 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 
 [node name="Speechable" type="AnimatedSprite" parent="Mom"]
 position = Vector2( 8, -512 )
-frames = SubResource( 9 )
+frames = SubResource( 10 )
 animation = "idle"
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Mom"]
 position = Vector2( 8, -568 )
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "idle"
 playing = true
 
@@ -193,7 +209,7 @@ margin_top = -680.0
 margin_right = 317.0
 margin_bottom = -486.0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "hello there
 "
 align = 1
@@ -208,7 +224,7 @@ margin_left = -312.0
 margin_top = -680.0
 margin_right = 317.0
 margin_bottom = -486.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "hello there
 "
 align = 1
