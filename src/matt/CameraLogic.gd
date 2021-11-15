@@ -64,8 +64,8 @@ func _process(delta: float) -> void:
 		matt_y = get_parent().get_node("KinematicMatt").get_position()[1]
 		if abs((matt_x - object_x) / 500) > 0.2:
 			get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x - (matt_x - object_x) / 500
-		if abs((matt_y - object_y - 200) / 1000) > 0.2:
-			get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000
+		if abs((matt_y - object_y) / 1000) > 0.2:
+			get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000 + 0.3
 	else:
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y
