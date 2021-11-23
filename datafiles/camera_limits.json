@@ -5,5 +5,8 @@
         "limit_t": -1815
     },
     "Living Room": {
+        "limit_l": -6780,
+        "limit_r": 2000,
+        "limit_t": -1815
     }
 }

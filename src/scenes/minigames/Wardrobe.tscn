@@ -17,20 +17,12 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 584.258, 31.2677 )
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-} ]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -60,6 +52,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
 [node name="Wardrobe" type="Node2D"]
 script = ExtResource( 4 )
 
@@ -67,45 +67,43 @@ script = ExtResource( 4 )
 position = Vector2( 959.998, 539.983 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="bar" type="KinematicBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar"]
 position = Vector2( 694.238, 312.62 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="bar" type="AnimatedSprite" parent="bar"]
 position = Vector2( 690.519, 377.801 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 8 )
 
 [node name="box_h" type="AnimatedSprite" parent="."]
 position = Vector2( 705.592, 311.815 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="box_t" type="AnimatedSprite" parent="."]
 position = Vector2( 1037.87, 489.609 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="box_l" type="AnimatedSprite" parent="."]
 position = Vector2( 715.367, 703.569 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="box_s" type="AnimatedSprite" parent="."]
 position = Vector2( 1042.55, 896.249 )
-frames = SubResource( 6 )
+frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true

@@ -173,6 +173,20 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			visibility_exception = false
 			get_parent().get_node("KinematicMatt").motion_lock = false
 			return ""
+	elif speech_type == "direct input":
+		dialogue_lines = directInput
+		line_of_dialogue = String(line_of_dialogue)
+		if line_of_dialogue in dialogue_lines:
+			emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+			return dialogue_lines[line_of_dialogue]["Line"]
+		else:
+			directInput = {}
+			speech_trigger = 0
+			line_of_dialogue = 0
+			emotion = "idle"
+			speech_type = ""
+			get_parent().get_node("KinematicMatt").motion_lock = false
+			return ""
 
 var text = ""
 var interactable = ""
@@ -182,6 +196,7 @@ var speech_interactable = ""
 var temp_interactable = interactable
 var speech_type = "" ## interaction or conversation. this determines a few ways the code happens
 var visibility_exception = false
+var directInput = {}
 func text_processer(delta):
 	visibility_exception = false
 	interactable = get_parent().get_node("KinematicMatt").touched
@@ -202,6 +217,10 @@ func text_processer(delta):
 		speech_trigger = 1
 		speech_interactable = person
 		speech_type = "dialogue"
+	if directInput.size() > 0:
+		get_parent().get_node("KinematicMatt").motion_lock = true
+		speech_trigger = 1
+		speech_type = "direct input"
 	if speech_trigger:
 		text = text_getter(delta, speech_interactable) ## get diologue 
 		dialogue_lines = {}
