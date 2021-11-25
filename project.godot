@@ -30,6 +30,7 @@ config/icon="res://icon.png"
 [autoload]
 
 MainNode="*res://src/Logic_Code/main_node.gd"
+BackgroundMusic="*res://src/scenes/AudioStreamPlayer.tscn"
 
 [display]
 
@@ -101,6 +102,10 @@ back={
 2d_physics/layer_2="interactables"
 2d_physics/layer_3="terrain"
 2d_physics/layer_4="NPC"
+
+[locale]
+
+locale_filter=[ 0, [ "en" ] ]
 
 [physics]
 
