@@ -36,7 +36,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
@@ -44,7 +44,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 21 ) ],
 "loop": true,
@@ -52,10 +52,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6728, 64 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 26 ) ],
 "loop": true,
@@ -138,13 +138,13 @@ playing = true
 
 [node name="frontdoor" type="AnimatedSprite" parent="."]
 position = Vector2( -6776, -536 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "idle"
 playing = true
 
 [node name="Painting" type="AnimatedSprite" parent="."]
 position = Vector2( -1240, -912 )
-frames = SubResource( 4 )
+frames = SubResource( 3 )
 animation = "idle"
 frame = 1
 playing = true
@@ -168,11 +168,11 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2( -72, 144 )
-shape = SubResource( 5 )
+shape = SubResource( 4 )
 
 [node name="desk" type="AnimatedSprite" parent="."]
 position = Vector2( -5472, -360 )
-frames = SubResource( 2 )
+frames = SubResource( 5 )
 animation = "idle"
 playing = true
 
