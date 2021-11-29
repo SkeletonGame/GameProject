@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://ass/Rooms/Bedroom/bed2.png" type="Texture" id=14]
 [ext_resource path="res://ass/Rooms/Bedroom/door2.png" type="Texture" id=15]
 [ext_resource path="res://ass/Rooms/Bedroom/floor.png" type="Texture" id=16]
+[ext_resource path="res://music/ayo is that amnesiac 2 by hit pop band radiohead.wav" type="AudioStream" id=17]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=18]
 [ext_resource path="res://src/Logic_Code/interactable.gd" type="Script" id=19]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
@@ -113,7 +114,6 @@ scroll_base_scale = Vector2( 0.6, 0.9 )
 position = Vector2( 608, -752 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Wall" type="ParallaxBackground" parent="."]
@@ -130,12 +130,14 @@ texture = ExtResource( 9 )
 position = Vector2( -1128.63, -888.101 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Window" type="AnimatedSprite" parent="Wall/ParallaxLayer"]
 position = Vector2( -104, -904 )
 frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="StaticFloor" type="StaticBody2D" parent="."]
@@ -175,14 +177,12 @@ script = ExtResource( 3 )
 position = Vector2( 15.8633, -161.732 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="BedBounce!"]
 position = Vector2( 3.49121, -382.833 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -200,14 +200,12 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Wardrobe"]
 position = Vector2( 12.3077, -464.057 )
 frames = SubResource( 10 )
-frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="Wardrobe"]
 position = Vector2( 19.8389, -999.416 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -223,6 +221,7 @@ shape = SubResource( 11 )
 position = Vector2( 604.757, -659.683 )
 frames = SubResource( 12 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
@@ -240,6 +239,12 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1296, -1452.71 )
 frames = SubResource( 13 )
 animation = "idle"
+frame = 1
 playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -12.083
+autoplay = true
 
 [connection signal="body_entered" from="Door2D" to="Door2D" method="_on_Area2D_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Rooms/Living Room/couch2.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://ass/Rooms/Living Room/front_door2.png" type="Texture" id=25]
 [ext_resource path="res://ass/Rooms/Living Room/desk2.png" type="Texture" id=26]
 [ext_resource path="res://ass/Rooms/Living Room/desk1.png" type="Texture" id=27]
+[ext_resource path="res://music/aqua vistas.mp3" type="AudioStream" id=28]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -239,12 +240,14 @@ flip_h = true
 position = Vector2( 8, -512 )
 frames = SubResource( 13 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Mom"]
 position = Vector2( 8, -568 )
 frames = SubResource( 14 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Label1" type="Label" parent="Mom"]
@@ -280,6 +283,10 @@ __meta__ = {
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
 position = Vector2( 16, -32 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+autoplay = true
 
 [connection signal="body_entered" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_entered"]
 [connection signal="body_exited" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_exited"]
