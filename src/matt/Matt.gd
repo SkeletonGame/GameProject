@@ -64,9 +64,46 @@ func bounce_phys(delta):
 		velocity.y -= (50 * jump_looper)
 		jump_looper -= 1
 
+
+var slope_type = "null" # assigns up or down to the two directions for a slope: A slope is either \ or /
+var lateral = false # boolean that checks for lateral motion
+var lateral_just = false # lateral just pressed
+var count = 0 # counting time with delta
+var y_temp = 0 # temp y value
+func slope_phys(delta):
+	velocity.x += Input.get_action_strength("right") * 7000 * delta
+	velocity.x += Input.get_action_strength("left") * -7000 * delta
+	velocity.x *= 0.88
+	lateral = (Input.is_action_pressed("right") or Input.is_action_pressed("left"))
+	lateral_just = (Input.is_action_just_pressed("right") or Input.is_action_just_pressed("left"))
+	if slope_type == "null":
+		if not lateral:
+			count = 0
+			y_temp = position.y
+		else:
+			count += delta
+			if Input.is_action_pressed("right") and count > 0.3:
+				if position.y > y_temp:
+					slope_type = "\\"
+				else:
+					slope_type = "/"
+			if Input.is_action_pressed("left") and count > 0.3:
+				if position.y > y_temp:
+					slope_type = "/"
+				else:
+					slope_type = "\\"
+	if slope_type == "\\" and lateral:
+		velocity.x -= 70
+	if slope_type == "/" and lateral:
+		velocity.x += 70
+	if not lateral and not velocity.y < 0:
+		slope_type == "null"
+		velocity.y -= grav
+
 var motion_lock = false
+var up_arg = Vector2(0, 0)
 func velocity_handler(delta):
-	velocity = move_and_slide(velocity)
+	velocity = move_and_slide(velocity, up_arg, true)
 	if get_slide_count() > 0 and surface != get_slide_collision(0).collider.name: ## detects if Matt is on a surface 
 		surface = get_slide_collision(0).collider.name
 		if surface[surface.length() - 1] == "!": #this exclamation point indicates a surface with special properties.
@@ -74,6 +111,10 @@ func velocity_handler(delta):
 				boonce = 2
 				bounce_check = position.y
 				surface_property = "bounce"
+			if surface.substr(surface.length() - 6, 5) == "Slope":
+				slope_type = "null"
+				y_temp = position.y
+				surface_property = "slope"
 			else:
 				print("Jonathan's Debug Notes:")
 				print("Node " + surface + " has a special property that is not implemented or incorrectly written.")
@@ -84,6 +125,8 @@ func velocity_handler(delta):
 			default_phys(delta)
 		if surface_property == "bounce":
 			bounce_phys(delta)
+		if surface_property == "slope":
+			slope_phys(delta)
 	else:
 		velocity.x *= 0.88
 	ground_check()
