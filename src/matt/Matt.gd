@@ -111,12 +111,14 @@ func velocity_handler(delta):
 				boonce = 2
 				bounce_check = position.y
 				surface_property = "bounce"
-			if surface.substr(surface.length() - 6, 5) == "Slope":
+			elif surface.substr(surface.length() - 6, 5) == "Slope":
 				slope_type = "null"
+				count = 0
 				y_temp = position.y
 				surface_property = "slope"
 			else:
 				print("Jonathan's Debug Notes:")
+				slope_type = "null"
 				print("Node " + surface + " has a special property that is not implemented or incorrectly written.")
 		else:
 			surface_property = "default"
