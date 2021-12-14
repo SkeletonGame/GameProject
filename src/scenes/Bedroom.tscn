@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://music/ayo is that amnesiac 2 by hit pop band radiohead.wav" type="AudioStream" id=17]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=18]
 [ext_resource path="res://src/Logic_Code/interactable.gd" type="Script" id=19]
+[ext_resource path="res://light.png" type="Texture" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
 [ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
 [ext_resource path="res://ass/UI/interactable_eye1.png" type="Texture" id=23]
@@ -94,6 +95,9 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 } ]
+
+[sub_resource type="OccluderPolygon2D" id=14]
+polygon = PoolVector2Array( 83.7161, -776.386, 53.0148, -785.73, 23.6482, -787.065, -21.7363, -787.065, -39.0892, -769.712, -57.777, -753.694, -69.7905, -726.997, -69.7905, -689.621, -51.1028, -648.241, -41.7589, -634.893, -28.4105, -638.897, 4.96045, -644.237, 16.974, -625.549, 8.96497, -617.54, -7.0531, -602.857, -27.0757, -586.839, -43.0938, -578.83, -55.1073, -561.477, -55.1073, -537.45, -56.4421, -498.739, -59.1118, -444.011, -60.4467, -398.626, -60.4467, -367.925, -57.777, -331.884, -53.7725, -295.844, -32.415, -283.83, -31.0802, -251.794, -21.7363, -213.083, -8.38794, -78.2646, -28.4105, -54.2375, -49.7679, -39.5543, -57.777, -35.5498, -48.4331, -31.5453, -20.4015, -26.2059, -5.71826, -26.2059, 19.6437, -28.8756, 4.96045, -173.038, 23.6482, -278.491, 50.3451, -206.409, 61.0238, -24.8711, 111.748, -18.1969, 78.3767, -76.9298, 73.0374, -267.812, 94.3948, -489.395, 107.743, -427.993, 129.101, -239.78, 146.453, -440.006, 137.11, -565.481, 75.707, -609.531, 47.6753, -622.879, 46.3405, -654.915, 89.0554, -664.259 )
 
 [sub_resource type="SpriteFrames" id=13]
 animations = [ {
@@ -224,9 +228,19 @@ animation = "idle"
 frame = 1
 playing = true
 
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -76.6177, -757.262 )
+scale = Vector2( 1.28189, 1.79694 )
+texture = ExtResource( 20 )
+color = Color( 0.0745098, 0.866667, 0.866667, 1 )
+energy = 2.12
+
 [node name="Matt" parent="." instance=ExtResource( 2 )]
 position = Vector2( 256, -160 )
 script = null
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Matt"]
+occluder = SubResource( 14 )
 
 [node name="Lights" type="ParallaxBackground" parent="."]
 layer = 50
