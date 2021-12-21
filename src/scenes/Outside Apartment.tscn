@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing.png" type="Texture" id=2]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=3]
-[ext_resource path="res://ass/Defunct/tile.PNG" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Outside Apartment/flowers2.png" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Outside Apartment/flowers1.png" type="Texture" id=5]
+[ext_resource path="res://src/Logic_Code/FallThroughSlopes.gd" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 722.313, 48 )
@@ -12,13 +14,15 @@ extents = Vector2( 722.313, 48 )
 extents = Vector2( 5304, 104 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 991.436, 59.4644 )
+extents = Vector2( 991.436, 52.0052 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 728, 16 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 1245.9, 83.4222 )
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
 
 [node name="Outside Apartment" type="Node2D"]
 
@@ -38,41 +42,28 @@ shape = SubResource( 1 )
 position = Vector2( 4160, 1872 )
 shape = SubResource( 2 )
 
-[node name="StairSlope!" type="StaticBody2D" parent="."]
+[node name="StairSlopeL!" type="StaticBody2D" parent="."]
 position = Vector2( 2249.96, 1143.59 )
 rotation = 0.7362
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlope!"]
-position = Vector2( 26.8833, -4.97626 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlopeL!"]
+position = Vector2( 26.6184, -12.1613 )
+rotation = -6.28318
 shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+script = ExtResource( 6 )
 
 [node name="Matt" parent="." instance=ExtResource( 3 )]
-position = Vector2( 512, 448 )
+position = Vector2( 490.594, 454.601 )
 
-[node name="StaticRailing" type="StaticBody2D" parent="."]
+[node name="railing" type="Sprite" parent="."]
 position = Vector2( 1592, 800 )
-collision_layer = 4
-collision_mask = 0
-
-[node name="railing" type="Sprite" parent="StaticRailing"]
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticRailing"]
-position = Vector2( -752, -584 )
-shape = SubResource( 4 )
-one_way_collision = true
-
-[node name="OtherSlope!" type="StaticBody2D" parent="."]
-position = Vector2( 4359.64, 799.193 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OtherSlope!"]
-position = Vector2( -5263.22, 343.997 )
-rotation = -0.523598
-shape = SubResource( 5 )
-
-[node name="tile" type="Sprite" parent="."]
-position = Vector2( -1731.28, 768.852 )
-scale = Vector2( 11.5394, 3.74594 )
-texture = ExtResource( 4 )
+[node name="flowers" type="AnimatedSprite" parent="."]
+position = Vector2( 2272.29, -124.116 )
+frames = SubResource( 4 )
+animation = "idle"
+playing = true

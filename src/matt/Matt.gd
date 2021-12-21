@@ -76,28 +76,27 @@ func slope_phys(delta):
 	velocity.x *= 0.88
 	lateral = (Input.is_action_pressed("right") or Input.is_action_pressed("left"))
 	lateral_just = (Input.is_action_just_pressed("right") or Input.is_action_just_pressed("left"))
-	if slope_type == "null":
-		if not lateral:
-			count = 0
-			y_temp = position.y
-		else:
-			count += delta
-			if Input.is_action_pressed("right") and count > 0.3:
-				if position.y > y_temp:
-					slope_type = "\\"
-				else:
-					slope_type = "/"
-			if Input.is_action_pressed("left") and count > 0.3:
-				if position.y > y_temp:
-					slope_type = "/"
-				else:
-					slope_type = "\\"
+	#if slope_type == "null":
+	#	if not lateral:
+	#		count = 0
+	#		y_temp = position.y
+	#	else:
+	#		count += delta
+	#		if Input.is_action_pressed("right") and count > 0.3:
+	#			if position.y > y_temp:
+	#				slope_type = "\\"
+	#			else:
+	#				slope_type = "/"
+	#		if Input.is_action_pressed("left") and count > 0.3:
+	#			if position.y > y_temp:
+	#				slope_type = "/"
+	#			else:
+	#				slope_type = "\\"
 	if slope_type == "\\" and lateral:
 		velocity.x -= 70
 	if slope_type == "/" and lateral:
 		velocity.x += 70
 	if not lateral and not velocity.y < 0:
-		slope_type == "null"
 		velocity.y -= grav
 
 var motion_lock = false
@@ -111,10 +110,11 @@ func velocity_handler(delta):
 				boonce = 2
 				bounce_check = position.y
 				surface_property = "bounce"
-			elif surface.substr(surface.length() - 6, 5) == "Slope":
-				slope_type = "null"
-				count = 0
-				y_temp = position.y
+			elif surface.substr(surface.length() - 7, 6) == "SlopeR":
+				slope_type = "/"
+				surface_property = "slope"
+			elif surface.substr(surface.length() - 7, 6) == "SlopeL":
+				slope_type = "\\"
 				surface_property = "slope"
 			else:
 				print("Jonathan's Debug Notes:")
