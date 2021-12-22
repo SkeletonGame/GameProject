@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://music/ayo is that amnesiac 2 by hit pop band radiohead.wav" type="AudioStream" id=17]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe1.png" type="Texture" id=18]
 [ext_resource path="res://src/Logic_Code/interactable.gd" type="Script" id=19]
+[ext_resource path="res://src/scenes/Bedroom.gd" type="Script" id=20]
 [ext_resource path="res://ass/Rooms/Bedroom/tree1.png" type="Texture" id=21]
 [ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
 [ext_resource path="res://ass/UI/interactable_eye1.png" type="Texture" id=23]
@@ -104,6 +105,7 @@ animations = [ {
 } ]
 
 [node name="Bedroom" type="Node2D"]
+script = ExtResource( 20 )
 
 [node name="Outside" type="ParallaxBackground" parent="."]
 scroll_base_scale = Vector2( 0.6, 0.9 )
@@ -183,6 +185,7 @@ playing = true
 position = Vector2( 3.49121, -382.833 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -207,6 +210,7 @@ playing = true
 position = Vector2( 19.8389, -999.416 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 19 )
 

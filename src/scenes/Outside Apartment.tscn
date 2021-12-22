@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://ass/Rooms/Outside Apartment/flowers2.png" type="Texture" id=4]
 [ext_resource path="res://ass/Rooms/Outside Apartment/flowers1.png" type="Texture" id=5]
 [ext_resource path="res://src/Logic_Code/FallThroughSlopes.gd" type="Script" id=6]
+[ext_resource path="res://ass/Rooms/Outside Apartment/sidewalk1.png" type="Texture" id=7]
+[ext_resource path="res://ass/Rooms/Outside Apartment/sidewalk2.png" type="Texture" id=8]
+[ext_resource path="res://src/Logic_Code/SceneMainCodeFiles/Outside Apartment.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 722.313, 48 )
@@ -13,10 +16,18 @@ extents = Vector2( 722.313, 48 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5304, 104 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 991.436, 52.0052 )
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
@@ -25,6 +36,7 @@ animations = [ {
 } ]
 
 [node name="Outside Apartment" type="Node2D"]
+script = ExtResource( 9 )
 
 [node name="StaticFloor" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -42,6 +54,27 @@ shape = SubResource( 1 )
 position = Vector2( 4160, 1872 )
 shape = SubResource( 2 )
 
+[node name="sidewalks" type="AnimatedSprite" parent="StaticFloor"]
+position = Vector2( 810.542, 1797.84 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="sidewalks2" type="AnimatedSprite" parent="StaticFloor"]
+position = Vector2( 4691.44, 1801.94 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="sidewalks3" type="AnimatedSprite" parent="StaticFloor"]
+position = Vector2( 8598.95, 1804.27 )
+frames = SubResource( 3 )
+animation = "idle"
+frame = 1
+playing = true
+
 [node name="StairSlopeL!" type="StaticBody2D" parent="."]
 position = Vector2( 2249.96, 1143.59 )
 rotation = 0.7362
@@ -51,7 +84,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlopeL!"]
 position = Vector2( 26.6184, -12.1613 )
 rotation = -6.28318
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 one_way_collision_margin = 0.0
 script = ExtResource( 6 )
 
@@ -64,6 +97,7 @@ texture = ExtResource( 2 )
 
 [node name="flowers" type="AnimatedSprite" parent="."]
 position = Vector2( 2272.29, -124.116 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 animation = "idle"
+frame = 1
 playing = true
