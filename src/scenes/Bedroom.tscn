@@ -185,7 +185,6 @@ playing = true
 position = Vector2( 3.49121, -382.833 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -210,7 +209,6 @@ playing = true
 position = Vector2( 19.8389, -999.416 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 

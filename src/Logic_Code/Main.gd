@@ -4,13 +4,13 @@ var SceneNext = ""
 
 var info = {}
 func start_transition(scene, add_info = {}):
-	$TransitionScreen.transition()
+	$TransitionScreen.transition(scene)
 	if add_info != {}:
 		info = add_info
 		info["scene"] = scene
 	else:
 		info = {}
-	SceneNext = load("res://src/scenes/" + scene + ".tscn")
+	#SceneNext = load("res://src/scenes/" + scene + ".tscn")
 	## loads the scene defined as scene
 
 func _on_TransitionScreen_transitioned():
