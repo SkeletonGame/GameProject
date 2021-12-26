@@ -1,21 +1,28 @@
 extends CollisionShape2D
 
-var count = 0
 var wait = 0
+var is_on_slope = false
+var dis = false
 
-func fallThrough(delta):
-	count += delta
-	if Input.is_action_pressed("down") and Input.is_action_just_pressed("space"): ##if down and jump is pressed
+func fallThrough():
+	is_on_slope = get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").surface_property == "slope"
+	if Input.is_action_pressed("down") and Input.is_action_just_pressed("space") and is_on_slope: ##if down and jump is pressed
 		if get_parent().get_parent().has_node("Matt"):
 			get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").surface_property = "default"
-		disabled = true
-		wait = count
-	if disabled and count > wait + 1: ##fall through floor
-		disabled = false
+		dis = true
+		get_parent().get_parent().move_child(get_parent().get_parent().get_node("railing"), 2)
 
-func walkUnder():
-	pass
+func check_dis():
+	disabled = dis
 
 func _process(delta: float) -> void:
-	fallThrough(delta)
-	walkUnder()
+	fallThrough()
+	check_dis()
+
+func _on_On_body_entered(body: Node) -> void:
+	dis = false
+	get_parent().get_parent().move_child(get_parent().get_parent().get_node("railing"), 3)
+
+func _on_Off_body_entered(body: Node) -> void:
+	dis = true
+	get_parent().get_parent().move_child(get_parent().get_parent().get_node("railing"), 2)
