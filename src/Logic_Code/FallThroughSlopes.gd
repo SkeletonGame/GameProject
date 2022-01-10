@@ -4,7 +4,10 @@ var wait = 0
 var is_on_slope = false
 var dis = false
 
-var railing_order = 4 # order of the railing in the scene
+var railing_order = 0 # order of the railing in the scene
+
+func _ready():
+	railing_order = get_parent().get_parent().get_children().find(get_parent().get_parent().get_node("railing")) # sets railing order to the correct number when the object is instantiated
 
 func fallThrough():
 	is_on_slope = get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").surface_property == "slope"

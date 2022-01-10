@@ -45,8 +45,7 @@ var matt_x
 var matt_y
 var cam_x = 0
 var cam_y = -0.02 # default camera position
-func _process(delta: float) -> void:
-	limitProcess()
+func camera_move():
 	object = ""
 	c1 = get_parent().get_node("KinematicMatt").motion_lock
 	c2 = get_parent().get_node("AreaMatt").person != ""
@@ -62,10 +61,25 @@ func _process(delta: float) -> void:
 		object_y = get_parent().get_parent().get_node(object).get_position()[1]
 		matt_x = get_parent().get_node("KinematicMatt").get_position()[0]
 		matt_y = get_parent().get_node("KinematicMatt").get_position()[1]
-		if abs((matt_x - object_x) / 500) > 0.2:
-			get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x - (matt_x - object_x) / 500
-		if abs((matt_y - object_y) / 1000) > 0.2:
-			get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000 + 0.3
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x - (matt_x - object_x) / 500
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000 + 0.3
 	else:
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y
+
+var current = ""
+var new = "x1"
+var camera_zooms = {
+	"x1": 1.26,
+	"x0.5": 2
+}
+func zoom_change():
+	if new != current:
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.x = camera_zooms[new]
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.y = camera_zooms[new]
+		current = new
+
+func _process(delta: float) -> void:
+	limitProcess()
+	camera_move()
+	zoom_change()

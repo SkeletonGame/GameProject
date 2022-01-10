@@ -15,6 +15,7 @@ func _ready():
 			noises[file] = load("res://noises/ambience/" + file)
 	dir.list_dir_end()
 
+# Current is accessed and changed by the scene, not by this code
 func _process(delta: float) -> void:
 	if current in noises and not playing:
 		stream = noises[current]
