@@ -69,17 +69,29 @@ func camera_move():
 
 var current = ""
 var new = "x1"
+var current_num = 1.26
+var new_num = 1.26
+var zoom_speed = 40
+var counter = 0
 var camera_zooms = {
 	"x1": 1.26,
-	"x0.5": 2
+	"x0.5": 2.12
 }
-func zoom_change():
-	if new != current:
-		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.x = camera_zooms[new]
-		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.y = camera_zooms[new]
-		current = new
+func zoom_change(delta):
+	if new == current:
+		current_num = camera_zooms[current]
+		counter = 0
+	elif new != current:
+		counter += delta
+		if new_num != camera_zooms[new]:
+			new_num = camera_zooms[new]
+		current_num += (new_num - current_num) / (zoom_speed - counter)
+		if current_num + 0.1 > new_num and current_num - 0.1 < new_num: # guesstimate
+			current = new
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.x = current_num
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").zoom.y = current_num
 
 func _process(delta: float) -> void:
 	limitProcess()
 	camera_move()
-	zoom_change()
+	zoom_change(delta)

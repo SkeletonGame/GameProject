@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing1.png" type="Texture" id=2]
@@ -15,8 +15,10 @@
 [ext_resource path="res://ass/Rooms/Outside Apartment/mailbox2.png" type="Texture" id=13]
 [ext_resource path="res://ass/Rooms/Outside Apartment/mailbox1.png" type="Texture" id=14]
 [ext_resource path="res://ass/Rooms/Outside Apartment/background.png" type="Texture" id=15]
-[ext_resource path="res://src/Logic_Code/CameraOutR.gd" type="Script" id=16]
-[ext_resource path="res://src/Logic_Code/CameraInL.gd" type="Script" id=17]
+[ext_resource path="res://ass/Characters/Ben/ben1.png" type="Texture" id=16]
+[ext_resource path="res://ass/Characters/Ben/ben2.png" type="Texture" id=17]
+[ext_resource path="res://ass/Rooms/Outside Apartment/front door1.png" type="Texture" id=18]
+[ext_resource path="res://ass/Rooms/Outside Apartment/front door2.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 643.989, 48 )
@@ -40,6 +42,17 @@ extents = Vector2( 1005.18, 60.843 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 657.343, 59.4392 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 234.473, 425.15 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
@@ -65,11 +78,13 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 58.4717, 800.653 )
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 56.2507, 804.044 )
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
 
 [node name="Outside Apartment" type="Node2D"]
 script = ExtResource( 9 )
@@ -94,25 +109,22 @@ shape = SubResource( 2 )
 position = Vector2( 808.086, 1861.59 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="sidewalks2" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 4703.09, 1856.95 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="sidewalks3" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 8598.95, 1855.21 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="house" type="Sprite" parent="."]
-position = Vector2( 1559.36, 53.0962 )
+position = Vector2( 1559.36, 51.4144 )
 texture = ExtResource( 11 )
 
 [node name="StairSlopeL!" type="StaticBody2D" parent="."]
@@ -149,6 +161,19 @@ position = Vector2( -712.906, 193.124 )
 rotation = -0.7362
 texture = ExtResource( 1 )
 
+[node name="Front Door" type="Area2D" parent="."]
+position = Vector2( 546.195, -20.7484 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Front Door"]
+position = Vector2( 0.000244141, -14.2544 )
+shape = SubResource( 11 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Front Door"]
+frames = SubResource( 12 )
+animation = "idle"
+frame = 1
+playing = true
+
 [node name="tree" type="Sprite" parent="."]
 position = Vector2( 4589.36, -199.936 )
 texture = ExtResource( 12 )
@@ -160,14 +185,12 @@ position = Vector2( 490.594, 454.601 )
 position = Vector2( 1571.23, 926.951 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="hanging plants" type="AnimatedSprite" parent="."]
 position = Vector2( 2420.24, -50.0405 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="mailbox" type="AnimatedSprite" parent="."]
@@ -175,30 +198,14 @@ position = Vector2( 2362.87, 1620.28 )
 scale = Vector2( 1, 1.01241 )
 frames = SubResource( 9 )
 animation = "idle"
+playing = true
+
+[node name="Ben" type="AnimatedSprite" parent="."]
+position = Vector2( 5503.34, 1428.64 )
+frames = SubResource( 10 )
+animation = "idle"
 frame = 1
 playing = true
 
-[node name="ZoomR" type="Node2D" parent="."]
-position = Vector2( 1278.46, -312.376 )
-
-[node name="CameraOutR" type="Area2D" parent="ZoomR"]
-collision_layer = 0
-script = ExtResource( 16 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoomR/CameraOutR"]
-position = Vector2( 27.5826, -12.4577 )
-shape = SubResource( 10 )
-
-[node name="CameraInL" type="Area2D" parent="ZoomR"]
-position = Vector2( -8.98975, 2.99664 )
-collision_layer = 0
-script = ExtResource( 17 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ZoomR/CameraInL"]
-position = Vector2( 2.5302, -11.9865 )
-shape = SubResource( 11 )
-
 [connection signal="body_entered" from="StairSlopeL!/CollisionShape2D/On" to="StairSlopeL!/CollisionShape2D" method="_on_On_body_entered"]
 [connection signal="body_entered" from="StairSlopeL!/CollisionShape2D/Off" to="StairSlopeL!/CollisionShape2D" method="_on_Off_body_entered"]
-[connection signal="body_exited" from="ZoomR/CameraOutR" to="ZoomR/CameraOutR" method="_on_CameraOutR_body_exited"]
-[connection signal="body_exited" from="ZoomR/CameraInL" to="ZoomR/CameraInL" method="_on_CameraInL_body_exited"]
