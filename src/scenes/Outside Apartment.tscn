@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing1.png" type="Texture" id=2]
@@ -19,6 +19,10 @@
 [ext_resource path="res://ass/Characters/Ben/ben2.png" type="Texture" id=17]
 [ext_resource path="res://ass/Rooms/Outside Apartment/front door1.png" type="Texture" id=18]
 [ext_resource path="res://ass/Rooms/Outside Apartment/front door2.png" type="Texture" id=19]
+[ext_resource path="res://ass/Matt/bike/mattbike1.png" type="Texture" id=20]
+[ext_resource path="res://ass/Matt/bike/mattbike2.png" type="Texture" id=21]
+[ext_resource path="res://ass/Matt/bike/mattbike3.png" type="Texture" id=22]
+[ext_resource path="res://ass/Matt/bike/mattbike4.png" type="Texture" id=23]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 643.989, 48 )
@@ -43,10 +47,10 @@ extents = Vector2( 1005.18, 60.843 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 657.343, 59.4392 )
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 234.473, 425.15 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
@@ -54,7 +58,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 10 ) ],
 "loop": true,
@@ -62,7 +66,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
@@ -70,7 +74,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 13 ) ],
 "loop": true,
@@ -78,9 +82,17 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -166,10 +178,10 @@ position = Vector2( 546.195, -20.7484 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Front Door"]
 position = Vector2( 0.000244141, -14.2544 )
-shape = SubResource( 11 )
+shape = SubResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Front Door"]
-frames = SubResource( 12 )
+frames = SubResource( 8 )
 animation = "idle"
 frame = 1
 playing = true
@@ -183,26 +195,33 @@ position = Vector2( 490.594, 454.601 )
 
 [node name="railing" type="AnimatedSprite" parent="."]
 position = Vector2( 1571.23, 926.951 )
-frames = SubResource( 7 )
+frames = SubResource( 9 )
 animation = "idle"
 playing = true
 
 [node name="hanging plants" type="AnimatedSprite" parent="."]
 position = Vector2( 2420.24, -50.0405 )
-frames = SubResource( 8 )
+frames = SubResource( 10 )
 animation = "idle"
 playing = true
 
 [node name="mailbox" type="AnimatedSprite" parent="."]
 position = Vector2( 2362.87, 1620.28 )
 scale = Vector2( 1, 1.01241 )
-frames = SubResource( 9 )
+frames = SubResource( 11 )
 animation = "idle"
 playing = true
 
 [node name="Ben" type="AnimatedSprite" parent="."]
 position = Vector2( 5503.34, 1428.64 )
-frames = SubResource( 10 )
+frames = SubResource( 12 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="mattbike" type="AnimatedSprite" parent="."]
+position = Vector2( 4055.37, 1439.69 )
+frames = SubResource( 13 )
 animation = "idle"
 frame = 1
 playing = true

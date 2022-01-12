@@ -115,7 +115,6 @@ scroll_base_scale = Vector2( 0.6, 0.9 )
 position = Vector2( 624, -752 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Wall" type="ParallaxBackground" parent="."]
@@ -132,12 +131,14 @@ texture = ExtResource( 9 )
 position = Vector2( -1128.63, -888.101 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Window" type="AnimatedSprite" parent="Wall/ParallaxLayer"]
 position = Vector2( -104, -904 )
 frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="StaticFloor" type="StaticBody2D" parent="."]
@@ -177,7 +178,6 @@ script = ExtResource( 3 )
 position = Vector2( -7.99998, -40 )
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="BedBounce!"]
@@ -201,7 +201,6 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Wardrobe"]
 position = Vector2( 8.29697e-05, 64 )
 frames = SubResource( 10 )
-frame = 1
 playing = true
 
 [node name="interactable" type="AnimatedSprite" parent="Wardrobe"]
@@ -223,6 +222,7 @@ shape = SubResource( 11 )
 position = Vector2( 604.757, -659.683 )
 frames = SubResource( 12 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
@@ -240,6 +240,7 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1296, -1452.71 )
 frames = SubResource( 13 )
 animation = "idle"
+frame = 1
 playing = true
 
 [connection signal="body_entered" from="Door2D" to="Door2D" method="_on_Area2D_body_entered"]
