@@ -10,8 +10,6 @@ func start_transition(scene, add_info = {}):
 		info["scene"] = scene
 	else:
 		info = {}
-	#SceneNext = load("res://src/scenes/" + scene + ".tscn")
-	## loads the scene defined as scene
 
 func _on_TransitionScreen_transitioned():
 	$SceneManager.get_child(0).queue_free()
@@ -21,4 +19,6 @@ func _on_TransitionScreen_transitioned():
 			get_node("SceneManager").get_node(info["scene"]).get_node("Matt").get_node("KinematicMatt").position = info["mattPos"]
 		if "mattSpeak" in info:
 			get_node("SceneManager").get_node(info["scene"]).get_node("Matt").get_node("AreaMatt").directInput = info["mattSpeak"]
+		if "mattRight" in info:
+			get_node("SceneManager").get_node(info["scene"]).get_node("Matt").get_node("KinematicMatt").direction = "right"
 	## once the fade to black transition is finished, switch scenes.

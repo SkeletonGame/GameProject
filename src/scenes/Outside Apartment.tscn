@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing1.png" type="Texture" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://ass/Matt/bike/mattbike2.png" type="Texture" id=21]
 [ext_resource path="res://ass/Matt/bike/mattbike3.png" type="Texture" id=22]
 [ext_resource path="res://ass/Matt/bike/mattbike4.png" type="Texture" id=23]
+[ext_resource path="res://src/Logic_Code/Door/Front Door (Outside).gd" type="Script" id=24]
+[ext_resource path="res://ass/Rooms/Outside Apartment/street.png" type="Texture" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 643.989, 48 )
@@ -60,7 +62,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -68,7 +70,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -76,7 +78,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
@@ -84,13 +86,21 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=14]
 animations = [ {
 "frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ) ],
 "loop": true,
@@ -101,8 +111,18 @@ animations = [ {
 [node name="Outside Apartment" type="Node2D"]
 script = ExtResource( 9 )
 
-[node name="background" type="Sprite" parent="."]
+[node name="sky" type="Node2D" parent="."]
+
+[node name="background" type="Sprite" parent="sky"]
 position = Vector2( 3819.93, -747.629 )
+texture = ExtResource( 15 )
+
+[node name="background2" type="Sprite" parent="sky"]
+position = Vector2( -2360.35, -747.629 )
+texture = ExtResource( 15 )
+
+[node name="background3" type="Sprite" parent="sky"]
+position = Vector2( 12701, -747.63 )
 texture = ExtResource( 15 )
 
 [node name="StaticFloor" type="StaticBody2D" parent="."]
@@ -121,18 +141,21 @@ shape = SubResource( 2 )
 position = Vector2( 808.086, 1861.59 )
 frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="sidewalks2" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 4703.09, 1856.95 )
 frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="sidewalks3" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 8598.95, 1855.21 )
 frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="house" type="Sprite" parent="."]
@@ -179,11 +202,17 @@ position = Vector2( 546.195, -20.7484 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Front Door"]
 position = Vector2( 0.000244141, -14.2544 )
 shape = SubResource( 7 )
+script = ExtResource( 24 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Front Door"]
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
+playing = true
+
+[node name="neighbors door" type="AnimatedSprite" parent="."]
+position = Vector2( 549.295, 1333.32 )
+frames = SubResource( 9 )
+animation = "idle"
 playing = true
 
 [node name="tree" type="Sprite" parent="."]
@@ -195,36 +224,54 @@ position = Vector2( 490.594, 454.601 )
 
 [node name="railing" type="AnimatedSprite" parent="."]
 position = Vector2( 1571.23, 926.951 )
-frames = SubResource( 9 )
+frames = SubResource( 10 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="hanging plants" type="AnimatedSprite" parent="."]
 position = Vector2( 2420.24, -50.0405 )
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="mailbox" type="AnimatedSprite" parent="."]
 position = Vector2( 2362.87, 1620.28 )
 scale = Vector2( 1, 1.01241 )
-frames = SubResource( 11 )
-animation = "idle"
-playing = true
-
-[node name="Ben" type="AnimatedSprite" parent="."]
-position = Vector2( 5503.34, 1428.64 )
 frames = SubResource( 12 )
 animation = "idle"
 frame = 1
 playing = true
 
-[node name="mattbike" type="AnimatedSprite" parent="."]
-position = Vector2( 4055.37, 1439.69 )
+[node name="Ben" type="AnimatedSprite" parent="."]
+position = Vector2( 5503.34, 1428.64 )
 frames = SubResource( 13 )
 animation = "idle"
-frame = 1
 playing = true
+
+[node name="mattbike" type="AnimatedSprite" parent="."]
+position = Vector2( 4055.37, 1439.69 )
+frames = SubResource( 14 )
+animation = "idle"
+frame = 2
+playing = true
+
+[node name="street" type="Node2D" parent="."]
+
+[node name="street" type="Sprite" parent="street"]
+position = Vector2( -191.839, 2233.65 )
+texture = ExtResource( 25 )
+
+[node name="street2" type="Sprite" parent="street"]
+position = Vector2( 1805.76, 2234.49 )
+texture = ExtResource( 25 )
+
+[node name="street3" type="Sprite" parent="street"]
+position = Vector2( 3801.74, 2233.24 )
+texture = ExtResource( 25 )
 
 [connection signal="body_entered" from="StairSlopeL!/CollisionShape2D/On" to="StairSlopeL!/CollisionShape2D" method="_on_On_body_entered"]
 [connection signal="body_entered" from="StairSlopeL!/CollisionShape2D/Off" to="StairSlopeL!/CollisionShape2D" method="_on_Off_body_entered"]
+[connection signal="body_entered" from="Front Door" to="Front Door/CollisionShape2D" method="_on_Front_Door_body_entered"]
+[connection signal="body_exited" from="Front Door" to="Front Door/CollisionShape2D" method="_on_Front_Door_body_exited"]
