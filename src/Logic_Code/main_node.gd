@@ -18,5 +18,5 @@ func _process(delta):
 	GDict['m2'] = m2
 	GDict['m1_t'] = m1_t
 	GDict['m2_t'] = m2_t
-	if Input.is_action_just_pressed("escape"):
-		OS.window_fullscreen = 1 - 1 #int(OS.window_fullscreen)
+	if Input.is_action_pressed("shift") and Input.is_action_just_pressed("escape"):
+		OS.window_fullscreen = 1 - int(OS.window_fullscreen)

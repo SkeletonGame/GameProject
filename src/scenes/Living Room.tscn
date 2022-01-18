@@ -144,13 +144,13 @@ font_data = ExtResource( 18 )
 position = Vector2( -1960, -1048 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Painting" type="AnimatedSprite" parent="."]
 position = Vector2( -1240, -912 )
 frames = SubResource( 2 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Floor" type="KinematicBody2D" parent="."]
@@ -188,7 +188,6 @@ position = Vector2( -6776, -536 )
 [node name="frontdoor" type="AnimatedSprite" parent="FrontDoor"]
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="FrontDoor"]
@@ -211,7 +210,6 @@ collision_mask = 0
 position = Vector2( 0, -240 )
 frames = SubResource( 9 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
@@ -230,6 +228,7 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1864, -552 )
 frames = SubResource( 11 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="BedroomDoor" type="Area2D" parent="."]
@@ -245,7 +244,6 @@ script = ExtResource( 8 )
 position = Vector2( 352, -568 )
 frames = SubResource( 13 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Mom" type="Area2D" parent="."]
@@ -258,6 +256,7 @@ script = ExtResource( 13 )
 [node name="Mom" type="AnimatedSprite" parent="Mom"]
 frames = SubResource( 15 )
 animation = "idle"
+frame = 1
 playing = true
 flip_h = true
 

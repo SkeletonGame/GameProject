@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://ass/Rooms/Outside Apartment/floor.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Outside Apartment/railing1.png" type="Texture" id=2]
@@ -41,13 +41,16 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 1060.39, 52.0052 )
+extents = Vector2( 1060.39, 40.6162 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 1005.18, 60.843 )
+extents = Vector2( 428.186, 60.843 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 657.343, 59.4392 )
+extents = Vector2( 744.978, 59.4392 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 93.7534, 97.8663 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 234.473, 425.15 )
@@ -114,7 +117,7 @@ script = ExtResource( 9 )
 [node name="sky" type="Node2D" parent="."]
 
 [node name="background" type="Sprite" parent="sky"]
-position = Vector2( 3819.93, -747.629 )
+position = Vector2( 3817.26, -747.629 )
 texture = ExtResource( 15 )
 
 [node name="background2" type="Sprite" parent="sky"]
@@ -169,14 +172,14 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlopeL!"]
-position = Vector2( 37.5721, 40.1522 )
+position = Vector2( 37.5916, 28.7757 )
 rotation = -6.28318
 shape = SubResource( 4 )
 one_way_collision_margin = 0.0
 script = ExtResource( 6 )
 
 [node name="On" type="Area2D" parent="StairSlopeL!/CollisionShape2D"]
-position = Vector2( 112.296, -859.66 )
+position = Vector2( 45.4693, -845.94 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlopeL!/CollisionShape2D/On"]
@@ -190,6 +193,10 @@ rotation = -3.14159
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StairSlopeL!/CollisionShape2D/Off"]
 position = Vector2( -5.04346, 176.955 )
 shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StairSlopeL!/CollisionShape2D/Off"]
+position = Vector2( -1256.2, 907.745 )
+shape = SubResource( 15 )
 
 [node name="floor" type="Sprite" parent="StairSlopeL!"]
 position = Vector2( -712.906, 193.124 )
@@ -251,10 +258,10 @@ animation = "idle"
 playing = true
 
 [node name="mattbike" type="AnimatedSprite" parent="."]
-position = Vector2( 4055.37, 1439.69 )
+position = Vector2( 4236.33, -1265.24 )
+rotation = -0.785397
 frames = SubResource( 14 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="street" type="Node2D" parent="."]

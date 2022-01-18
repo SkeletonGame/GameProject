@@ -12,6 +12,7 @@ script = ExtResource( 3 )
 [node name="SceneManager" type="Node2D" parent="."]
 
 [node name="Outside Apartment" parent="SceneManager" instance=ExtResource( 2 )]
+position = Vector2( -129.427, 4.04456 )
 
 [node name="TransitionScreen" parent="." instance=ExtResource( 1 )]
 
