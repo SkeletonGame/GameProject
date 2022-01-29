@@ -258,7 +258,7 @@ animation = "idle"
 playing = true
 
 [node name="mattbike" type="AnimatedSprite" parent="."]
-position = Vector2( 4236.33, -1265.24 )
+position = Vector2( 1555.22, -2177.42 )
 rotation = -0.785397
 frames = SubResource( 14 )
 animation = "idle"
