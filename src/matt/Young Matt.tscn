@@ -241,13 +241,13 @@ shape = SubResource( 6 )
 position = Vector2( 8, -396 )
 frames = SubResource( 7 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="KinematicMatt"]
 position = Vector2( 7.88361, -383.653 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CameraLogic" type="Node2D" parent="."]
