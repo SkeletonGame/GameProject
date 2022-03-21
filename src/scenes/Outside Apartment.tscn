@@ -144,21 +144,18 @@ shape = SubResource( 2 )
 position = Vector2( 808.086, 1861.59 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="sidewalks2" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 4699.92, 1860.15 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="sidewalks3" type="AnimatedSprite" parent="StaticFloor"]
 position = Vector2( 8598.95, 1855.21 )
 frames = SubResource( 3 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="house" type="Sprite" parent="."]
@@ -214,12 +211,14 @@ script = ExtResource( 24 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Front Door"]
 frames = SubResource( 9 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="neighbors door" type="AnimatedSprite" parent="."]
 position = Vector2( 549.295, 1333.32 )
 frames = SubResource( 10 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="tree" type="Sprite" parent="."]
@@ -233,14 +232,12 @@ position = Vector2( 490.594, 454.601 )
 position = Vector2( 1571.23, 926.951 )
 frames = SubResource( 11 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="hanging plants" type="AnimatedSprite" parent="."]
 position = Vector2( 2420.24, -50.0405 )
 frames = SubResource( 12 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="mailbox" type="AnimatedSprite" parent="."]
@@ -248,13 +245,13 @@ position = Vector2( 2362.87, 1620.28 )
 scale = Vector2( 1, 1.01241 )
 frames = SubResource( 13 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Ben" type="AnimatedSprite" parent="."]
 position = Vector2( 5503.34, 1428.64 )
 frames = SubResource( 14 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="mattbike" type="AnimatedSprite" parent="."]
@@ -262,7 +259,7 @@ position = Vector2( 1555.22, -2177.42 )
 rotation = -0.785397
 frames = SubResource( 15 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="street" type="Node2D" parent="."]
