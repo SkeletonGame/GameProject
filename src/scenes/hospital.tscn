@@ -69,13 +69,11 @@ shape = SubResource( 1 )
 [node name="doorsprite" type="AnimatedSprite" parent="door"]
 position = Vector2( -2800.18, -480.982 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="teethingposter" type="AnimatedSprite" parent="."]
 position = Vector2( -698.467, -592.753 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Young Matt" parent="." instance=ExtResource( 1 )]
