@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/matt/Young Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Rooms/Hospital/floor.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ass/Rooms/Hospital/door2.png" type="Texture" id=6]
 [ext_resource path="res://ass/Rooms/Hospital/teethingposter1.png" type="Texture" id=7]
 [ext_resource path="res://ass/Rooms/Hospital/teethingposter2.png" type="Texture" id=8]
+[ext_resource path="res://ass/Characters/deerman daniel.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6225.61, 39.1147 )
@@ -69,11 +70,13 @@ shape = SubResource( 1 )
 [node name="doorsprite" type="AnimatedSprite" parent="door"]
 position = Vector2( -2800.18, -480.982 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="teethingposter" type="AnimatedSprite" parent="."]
 position = Vector2( -698.467, -592.753 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="Young Matt" parent="." instance=ExtResource( 1 )]
@@ -94,3 +97,7 @@ texture = ExtResource( 4 )
 [node name="lights2" type="Sprite" parent="ParallaxBackground/ParallaxLayer/Lights"]
 position = Vector2( 1558.94, -1330.97 )
 texture = ExtResource( 4 )
+
+[node name="DeermanDaniel" type="Sprite" parent="."]
+position = Vector2( 2296.98, -498.69 )
+texture = ExtResource( 9 )
