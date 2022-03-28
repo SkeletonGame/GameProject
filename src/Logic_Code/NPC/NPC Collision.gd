@@ -1,9 +1,9 @@
 extends CollisionShape2D
 
-func _on_Mom_body_entered(body: Node) -> void:
+func _on_Deerman_Daniel_body_entered(body: Node) -> void:
 	get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_list.append(get_parent().name)
 
-func _on_Mom_body_exited(body: Node) -> void:
+func _on_Deerman_Daniel_body_exited(body: Node) -> void:
 	get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_remove.append(get_parent().name)
 
 func loadjson(filename):
@@ -43,13 +43,12 @@ func _process(delta: float) -> void:
 			line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
 			display_text = ""
 			text = ""
-			get_parent().get_node("Label1").set_text(display_text)
-			get_parent().get_node("Label2").set_text(display_text)
-			get_parent().get_node("Label2").set_visible(true)
+			get_parent().get_node("Speech Bubble/Label1").set_text(display_text)
+			get_parent().get_node("Speech Bubble/Label2").set_text(display_text)
+			get_parent().get_node("Speech Bubble/Label2").set_visible(true)
 			init = true
 	else:
-		for this in ["Speech Bubble", "Label1", "Label2"]:
-			get_parent().get_node(this).set_visible(false)
+		get_parent().get_node("Speech Bubble").set_visible(false)
 
 var text = ""
 var dialogue_lines = {}
@@ -83,11 +82,11 @@ func label_switcher(delta):  ## makes the text all animated
 			label_switch = 0  ##cycle between the two frames
 		switch_timer = 0
 		if label_switch:
-			get_parent().get_node("Label1").set_visible(true) ## show the label with the first font, 
-			get_parent().get_node("Label2").set_visible(false) ## and hide the one with the second
+			get_parent().get_node("Speech Bubble/Label1").set_visible(true) ## show the label with the first font, 
+			get_parent().get_node("Speech Bubble/Label2").set_visible(false) ## and hide the one with the second
 		else:
-			get_parent().get_node("Label1").set_visible(false)  ## the same but reversed
-			get_parent().get_node("Label2").set_visible(true)
+			get_parent().get_node("Speech Bubble/Label1").set_visible(false)  ## the same but reversed
+			get_parent().get_node("Speech Bubble/Label2").set_visible(true)
 
 var display_text = ""
 var char_counter = 0
@@ -109,5 +108,8 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_counter += 1
 	if char_counter >= text.length():
 		char_time_done = 1
-	get_parent().get_node("Label1").set_text(display_text)
-	get_parent().get_node("Label2").set_text(display_text)
+	get_parent().get_node("Speech Bubble/Label1").set_text(display_text)
+	get_parent().get_node("Speech Bubble/Label2").set_text(display_text)
+
+
+
