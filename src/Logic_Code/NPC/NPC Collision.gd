@@ -1,10 +1,10 @@
 extends CollisionShape2D
 
-func _on_Deerman_Daniel_body_entered(body: Node) -> void:
-	get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_list.append(get_parent().name)
+#func _on_Deerman_Daniel_body_entered(body: Node) -> void:
+	#get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_list.append(get_parent().name)
 
-func _on_Deerman_Daniel_body_exited(body: Node) -> void:
-	get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_remove.append(get_parent().name)
+#func _on_Deerman_Daniel_body_exited(body: Node) -> void:
+	#get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_remove.append(get_parent().name)
 
 func loadjson(filename):
 	var file = File.new()
@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 		text = ""
 		dialogue_lines = {}
 		line_of_dialogue = 0
+		char_time_done = 0
 	get_parent().get_node("Speechable").set_visible(hovered)
 	get_parent().get_node("Speech Bubble").set_visible(speaking)
 	if speaking:
@@ -39,7 +40,7 @@ func _process(delta: float) -> void:
 			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").visibility_exception = false
 			speaking = false
 		if not init:
-			dialogue_lines = loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Dialogues"][String(loadjson("dialogue")[day][get_parent().get_parent().name][get_parent().name]["Interaction_Count"])]
+			dialogue_lines = loadjson("dialogue")[get_parent().get_parent().name][get_parent().name]["Dialogues"][String(loadjson("dialogue")[get_parent().get_parent().name][get_parent().name]["Interaction_Count"])]
 			line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
 			display_text = ""
 			text = ""
@@ -53,7 +54,6 @@ func _process(delta: float) -> void:
 var text = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
-var day = String(1)
 func text_display(delta):
 	if Input.is_action_just_pressed("interact"):
 		if char_time_done:

@@ -92,7 +92,6 @@ var file = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
 var emotion = "idle"
-var day = 0 # day will eventually be retrieved from somewhere else, and will affect dialogue and stuff
 var room = ""
 var rf = {}
 var IC = 0
@@ -140,9 +139,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				return ""
 	elif speech_type == "dialogue":
 		file = loadjson("dialogue")
-		day = 1 # day will eventually be retrieved from somewhere else, and will affect dialogue and stuff
 		room = get_parent().get_parent().name
-		rf = file[String(day)][room][person] # reference
+		rf = file[room][person] # reference
 		IC = rf["Interaction_Count"]
 		dialogue_lines = rf["Dialogues"][String(IC)]
 		line_of_dialogue = String(line_of_dialogue)

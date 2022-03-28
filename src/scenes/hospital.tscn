@@ -38,7 +38,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 370.636, 546.503 )
+extents = Vector2( 463.576, 546.503 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -123,7 +123,6 @@ frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
-z_index = 20
 
 [node name="Lights" type="Node2D" parent="."]
 position = Vector2( 0, 83.3456 )
@@ -138,31 +137,35 @@ texture = ExtResource( 4 )
 position = Vector2( 1558.94, -1330.97 )
 texture = ExtResource( 4 )
 
-[node name="Deerman Daniel" type="Area2D" parent="."]
-position = Vector2( 2510.27, 15.5859 )
-collision_layer = 0
+[node name="Deerman Daniel" type="KinematicBody2D" parent="."]
+position = Vector2( 2499.13, -663.881 )
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Deerman Daniel"]
-position = Vector2( 21.3818, -573.739 )
+position = Vector2( -0.572754, 77.6124 )
 shape = SubResource( 4 )
 script = ExtResource( 10 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Deerman Daniel"]
-position = Vector2( -1.83252, -513.268 )
+[node name="Daniel" type="AnimatedSprite" parent="Deerman Daniel"]
+position = Vector2( 25.3501, 174.256 )
 frames = SubResource( 5 )
+flip_h = true
 
 [node name="Speechable" type="AnimatedSprite" parent="Deerman Daniel"]
-position = Vector2( 10.52, -1139.44 )
+position = Vector2( 18.9958, -419.556 )
+z_index = 20
 frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Deerman Daniel"]
-position = Vector2( -42.3967, -1077.01 )
+visible = false
+position = Vector2( 8.67308, -375.221 )
 z_index = 10
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Label1" type="Label" parent="Deerman Daniel/Speech Bubble"]
@@ -195,6 +198,3 @@ max_lines_visible = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[connection signal="body_entered" from="Deerman Daniel" to="Deerman Daniel/CollisionShape2D" method="_on_Deerman_Daniel_body_entered"]
-[connection signal="body_exited" from="Deerman Daniel" to="Deerman Daniel/CollisionShape2D" method="_on_Deerman_Daniel_body_exited"]
