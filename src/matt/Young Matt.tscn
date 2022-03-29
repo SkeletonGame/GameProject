@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/matt/Matt.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/CameraLogic.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=25]
 [ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=26]
 [ext_resource path="res://src/matt/DialogueArea.gd" type="Script" id=27]
+[ext_resource path="res://src/matt/MattVoicebox.gd" type="Script" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 149.772, 396.386 )
@@ -265,6 +266,10 @@ script = ExtResource( 2 )
 
 [node name="DialogueLogic" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="Voicebox" type="AudioStreamPlayer2D" parent="."]
+volume_db = -19.184
+script = ExtResource( 28 )
 
 [connection signal="body_entered" from="DialogueArea" to="DialogueArea" method="_on_DialogueArea_body_entered"]
 [connection signal="body_exited" from="DialogueArea" to="DialogueArea" method="_on_DialogueArea_body_exited"]

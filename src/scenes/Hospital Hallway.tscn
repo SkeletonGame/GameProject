@@ -76,7 +76,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 23 ), ExtResource( 22 ) ],
 "loop": true,
@@ -84,7 +84,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
@@ -92,11 +92,11 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=12]
 size = 70
 font_data = ExtResource( 15 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 70
 font_data = ExtResource( 16 )
 
@@ -177,7 +177,6 @@ position = Vector2( -12.251, -513.943 )
 z_index = 20
 frames = SubResource( 7 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
@@ -213,16 +212,16 @@ flip_h = true
 [node name="Speechable" type="AnimatedSprite" parent="Deerman Daniel"]
 position = Vector2( 16.9517, -411.071 )
 z_index = 5
-frames = SubResource( 13 )
+frames = SubResource( 10 )
 frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Deerman Daniel"]
-visible = false
 position = Vector2( 8.67308, -375.221 )
 z_index = 10
-frames = SubResource( 10 )
+frames = SubResource( 11 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Label1" type="Label" parent="Deerman Daniel/Speech Bubble"]
@@ -231,7 +230,7 @@ margin_top = -117.04
 margin_right = 309.0
 margin_bottom = 76.9602
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "hello there
 "
 align = 1
@@ -246,7 +245,7 @@ margin_left = -319.691
 margin_top = -117.04
 margin_right = 309.309
 margin_bottom = 76.9602
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 text = "hello there
 "
 align = 1
@@ -255,6 +254,9 @@ max_lines_visible = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Voicebox" type="AudioStreamPlayer2D" parent="Deerman Daniel"]
+volume_db = -20.194
 
 [connection signal="body_entered" from="Uncle Room Door" to="Uncle Room Door" method="_on_Uncle_Room_Door_body_entered"]
 [connection signal="body_exited" from="Uncle Room Door" to="Uncle Room Door" method="_on_Uncle_Room_Door_body_exited"]

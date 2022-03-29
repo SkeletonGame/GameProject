@@ -1,11 +1,5 @@
 extends CollisionShape2D
 
-#func _on_Deerman_Daniel_body_entered(body: Node) -> void:
-	#get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_list.append(get_parent().name)
-
-#func _on_Deerman_Daniel_body_exited(body: Node) -> void:
-	#get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person_remove.append(get_parent().name)
-
 func loadjson(filename):
 	var file = File.new()
 	file.open("datafiles/" + filename + ".json", file.READ)  ## read json files
@@ -14,6 +8,11 @@ func loadjson(filename):
 	data = parse_json(text)
 	file.close()
 	return data ## return data
+
+var voice
+func _ready() -> void:
+	voice = load("res://noises/voice/" + get_parent().name + ".wav")
+	get_parent().get_node("Voicebox").stream = voice
 
 var hovered = false # hovered over, this boolean checks if this NPC is the one Matt is currently selecting for dialogue
 var speaking = false # this variable will be changed by Matt's code when the dialogue marks this NPC as the speaker
@@ -106,6 +105,8 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_timer = 0
 		display_text += text[char_counter]
 		char_counter += 1
+		if !(char_counter % 3):
+			get_parent().get_node("Voicebox").play()
 	if char_counter >= text.length():
 		char_time_done = 1
 	get_parent().get_node("Speech Bubble/Label1").set_text(display_text)

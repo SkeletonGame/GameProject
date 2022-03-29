@@ -44,6 +44,8 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_timer = 0
 		display_text += text[char_counter]
 		char_counter += 1
+		if !(char_counter % 3):
+				get_parent().get_node("Voicebox").play()
 	if char_counter >= text.length():
 		char_time_done = 1
 	else:
