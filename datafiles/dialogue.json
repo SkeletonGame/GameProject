@@ -32,14 +32,14 @@
       }
     }
   },
-  "Hospital": {
+  "Hospital Hallway": {
     "Deerman Daniel" : {
       "Interaction_Count": 0,
       "Dialogues": {
         "0": {
           "0": {
             "Speaker": "Deerman Daniel",
-            "Line": "Hey there kid, your uncle's in that room back behind you."
+            "Line": "Hey kid, your uncle's in that room back behind you."
           },
           "1": {
             "Speaker": "Matt",

@@ -8,5 +8,8 @@
         "limit_l": -6780,
         "limit_r": 2000,
         "limit_t": -1815
+    },
+    "Hospital Hallway": {
+        "limit_l": -4200
     }
 }

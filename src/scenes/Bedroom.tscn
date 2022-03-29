@@ -1,6 +1,6 @@
 [gd_scene load_steps=36 format=2]
 
-[ext_resource path="res://src/Logic_Code/door.gd" type="Script" id=1]
+[ext_resource path="res://src/Logic_Code/Door/door.gd" type="Script" id=1]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=3]
 [ext_resource path="res://ass/Rooms/Bedroom/door1.png" type="Texture" id=4]
@@ -22,6 +22,7 @@
 [ext_resource path="res://ass/Rooms/Bedroom/lights2.png" type="Texture" id=22]
 [ext_resource path="res://ass/UI/interactable_eye1.png" type="Texture" id=23]
 [ext_resource path="res://ass/UI/interactable_eye2.png" type="Texture" id=24]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

@@ -1,0 +1,317 @@
+[gd_scene load_steps=48 format=2]
+
+[ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ass/Rooms/Living Room/couch2.png" type="Texture" id=2]
+[ext_resource path="res://ass/Rooms/Living Room/couch1.png" type="Texture" id=3]
+[ext_resource path="res://ass/Rooms/Bedroom/floor.png" type="Texture" id=4]
+[ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=5]
+[ext_resource path="res://ass/Rooms/Living Room/bedroom_door2.png" type="Texture" id=6]
+[ext_resource path="res://ass/Rooms/Living Room/bedroom_door1.png" type="Texture" id=7]
+[ext_resource path="res://src/Logic_Code/Door/bedroom_door.gd" type="Script" id=8]
+[ext_resource path="res://ass/Rooms/Living Room/stove1.png" type="Texture" id=9]
+[ext_resource path="res://ass/Rooms/Living Room/stove2.png" type="Texture" id=10]
+[ext_resource path="res://ass/Characters/Matt_s Mom/mom2.png" type="Texture" id=11]
+[ext_resource path="res://ass/Characters/Matt_s Mom/mom1.png" type="Texture" id=12]
+[ext_resource path="res://src/Logic_Code/NPC/NPC Collision.gd" type="Script" id=13]
+[ext_resource path="res://ass/UI/interactable_speech1.png" type="Texture" id=14]
+[ext_resource path="res://ass/UI/interactable_speech2.png" type="Texture" id=15]
+[ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=16]
+[ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=17]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=19]
+[ext_resource path="res://ass/Rooms/Living Room/wall2.png" type="Texture" id=20]
+[ext_resource path="res://ass/Rooms/Living Room/painting2.png" type="Texture" id=21]
+[ext_resource path="res://ass/Rooms/Living Room/painting1.png" type="Texture" id=22]
+[ext_resource path="res://ass/Rooms/Living Room/wall1.png" type="Texture" id=23]
+[ext_resource path="res://ass/Rooms/Living Room/front_door1.png" type="Texture" id=24]
+[ext_resource path="res://ass/Rooms/Living Room/front_door2.png" type="Texture" id=25]
+[ext_resource path="res://ass/Rooms/Living Room/desk2.png" type="Texture" id=26]
+[ext_resource path="res://ass/Rooms/Living Room/desk1.png" type="Texture" id=27]
+[ext_resource path="res://src/Logic_Code/Door/front_door.gd" type="Script" id=28]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 23 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 22 ), ExtResource( 21 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6728, 64 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 112, 992 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4752, 40 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 112, 488 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 488, 72 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 256, 448 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 512, 448 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="DynamicFont" id=18]
+size = 70
+font_data = ExtResource( 19 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 70
+font_data = ExtResource( 18 )
+
+[node name="Living Room" type="Node2D"]
+
+[node name="wall" type="AnimatedSprite" parent="."]
+position = Vector2( -1960, -1048 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="Painting" type="AnimatedSprite" parent="."]
+position = Vector2( -1240, -912 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="Floor" type="KinematicBody2D" parent="."]
+position = Vector2( -400, -120 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="floor" type="Sprite" parent="Floor"]
+position = Vector2( -112, 232 )
+texture = ExtResource( 4 )
+
+[node name="floor2" type="Sprite" parent="Floor"]
+position = Vector2( 4360, 240 )
+texture = ExtResource( 4 )
+
+[node name="floor3" type="Sprite" parent="Floor"]
+position = Vector2( -4448, 232 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -72, 144 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 3032, -864 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -1696, -1808 )
+shape = SubResource( 5 )
+
+[node name="FrontDoor" type="Area2D" parent="."]
+position = Vector2( -6776, -536 )
+
+[node name="frontdoor" type="AnimatedSprite" parent="FrontDoor"]
+frames = SubResource( 6 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape" type="CollisionShape2D" parent="FrontDoor"]
+shape = SubResource( 7 )
+script = ExtResource( 28 )
+
+[node name="desk" type="AnimatedSprite" parent="."]
+position = Vector2( -5472, -360 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CouchBounce!" type="StaticBody2D" parent="."]
+position = Vector2( -1240, -32 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="CouchBounce!"]
+position = Vector2( 0, -240 )
+frames = SubResource( 9 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
+position = Vector2( 0, -200 )
+shape = SubResource( 10 )
+one_way_collision = true
+script = ExtResource( 5 )
+
+[node name="Kitchen" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.8, 1 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Kitchen"]
+motion_offset = Vector2( 200, 0 )
+
+[node name="Stove2" type="AnimatedSprite" parent="Kitchen/ParallaxLayer"]
+position = Vector2( -1864, -552 )
+frames = SubResource( 11 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="BedroomDoor" type="Area2D" parent="."]
+position = Vector2( -296, 32 )
+collision_layer = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="BedroomDoor"]
+position = Vector2( 352, -568 )
+frames = SubResource( 12 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoor"]
+position = Vector2( 352, -568 )
+shape = SubResource( 13 )
+script = ExtResource( 8 )
+
+[node name="Mom" type="Area2D" parent="."]
+position = Vector2( -3176, -464 )
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mom"]
+shape = SubResource( 14 )
+script = ExtResource( 13 )
+
+[node name="Mom" type="AnimatedSprite" parent="Mom"]
+frames = SubResource( 15 )
+animation = "idle"
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Speechable" type="AnimatedSprite" parent="Mom"]
+position = Vector2( 8, -512 )
+frames = SubResource( 16 )
+animation = "idle"
+playing = true
+
+[node name="Speech Bubble" type="AnimatedSprite" parent="Mom"]
+position = Vector2( 8, -568 )
+frames = SubResource( 17 )
+animation = "idle"
+playing = true
+
+[node name="Label1" type="Label" parent="Mom/Speech Bubble"]
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 309.0
+margin_bottom = 82.0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 18 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Mom/Speech Bubble"]
+margin_left = -320.0
+margin_top = -112.0
+margin_right = 309.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 19 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Matt" parent="." instance=ExtResource( 1 )]
+position = Vector2( 16, -32 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true
+
+[connection signal="body_entered" from="FrontDoor" to="FrontDoor/CollisionShape" method="_on_FrontDoor_body_entered"]
+[connection signal="body_entered" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_entered"]
+[connection signal="body_exited" from="BedroomDoor" to="BedroomDoor/CollisionShape2D" method="_on_BedroomDoor_body_exited"]
+[connection signal="body_entered" from="Mom" to="Mom/CollisionShape2D" method="_on_Mom_body_entered"]
+[connection signal="body_exited" from="Mom" to="Mom/CollisionShape2D" method="_on_Mom_body_exited"]

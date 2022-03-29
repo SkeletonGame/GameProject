@@ -35,7 +35,7 @@ func default_phys(delta):
 	velocity.x += Input.get_action_strength("right") * 7000 * delta
 	velocity.x += Input.get_action_strength("left") * -7000 * delta
 	velocity.x *= 0.88
-	if Input.is_action_just_pressed("space") and ground_check and not Input.is_action_pressed("down"): # jump
+	if not jump_lock and Input.is_action_just_pressed("space") and ground_check and not Input.is_action_pressed("down"): # jump
 		jump_looper = 10
 	if jump_looper:
 		velocity.y -= (50 * jump_looper)
@@ -50,13 +50,13 @@ func bounce_phys(delta):
 	if boonce and round(position.y) == round(bounce_check) and ground_check:  ##this works perfectly, launches you into space like any good mattress should
 		velocity.y -= 800 * boonce
 		boonce -= 0.5
-		if Input.is_action_pressed("space") and boonce < 3 and not Input.is_action_pressed("down"):
+		if not jump_lock and Input.is_action_pressed("space") and boonce < 3 and not Input.is_action_pressed("down"):
 			boonce += 1
 		if Input.is_action_pressed("down"):
 			boonce -= 0.5
 			if boonce < 0:
 				boonce = 0
-	if Input.is_action_just_pressed("space") and ground_check and not Input.is_action_pressed("down"): # jump
+	if not jump_lock and Input.is_action_just_pressed("space") and ground_check and not Input.is_action_pressed("down"): # jump
 		jump_looper = 11
 		boonce = 2.5
 		bounce_check = position.y
@@ -83,6 +83,7 @@ func slope_phys(delta):
 		velocity.y -= grav
 
 var motion_lock = false
+var jump_lock = false
 var up_arg = Vector2(0, 0)
 func velocity_handler(delta):
 	velocity = move_and_slide(velocity, up_arg, true)
