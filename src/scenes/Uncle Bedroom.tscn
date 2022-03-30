@@ -12,7 +12,7 @@
 [ext_resource path="res://src/Logic_Code/SceneMainCodeFiles/Uncle Bedroom.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 353.12, 382.45 )
+extents = Vector2( 378.314, 382.45 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -68,7 +68,6 @@ texture = ExtResource( 2 )
 position = Vector2( -48.8217, -498.945 )
 z_index = 5
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Uncle Dave"]
@@ -111,8 +110,8 @@ __meta__ = {
 }
 
 [node name="Voicebox" type="AudioStreamPlayer2D" parent="Uncle Dave"]
-position = Vector2( 719.705, 350.18 )
-volume_db = -20.194
+position = Vector2( -57.1718, -130.362 )
+volume_db = -13.126
 
 [node name="walls and floor" type="StaticBody2D" parent="."]
 position = Vector2( -15.1018, -11.3265 )

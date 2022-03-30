@@ -3,7 +3,6 @@ extends Node2D
 var matt_pos_start
 func _ready():
 	matt_pos_start = get_parent().get_position()
-	print(matt_pos_start)
 
 func loadjson(filename):
 	var file = File.new()
@@ -66,7 +65,6 @@ func camera_move():
 		object_y = get_parent().get_parent().get_node(object).get_position()[1]
 		matt_x = get_parent().get_node("KinematicMatt").get_position()[0] + matt_pos_start[0]
 		matt_y = get_parent().get_node("KinematicMatt").get_position()[1] + matt_pos_start[1]
-		#print(matt_x)
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x - (matt_x - object_x) / 500
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000 + 0.3
 	else:

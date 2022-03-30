@@ -161,6 +161,10 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				speaker_init = false
 			if speaker != "Matt":
 				visibility_exception = true
+			if "Emotion" in dialogue_lines[line_of_dialogue]:
+				emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+			else:
+				emotion = "idle"
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			speech_trigger = 0
