@@ -33,7 +33,7 @@
     }
   },
   "Hospital Hallway": {
-    "Deerman Daniel" : {
+    "Deerman Daniel": {
       "Interaction_Count": 0,
       "Dialogues": {
         "0": {
@@ -44,6 +44,28 @@
           "1": {
             "Speaker": "Matt",
             "Line": "Oh, right. Thanks."
+          }
+        }
+      }
+    }
+  },
+  "Uncle Bedroom": {
+    "Uncle Dave": {
+      "Interaction_Count": 0,
+      "Dialogues": {
+        "0": {
+          "0": {
+            "Speaker": "Uncle Dave",
+            "Line": "Well, if it isn't the coolest yellow canary!"
+          },
+          "1": {
+            "Speaker": "Uncle Dave",
+            "Line": "What's happening, little nephew?"
+          },
+          "2": {
+            "Speaker": "Matt",
+            "Line": "Nothing much.",
+            "Emotion": "quizz"
           }
         }
       }

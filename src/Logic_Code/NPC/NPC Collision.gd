@@ -22,13 +22,16 @@ func _process(delta: float) -> void:
 		hovered = true
 	else:
 		hovered = false
-	if not get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").motion_lock:
+	if not get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").motion_lock and init:
 		speaking = false
 		init = false
 		text = ""
 		dialogue_lines = {}
 		line_of_dialogue = 0
 		char_time_done = 0
+		label_switch = 0
+		switch_timer = 0
+		char_timer = 0
 	get_parent().get_node("Speechable").set_visible(hovered)
 	get_parent().get_node("Speech Bubble").set_visible(speaking)
 	if speaking:

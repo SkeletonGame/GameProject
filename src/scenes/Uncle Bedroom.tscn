@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://src/matt/Young Matt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ass/Characters/Uncle/uncle_bed.png" type="Texture" id=2]
+[ext_resource path="res://src/Logic_Code/NPC/NPC Collision.gd" type="Script" id=3]
+[ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=4]
+[ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=5]
+[ext_resource path="res://ass/UI/interactable_speech2.png" type="Texture" id=6]
+[ext_resource path="res://ass/UI/interactable_speech1.png" type="Texture" id=7]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://src/Logic_Code/SceneMainCodeFiles/Uncle Bedroom.gd" type="Script" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 353.12, 382.45 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="DynamicFont" id=4]
+size = 70
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+font_data = ExtResource( 9 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 1479.57, 77.8334 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 140.876, 854.577 )
+
+[node name="Uncle Bedroom" type="Node2D"]
+script = ExtResource( 10 )
+
+[node name="Matt" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1163.71, 12.3637 )
+
+[node name="Uncle Dave" type="KinematicBody2D" parent="."]
+position = Vector2( -845.091, -351.554 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Uncle Dave"]
+position = Vector2( -48.4185, -62.8146 )
+shape = SubResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Dave" type="Sprite" parent="Uncle Dave"]
+position = Vector2( 266.29, 31.0214 )
+texture = ExtResource( 2 )
+
+[node name="Speechable" type="AnimatedSprite" parent="Uncle Dave"]
+position = Vector2( -48.8217, -498.945 )
+z_index = 5
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Speech Bubble" type="AnimatedSprite" parent="Uncle Dave"]
+position = Vector2( -1.8877, -500.275 )
+z_index = 10
+frames = SubResource( 3 )
+animation = "idle"
+playing = true
+flip_h = true
+
+[node name="Label1" type="Label" parent="Uncle Dave/Speech Bubble"]
+margin_left = -316.636
+margin_top = -109.771
+margin_right = 312.364
+margin_bottom = 84.2294
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 4 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Uncle Dave/Speech Bubble"]
+margin_left = -317.168
+margin_top = -110.242
+margin_right = 311.832
+margin_bottom = 83.758
+custom_fonts/font = SubResource( 5 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Voicebox" type="AudioStreamPlayer2D" parent="Uncle Dave"]
+position = Vector2( 719.705, 350.18 )
+volume_db = -20.194
+
+[node name="walls and floor" type="StaticBody2D" parent="."]
+position = Vector2( -15.1018, -11.3265 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="walls and floor"]
+position = Vector2( 544.866, 94.0673 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="walls and floor"]
+position = Vector2( 2150.64, -835.112 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="walls and floor"]
+position = Vector2( -875.839, -814.324 )
+shape = SubResource( 7 )
