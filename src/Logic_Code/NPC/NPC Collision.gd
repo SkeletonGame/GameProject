@@ -17,7 +17,9 @@ func _ready() -> void:
 var hovered = false # hovered over, this boolean checks if this NPC is the one Matt is currently selecting for dialogue
 var speaking = false # this variable will be changed by Matt's code when the dialogue marks this NPC as the speaker
 var init = false
+var switchback = false
 func _process(delta: float) -> void:
+	line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
 	if get_parent().name == get_parent().get_parent().get_node("Matt").get_node("DialogueLogic").person and not get_parent().get_parent().get_node("Matt").get_node("KinematicMatt").motion_lock:
 		hovered = true
 	else:
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 	get_parent().get_node("Speechable").set_visible(hovered)
 	get_parent().get_node("Speech Bubble").set_visible(speaking)
 	if speaking:
+		timer_to_avoid_double_input_hell += delta
 		label_switcher(delta)
 		get_parent().get_node("Speech Bubble").set_visible(true)
 		if text_display(delta) == "done":
@@ -43,7 +46,6 @@ func _process(delta: float) -> void:
 			speaking = false
 		if not init:
 			dialogue_lines = loadjson("dialogue")[get_parent().get_parent().name][get_parent().name]["Dialogues"][String(loadjson("dialogue")[get_parent().get_parent().name][get_parent().name]["Interaction_Count"])]
-			line_of_dialogue = String(get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue)
 			display_text = ""
 			text = ""
 			get_parent().get_node("Speech Bubble/Label1").set_text(display_text)
@@ -56,9 +58,11 @@ func _process(delta: float) -> void:
 var text = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
+var timer_to_avoid_double_input_hell = 0
 func text_display(delta):
 	if Input.is_action_just_pressed("interact"):
-		if char_time_done:
+		if char_time_done and timer_to_avoid_double_input_hell > 0.05:
+			timer_to_avoid_double_input_hell = 0
 			line_of_dialogue = int(line_of_dialogue)
 			line_of_dialogue += 1
 			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").line_of_dialogue = String(line_of_dialogue)
@@ -114,6 +118,3 @@ func char_time(delta, text):  ## make things not all appear at once
 		char_time_done = 1
 	get_parent().get_node("Speech Bubble/Label1").set_text(display_text)
 	get_parent().get_node("Speech Bubble/Label2").set_text(display_text)
-
-
-

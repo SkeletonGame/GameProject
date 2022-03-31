@@ -91,9 +91,6 @@ def camera_editor(data, filename, path):
         data[room][limit]=int(value)
         jsonsave(data, filename, path)
 
-
-
-
 def diolouge_editor(data, filename, path):
     stage = 0
     emotelist = ["mad", "quizz", ""]
@@ -205,9 +202,6 @@ def diolouge_editor(data, filename, path):
                             jsonsave(data, filename, path)
                             break
                 stage = 0; continue
-
-
-
 
 def parsejson(filename='interactables.json', path=''):
     if path == '':

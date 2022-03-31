@@ -11,5 +11,8 @@
     },
     "Hospital Hallway": {
         "limit_l": -4200
+    },
+    "Uncle Bedroom": {
+        "limit_r": 2070
     }
 }

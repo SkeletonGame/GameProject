@@ -55,17 +55,34 @@
       "Dialogues": {
         "0": {
           "0": {
-            "Speaker": "Uncle Dave",
-            "Line": "Well, if it isn't the coolest yellow canary!"
+            "Speaker": "Matt",
+            "Line": "Hey Uncle Dave!",
+            "Emotion": "joy"
           },
           "1": {
             "Speaker": "Uncle Dave",
-            "Line": "What's happening, little nephew?"
+            "Line": "Well, if it isn't the coolest yellow canary!"
           },
           "2": {
+            "Speaker": "Uncle Dave",
+            "Line": "What's happening, little nephew?"
+          },
+          "3": {
             "Speaker": "Matt",
-            "Line": "Nothing much.",
+            "Line": "My mom's sorry she couldn't make it today."
+          },
+          "4": {
+            "Speaker": "Matt",
+            "Line": "Apparently, her boss called her in for some presentation.",
             "Emotion": "quizz"
+          },
+          "5": {
+            "Speaker": "Uncle Dave",
+            "Line": "Hehe, that sister of mine has always been an overachiever!"
+          },
+          "6": {
+            "Speaker": "Matt",
+            "Line": "Yep, she definitely is that."
           }
         }
       }

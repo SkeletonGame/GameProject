@@ -101,6 +101,7 @@ var speaker = ""
 var speaker_v = "" #previous speaker
 var speaker_init = false
 var dialogue_init = false
+var emotion_through = false # this flag is triggered by an "-" at the end of an emotion tag in the jsonfile
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 	if Input.is_action_just_pressed("interact") and not speaker_init:
 		if char_time_done:
@@ -154,6 +155,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 				display_text = ""
 				if not speaker_init:
+					#get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").line_of_dialogue = String(line_of_dialogue)
 					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").init = false
 					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").speaking = true
 					speaker_init = true
@@ -162,9 +164,16 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			if speaker != "Matt":
 				visibility_exception = true
 			if "Emotion" in dialogue_lines[line_of_dialogue]:
-				emotion = dialogue_lines[line_of_dialogue]["Emotion"]
-			else:
+				if not dialogue_lines[line_of_dialogue]["Emotion"][dialogue_lines[line_of_dialogue]["Emotion"].length() - 1] == "-":
+					emotion = dialogue_lines[line_of_dialogue]["Emotion"]
+				else:
+					emotion = dialogue_lines[line_of_dialogue]["Emotion"].substr(0, dialogue_lines[line_of_dialogue]["Emotion"].length() - 1)
+					emotion_through = true
+			elif not emotion_through:
 				emotion = "idle"
+			elif dialogue_lines[line_of_dialogue]["Speaker"] == "Matt":
+				emotion = "idle"
+				emotion_through = false
 			return dialogue_lines[line_of_dialogue]["Line"]
 		else:
 			speech_trigger = 0
