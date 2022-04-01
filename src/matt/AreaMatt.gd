@@ -99,7 +99,7 @@ func flag_doer():
 		get_parent().get_parent().scene_commands[flag_type] = flag_data
 
 func flag_runtime():
-	if not "Options" or "Flag" in dialogue_lines[String(line_of_dialogue)]:
+	if not "Options" in dialogue_lines[String(line_of_dialogue)] and not "Flag" in dialogue_lines[String(line_of_dialogue)]:
 		flag_type = ""
 		flag_data = ""
 	elif "Flag" in dialogue_lines[String(line_of_dialogue)]:
