@@ -82,7 +82,23 @@
           },
           "6": {
             "Speaker": "Matt",
-            "Line": "Yep, she definitely is that."
+            "Line": "Yep, she definitely is that.",
+            "Flag": "Cut The Music_"
+          },
+          "7" : {
+            "Speaker": "Uncle Dave",
+            "Line": "So, do you still like that show we used to watch?"
+          },
+          "8": {
+            "Speaker": "Matt",
+            "Options": [
+              {
+                "OP_Line": "Yeah, Bagging Bones! I watch it all the time."
+              },
+              {
+                "OP_Line": "I catch an episode every now and then."
+              }
+            ]
           }
         }
       }

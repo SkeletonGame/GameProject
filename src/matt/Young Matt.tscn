@@ -92,14 +92,14 @@ animations = [ {
 "name": "quizz",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "joy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "mad",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "joy",
 "speed": 5.0
 } ]
 

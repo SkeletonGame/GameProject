@@ -55,7 +55,7 @@ func char_time(delta, text):  ## make things not all appear at once
 
 var option_list = []
 var option_count = 0
-var decision_init = 1
+var decision_init = true
 var flag_type = ""
 var flag_data = ""
 func decision_maker(): # dont worry about this function, it works
@@ -68,7 +68,7 @@ func decision_maker(): # dont worry about this function, it works
 			get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles3").set_animation("idle")
 		if option_list.size() > 3:
 			get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles4").set_animation("idle")
-		decision_init = 0
+		decision_init = false
 		option_count = 0
 		get_node("Speech Bubble/circles/" + String(option_list.size()) + "option/circles" + String(option_count + 1)).set_animation("filled")
 	for i in ["Speech Bubble/circles/2option", "Speech Bubble/circles/3option", "Speech Bubble/circles/4option"]:
@@ -90,6 +90,22 @@ func decision_maker(): # dont worry about this function, it works
 		flag_data = ""
 	return option_list[option_count]["OP_Line"] # OP_Line = option line
 
+func flag_doer():
+	if flag_data == "" and not flag_type == "":
+		flag_data = true
+	if flag_type == "MG": # minigame
+		get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
+	elif flag_type != "":
+		get_parent().get_parent().scene_commands[flag_type] = flag_data
+
+func flag_runtime():
+	if not "Options" or "Flag" in dialogue_lines[String(line_of_dialogue)]:
+		flag_type = ""
+		flag_data = ""
+	elif "Flag" in dialogue_lines[String(line_of_dialogue)]:
+		flag_type = dialogue_lines[String(line_of_dialogue)]["Flag"].split("_")[0]
+		flag_data = dialogue_lines[String(line_of_dialogue)]["Flag"].split("_")[1]
+
 var file = ""
 var dialogue_lines = {}
 var line_of_dialogue = 0
@@ -102,9 +118,12 @@ var speaker_v = "" #previous speaker
 var speaker_init = false
 var dialogue_init = false
 var emotion_through = false # this flag is triggered by an "-" at the end of an emotion tag in the jsonfile
+var result
+var file_init = false
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 	if Input.is_action_just_pressed("interact") and not speaker_init:
 		if char_time_done:
+			flag_doer()
 			line_of_dialogue = int(line_of_dialogue)
 			line_of_dialogue += 1
 			display_text = ""
@@ -112,23 +131,22 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			display_text = text
 			char_counter = text.length()
 	if speech_type == "interaction":
-		file = loadjson("interactables")
 		if inter_arg in file:
+			file = loadjson("interactables")
 			dialogue_lines = file[inter_arg]["Dialogue_Lines"]
 			line_of_dialogue = String(line_of_dialogue) # line of dialogue is the NUMBER of the line currently observed.
 			if line_of_dialogue in dialogue_lines:  # if the line of dialogue number is greater than the number of lines for a dialogue, then the dialogue ends
+				flag_runtime()
 				if "Emotion" in dialogue_lines[line_of_dialogue]:
 					emotion = dialogue_lines[line_of_dialogue]["Emotion"]
 				else:
 					emotion = "idle"
 				if "Line" in dialogue_lines[line_of_dialogue]:
 					option_list = [] # this list NEEDS to be reset for the options to work. it resets when there isnt options.
-					flag_type = ""
-					flag_data = ""
 					return dialogue_lines[line_of_dialogue]["Line"]
 				elif "Options" in dialogue_lines[line_of_dialogue]:
 					if option_list.size() < 1:
-						decision_init = 1
+						decision_init = true
 					return decision_maker()
 			else:
 				get_parent().get_node("KinematicMatt").motion_lock = false
@@ -137,8 +155,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				speech_interactable = ""
 				speech_trigger = 0
 				line_of_dialogue = 0
-				if flag_type == "MG": # minigame
-					get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
+				file_init = false
 				return ""
 	elif speech_type == "dialogue":
 		file = loadjson("dialogue")
@@ -151,11 +168,11 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 			dialogue_init = true
 		if line_of_dialogue in dialogue_lines:
+			flag_runtime()
 			if dialogue_lines[line_of_dialogue]["Speaker"] != "Matt":
 				speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 				display_text = ""
 				if not speaker_init:
-					#get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").line_of_dialogue = String(line_of_dialogue)
 					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").init = false
 					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").speaking = true
 					speaker_init = true
@@ -174,7 +191,14 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			elif dialogue_lines[line_of_dialogue]["Speaker"] == "Matt":
 				emotion = "idle"
 				emotion_through = false
-			return dialogue_lines[line_of_dialogue]["Line"]
+			if "Line" in dialogue_lines[line_of_dialogue]:
+				option_list = [] # resetting so that it is empty when an option arrives
+				result = dialogue_lines[line_of_dialogue]["Line"]
+			elif "Options" in dialogue_lines[line_of_dialogue]:
+				if option_list.size() < 1:
+					decision_init = true
+				result = decision_maker()
+			return result
 		else:
 			speech_trigger = 0
 			line_of_dialogue = 0
@@ -184,6 +208,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			emotion = "idle"
 			dialogue_init = false
 			visibility_exception = false
+			file_init = false
 			get_parent().get_node("KinematicMatt").motion_lock = false
 			return ""
 	elif speech_type == "direct input":

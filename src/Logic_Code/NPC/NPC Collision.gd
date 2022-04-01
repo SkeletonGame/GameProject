@@ -71,11 +71,11 @@ func text_display(delta):
 			display_text = text
 			char_counter = text.length()
 	if String(line_of_dialogue) in dialogue_lines:
-		text = dialogue_lines[String(line_of_dialogue)]["Line"]
 		if dialogue_lines[String(line_of_dialogue)]["Speaker"] != get_parent().name:
 			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").speaker = dialogue_lines[String(line_of_dialogue)]["Speaker"]
 			return "done"
 		else:
+			text = dialogue_lines[String(line_of_dialogue)]["Line"]
 			char_time(delta, text)
 
 var label_switch = 0

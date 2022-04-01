@@ -79,6 +79,10 @@ texture = ExtResource( 11 )
 [node name="walls and floor" type="StaticBody2D" parent="."]
 position = Vector2( -15.1018, -11.3265 )
 
+[node name="floor" type="Sprite" parent="walls and floor"]
+position = Vector2( 121.08, 75.9555 )
+texture = ExtResource( 16 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="walls and floor"]
 position = Vector2( 544.866, 94.0673 )
 shape = SubResource( 1 )
@@ -91,10 +95,6 @@ shape = SubResource( 2 )
 position = Vector2( -851.812, -814.324 )
 shape = SubResource( 2 )
 
-[node name="floor" type="Sprite" parent="walls and floor"]
-position = Vector2( 121.08, 75.9555 )
-texture = ExtResource( 16 )
-
 [node name="door" type="AnimatedSprite" parent="."]
 position = Vector2( 2042.9, -474.22 )
 frames = SubResource( 3 )
@@ -102,7 +102,7 @@ animation = "idle"
 playing = true
 
 [node name="Matt" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1163.71, 12.3637 )
+position = Vector2( 1166.54, 12.8137 )
 
 [node name="Uncle Dave" type="KinematicBody2D" parent="."]
 position = Vector2( -845.091, -351.554 )
