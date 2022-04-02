@@ -33,7 +33,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 149.772, 396.386 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 202.978, 407.852 )
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 14 ) ],
 "loop": true,
@@ -41,15 +44,15 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 70
 font_data = ExtResource( 15 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 70
 font_data = ExtResource( 16 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 22 ), ExtResource( 21 ) ],
 "loop": true,
@@ -61,9 +64,6 @@ animations = [ {
 "name": "filled",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 202.978, 407.852 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 80, 380.549 )
@@ -88,14 +88,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "quizz",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 26 ), ExtResource( 27 ) ],
 "loop": true,
 "name": "joy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "quizz",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
@@ -121,13 +121,19 @@ collision_layer = 0
 collision_mask = 2
 script = ExtResource( 18 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMatt"]
+position = Vector2( 24.1769, -449.112 )
+shape = SubResource( 2 )
+
 [node name="Speech Bubble" type="Node2D" parent="AreaMatt"]
-position = Vector2( 16, 0 )
+position = Vector2( 14.7361, 11.3751 )
+z_index = 10
 
 [node name="Bubble" type="AnimatedSprite" parent="AreaMatt/Speech Bubble"]
 position = Vector2( -13.2967, -976.017 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Label2" type="Label" parent="AreaMatt/Speech Bubble"]
@@ -135,7 +141,7 @@ margin_left = -331.0
 margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "hello there
 "
 align = 1
@@ -151,7 +157,7 @@ margin_top = -1080.0
 margin_right = 298.0
 margin_bottom = -886.0
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "hello there
 "
 align = 1
@@ -162,74 +168,74 @@ __meta__ = {
 }
 
 [node name="circles" type="Node2D" parent="AreaMatt/Speech Bubble"]
+position = Vector2( -0.374573, 7.86612 )
 
 [node name="2option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 position = Vector2( -49.1681, -947.642 )
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/2option"]
 position = Vector2( -17.4828, 3.96851 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/2option"]
 position = Vector2( 76.989, 5.55591 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="3option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( -105.797, -943.011 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( -18.4685, -942.042 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles3" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/3option"]
 position = Vector2( 74.3867, -942.447 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="4option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 
 [node name="circles1" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
 position = Vector2( -128.761, -942.735 )
-frames = SubResource( 5 )
-animation = "idle"
-playing = true
-
-[node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
-position = Vector2( -54.5162, -942.123 )
-frames = SubResource( 5 )
-animation = "idle"
-playing = true
-
-[node name="circles3" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
-position = Vector2( 23.5854, -940.817 )
-frames = SubResource( 5 )
+frames = SubResource( 6 )
 animation = "idle"
 frame = 1
 playing = true
 
-[node name="circles4" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
-position = Vector2( 96.7374, -941.617 )
-frames = SubResource( 5 )
+[node name="circles2" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
+position = Vector2( -54.5162, -942.123 )
+frames = SubResource( 6 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="circles3" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
+position = Vector2( 23.5854, -940.817 )
+frames = SubResource( 6 )
 animation = "idle"
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMatt"]
-position = Vector2( 24.1769, -449.112 )
-shape = SubResource( 6 )
+[node name="circles4" type="AnimatedSprite" parent="AreaMatt/Speech Bubble/circles/4option"]
+position = Vector2( 96.7374, -941.617 )
+frames = SubResource( 6 )
+animation = "idle"
+frame = 1
+playing = true
 
 [node name="KinematicMatt" type="KinematicBody2D" parent="."]
 position = Vector2( 16, 0 )

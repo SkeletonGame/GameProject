@@ -95,6 +95,8 @@ func flag_doer():
 		flag_data = true
 	if flag_type == "MG": # minigame
 		get_parent().get_parent().get_parent().get_parent().get_node(".").start_transition("minigames/" + flag_data)
+	elif flag_type == "Skip":
+		line_of_dialogue = String(int(flag_data) - 1)
 	elif flag_type != "":
 		get_parent().get_parent().scene_commands[flag_type] = flag_data
 
@@ -130,6 +132,8 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		else:
 			display_text = text
 			char_counter = text.length()
+	if Input.is_action_just_pressed("interact") and speaker_init and get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").char_time_done:
+		flag_doer()
 	if speech_type == "interaction":
 		if inter_arg in file:
 			file = loadjson("interactables")
@@ -207,6 +211,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			person = ""
 			emotion = "idle"
 			dialogue_init = false
+			speaker_init = false
 			visibility_exception = false
 			file_init = false
 			get_parent().get_node("KinematicMatt").motion_lock = false

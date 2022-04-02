@@ -80,25 +80,34 @@
             "Speaker": "Uncle Dave",
             "Line": "Hehe, that sister of mine has always been an overachiever!"
           },
-          "6": {
-            "Speaker": "Matt",
-            "Line": "Yep, she definitely is that.",
-            "Flag": "Cut The Music_"
-          },
-          "7" : {
+          "6" : {
             "Speaker": "Uncle Dave",
             "Line": "So, do you still like that show we used to watch?"
           },
-          "8": {
+          "7": {
             "Speaker": "Matt",
             "Options": [
               {
                 "OP_Line": "Yeah, Bagging Bones! I watch it all the time."
               },
               {
-                "OP_Line": "I catch an episode every now and then."
+                "OP_Line": "I catch an episode every now and then.",
+                "Flag": "Skip_9"
               }
             ]
+          },
+          "8" : {
+            "Speaker": "Uncle Dave",
+            "Line": "Bagging Bones! Oh my god, that takes me back.",
+            "Flag": "Skip_10"
+          },
+          "9" : {
+            "Speaker": "Uncle Dave",
+            "Line": "Hey now, you don't have to be ashamed of liking a show, Matt!"
+          },
+          "10" : {
+            "Speaker": "Uncle Dave",
+            "Line": "I love you, Matt."
           }
         }
       }

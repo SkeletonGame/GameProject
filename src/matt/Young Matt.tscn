@@ -162,6 +162,7 @@ __meta__ = {
 }
 
 [node name="circles" type="Node2D" parent="AreaMatt/Speech Bubble"]
+position = Vector2( -0.374573, 7.86612 )
 
 [node name="2option" type="Node2D" parent="AreaMatt/Speech Bubble/circles"]
 position = Vector2( -49.1681, -947.642 )
