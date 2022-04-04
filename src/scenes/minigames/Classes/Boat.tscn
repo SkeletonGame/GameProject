@@ -52,7 +52,7 @@ scale = Vector2( 1.86066, 2.94901 )
 polygon = PoolVector2Array( -780.81, 90.2129, -720.443, 96.6142, -694.065, 108.137, -694.572, 127.02, -723.994, 141.103, -780.81, 145.264, -881.758, 143.024, -880.744, 90.853 )
 
 [node name="Dead Ahead Sensor" type="Area2D" parent="."]
-position = Vector2( 1427.05, 0 )
+position = Vector2( 1916.44, -4.48987 )
 collision_layer = 0
 collision_mask = 4
 
@@ -60,7 +60,7 @@ collision_mask = 4
 shape = SubResource( 2 )
 
 [node name="Right Sensor" type="Area2D" parent="."]
-position = Vector2( 1166.91, 580.866 )
+position = Vector2( 1638.34, 706.581 )
 collision_layer = 0
 collision_mask = 4
 
@@ -69,7 +69,7 @@ position = Vector2( 3.56348, 0 )
 shape = SubResource( 2 )
 
 [node name="Left Sensor" type="Area2D" parent="."]
-position = Vector2( 1170.47, -623.629 )
+position = Vector2( 1614.96, -655.058 )
 collision_layer = 0
 collision_mask = 4
 
@@ -80,9 +80,9 @@ shape = SubResource( 2 )
 [connection signal="animation_finished" from="Boat" to="." method="_on_Boat_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
-[connection signal="area_entered" from="Dead Ahead Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
-[connection signal="area_exited" from="Dead Ahead Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]
-[connection signal="area_entered" from="Right Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
-[connection signal="area_exited" from="Right Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]
-[connection signal="area_entered" from="Left Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
-[connection signal="area_exited" from="Left Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]
+[connection signal="area_entered" from="Dead Ahead Sensor" to="." method="_on_Dead_Ahead_Sensor_area_entered"]
+[connection signal="area_exited" from="Dead Ahead Sensor" to="." method="_on_Dead_Ahead_Sensor_area_exited"]
+[connection signal="area_entered" from="Right Sensor" to="." method="_on_Right_Sensor_area_entered"]
+[connection signal="area_exited" from="Right Sensor" to="." method="_on_Right_Sensor_area_exited"]
+[connection signal="area_entered" from="Left Sensor" to="." method="_on_Left_Sensor_area_entered"]
+[connection signal="area_exited" from="Left Sensor" to="." method="_on_Left_Sensor_area_exited"]

@@ -54,19 +54,21 @@ func dead_handling():
 
 var timer = 0.0
 var collision = false
-var speed_of_other_boat = Vector2(0, 0)
-var weight = 6
+var other_boat = ""
+var weight = 4
 func _on_Area2D_body_entered(body: Node) -> void:
 	if timer > 0.5:
 		collision = true
-		speed_of_other_boat = get_parent().get_node(body.name).speed
+		other_boat = get_parent().get_node(body.name)
 func _on_Area2D_body_exited(body: Node) -> void:
 	if timer > 0.5:
 		collision = false
 func collision_handler(delta):
 	timer += delta
 	if collision:
-		speed += speed_of_other_boat * (1.1 - (weight / 10))
+		speed -= (other_boat.global_position - position) * other_boat.weight
+		if AI:
+			target = other_boat.name
 
 var AI = false
 var RNG = RandomNumberGenerator.new()
@@ -75,12 +77,26 @@ var target_info = {}
 var playersstillonboard = []
 var result
 var AI_intent = ""
+var possible_intents = ["spin", "go", "chase"]
+var AI_timer = 0
+var AI_arbitrary_value = 0
 var AI_go_decision = false
 var impending_doom = false
-func _on_AI_Cliff_Sensor_area_exited(area: Area2D) -> void:
-	impending_doom = true
-func _on_AI_Cliff_Sensor_area_entered(area: Area2D) -> void:
-	impending_doom = false
+var dead_ahead_inside_arena = true
+var right_inside_arena = true
+var left_inside_arena = true
+func _on_Dead_Ahead_Sensor_area_entered(area: Area2D) -> void:
+	dead_ahead_inside_arena = true
+func _on_Dead_Ahead_Sensor_area_exited(area: Area2D) -> void:
+	dead_ahead_inside_arena = false
+func _on_Right_Sensor_area_entered(area: Area2D) -> void:
+	right_inside_arena = true
+func _on_Right_Sensor_area_exited(area: Area2D) -> void:
+	right_inside_arena = false
+func _on_Left_Sensor_area_entered(area: Area2D) -> void:
+	left_inside_arena = true
+func _on_Left_Sensor_area_exited(area: Area2D) -> void:
+	left_inside_arena = false
 func target_handling():
 	playersstillonboard = []
 	for this in get_parent().get_children():
@@ -98,17 +114,46 @@ func AI_chase():
 	else:
 		AI_turning_decision = 0
 	AI_go_decision = true
+func AI_doom_detection():
+	impending_doom = !bool(int(dead_ahead_inside_arena) * int(right_inside_arena) * int(left_inside_arena))
 func AI_death_prevention():
-	AI_go_decision = false
-	AI_turning_decision = -1
-func legitimately_skynet():
-	target_handling()
-	if impending_doom:
-		AI_intent = "not dying"
-		AI_death_prevention()
+	if dead_ahead_inside_arena:
+		AI_go_decision = true
+	else:
+		AI_go_decision = false
+	if not right_inside_arena:
+		AI_turning_decision = -1
+	else:
+		AI_turning_decision = 1
+func AI_free_will(): # unused, doesnt quite work
+	print(AI_intent)
+	if AI_intent == "":
+		RNG.randomize()
+		AI_intent = possible_intents[RNG.randi_range(0, possible_intents.size() - 1)]
+	elif AI_intent == "spin":
+		AI_go_decision = false
+		if AI_turning_decision == 0:
+			RNG.randomize()
+			AI_turning_decision == [-1, 1][RNG.randi_range(0, 1)]
+			RNG.randomize()
+			AI_arbitrary_value = RNG.randi_range(40, 100)
+			AI_timer = 0
+		AI_timer += 1
+		if AI_timer > AI_arbitrary_value:
+			AI_intent = ""
+	elif AI_intent == "chase":
+		AI_chase()
 	else:
 		AI_go_decision = true
-		AI_turning_decision = 0
+		AI_intent = ""
+
+func legitimately_skynet():
+	target_handling()
+	AI_doom_detection()
+	if impending_doom:
+		AI_death_prevention()
+	else:
+		AI_chase()
 
 var colors = {
 	"Red": Color(1, 1, 1),
@@ -132,4 +177,3 @@ func _process(delta: float) -> void:
 	collision_handler(delta)
 	if AI and not dead:
 		legitimately_skynet()
-
