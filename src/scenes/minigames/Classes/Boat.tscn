@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ass/Minigames/Bumper Boats/smaller2.png" type="Texture" id=1]
+[ext_resource path="res://src/scenes/minigames/Code/Boat.gd" type="Script" id=2]
+[ext_resource path="res://ass/Minigames/Bumper Boats/boat1.png" type="Texture" id=3]
+[ext_resource path="res://ass/Minigames/Bumper Boats/smaller1.png" type="Texture" id=4]
+[ext_resource path="res://ass/Minigames/Bumper Boats/smaller3.png" type="Texture" id=5]
+[ext_resource path="res://ass/Minigames/Bumper Boats/boat2.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "falling",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 36.5277, 41.1229 )
+
+[node name="Boat" type="KinematicBody2D"]
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Boat" type="AnimatedSprite" parent="."]
+position = Vector2( 89.4544, 3.77975 )
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 1559.15, -344.471 )
+scale = Vector2( 1.86066, 2.94901 )
+polygon = PoolVector2Array( -778.629, 92.1982, -726.379, 98.4395, -700.508, 108.041, -700.762, 125.005, -729.539, 136.539, -780.337, 142.174, -877.989, 141.994, -877.803, 93.1584 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 96.5318, 6.10352e-05 )
+current = true
+zoom = Vector2( 4, 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2( 1559.15, -344.471 )
+scale = Vector2( 1.86066, 2.94901 )
+polygon = PoolVector2Array( -780.81, 90.2129, -720.443, 96.6142, -694.065, 108.137, -694.572, 127.02, -723.994, 141.103, -780.81, 145.264, -881.758, 143.024, -880.744, 90.853 )
+
+[node name="Dead Ahead Sensor" type="Area2D" parent="."]
+position = Vector2( 1427.05, 0 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dead Ahead Sensor"]
+shape = SubResource( 2 )
+
+[node name="Right Sensor" type="Area2D" parent="."]
+position = Vector2( 1166.91, 580.866 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Sensor"]
+position = Vector2( 3.56348, 0 )
+shape = SubResource( 2 )
+
+[node name="Left Sensor" type="Area2D" parent="."]
+position = Vector2( 1170.47, -623.629 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Sensor"]
+position = Vector2( 3.56348, 0 )
+shape = SubResource( 2 )
+
+[connection signal="animation_finished" from="Boat" to="." method="_on_Boat_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="area_entered" from="Dead Ahead Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
+[connection signal="area_exited" from="Dead Ahead Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]
+[connection signal="area_entered" from="Right Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
+[connection signal="area_exited" from="Right Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]
+[connection signal="area_entered" from="Left Sensor" to="." method="_on_AI_Cliff_Sensor_area_entered"]
+[connection signal="area_exited" from="Left Sensor" to="." method="_on_AI_Cliff_Sensor_area_exited"]

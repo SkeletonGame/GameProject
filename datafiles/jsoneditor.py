@@ -229,7 +229,7 @@ def choosefile():
 
 def parsesysargs(indict, dict):
         for i in indict:
-            k,v = i.split('=',1)
+            k,v = i.split('=', 1)
             if v == 'True': v=True
             if v == 'False': v=False
             dict[k] = v
