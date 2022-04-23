@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ass/Rooms/Garage/duck2.png" type="Texture" id=1]
+[ext_resource path="res://ass/Rooms/Garage/duckg1.png" type="Texture" id=2]
+[ext_resource path="res://ass/Rooms/Garage/duck1.png" type="Texture" id=3]
+[ext_resource path="res://ass/Rooms/Garage/duckg2.png" type="Texture" id=4]
+[ext_resource path="res://src/Logic_Code/duck.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "green",
+"speed": 5.0
+} ]
+
+[node name="duck" type="Node2D"]
+
+[node name="duck" type="AnimatedSprite" parent="."]
+position = Vector2( 76.8243, -24.9452 )
+z_index = -2
+frames = SubResource( 1 )
+playing = true
+script = ExtResource( 5 )

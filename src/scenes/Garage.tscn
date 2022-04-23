@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
+[ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
+[ext_resource path="res://ass/Rooms/Garage/cowboy1.png" type="Texture" id=3]
+[ext_resource path="res://ass/Rooms/Garage/table2.png" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Garage/cowboyarm1.png" type="Texture" id=5]
+[ext_resource path="res://ass/Rooms/Garage/cowboy2.png" type="Texture" id=6]
+[ext_resource path="res://src/Logic_Code/cowboy stuff.gd" type="Script" id=7]
+[ext_resource path="res://src/scenes/classes/duck.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Logic_Code/FAKEduck.gd" type="Script" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Garage" type="Node2D"]
+
+[node name="table" type="AnimatedSprite" parent="."]
+position = Vector2( 937.744, 555.892 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="cowboy stuff" type="Node2D" parent="table"]
+z_index = -1
+script = ExtResource( 7 )
+
+[node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
+position = Vector2( 180.19, -196.728 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
+position = Vector2( 196.516, -192.302 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+
+[node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]
+position = Vector2( -316, -184 )
+script = ExtResource( 9 )
