@@ -39,7 +39,6 @@ animations = [ {
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 937.744, 555.892 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="cowboy stuff" type="Node2D" parent="table"]
@@ -49,12 +48,12 @@ script = ExtResource( 7 )
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]
