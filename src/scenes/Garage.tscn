@@ -54,7 +54,6 @@ extents = Vector2( 5307.43, 41.8251 )
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 1895.71, 576.685 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="cowboy stuff" type="Node2D" parent="table"]
@@ -64,18 +63,17 @@ script = ExtResource( 7 )
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="smoke" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 46.2552, -243.275 )
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]

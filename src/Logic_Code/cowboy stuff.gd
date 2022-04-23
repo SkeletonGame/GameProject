@@ -43,6 +43,8 @@ var music = true
 func _process(delta: float) -> void:
 	if music and not get_node("yeehaw").playing:
 		get_node("yeehaw").playing = true
+	elif not music:
+		get_node("yeehaw").playing = false
 	targeting()
 	timer += delta
 	if number_of_ducks < 3 and timer > RNG.randf_range(0.4, 3):
