@@ -144,13 +144,13 @@ font_data = ExtResource( 18 )
 position = Vector2( -1960, -1048 )
 frames = SubResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Painting" type="AnimatedSprite" parent="."]
 position = Vector2( -1240, -912 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Floor" type="KinematicBody2D" parent="."]
@@ -188,6 +188,7 @@ position = Vector2( -6776, -536 )
 [node name="frontdoor" type="AnimatedSprite" parent="FrontDoor"]
 frames = SubResource( 6 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape" type="CollisionShape2D" parent="FrontDoor"]
@@ -198,7 +199,6 @@ script = ExtResource( 28 )
 position = Vector2( -5472, -360 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CouchBounce!" type="StaticBody2D" parent="."]
@@ -210,6 +210,7 @@ collision_mask = 0
 position = Vector2( 0, -240 )
 frames = SubResource( 9 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CouchBounce!"]
@@ -228,7 +229,6 @@ motion_offset = Vector2( 200, 0 )
 position = Vector2( -1864, -552 )
 frames = SubResource( 11 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="BedroomDoor" type="Area2D" parent="."]
@@ -239,6 +239,7 @@ collision_layer = 0
 position = Vector2( 352, -568 )
 frames = SubResource( 12 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BedroomDoor"]
@@ -260,7 +261,6 @@ script = ExtResource( 13 )
 position = Vector2( 11.502, 88.4156 )
 frames = SubResource( 15 )
 animation = "idle"
-frame = 1
 playing = true
 flip_h = true
 
@@ -268,12 +268,14 @@ flip_h = true
 position = Vector2( 32.2012, -493.43 )
 frames = SubResource( 16 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Mom"]
 position = Vector2( 44.9004, -504.983 )
 frames = SubResource( 17 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Label1" type="Label" parent="Mom/Speech Bubble"]

@@ -5,7 +5,7 @@ var player_color = "Red"
 func _ready() -> void:
 	get_node("Boat").animation = "idle"
 
-var acceleration_turning = 2.9
+var acceleration_turning = 2.6
 var acceleration_turning_buffer = 0
 var rotation_speed = 0.0
 var friction = 10.0
@@ -22,16 +22,36 @@ func turning_handling():
 	acceleration_turning_buffer *= 0.9
 	rotation_speed *= 1 - friction/100
 
-var speed = Vector2(0, 0)
-var acceleration_forward = 20
-var drift = 12
-var top_speed = 900
-func speed_handling():
-	move_and_slide(speed)
-	if Input.is_action_pressed("w") and color == player_color:
+var AI_power_decision = false
+var power = "boost"
+var boosting = false
+var power_timer_reset = 1200
+var power_timer = power_timer_reset
+func power_handling():
+	power_timer += 1
+	if ((Input.is_action_pressed("space") and color == player_color) or (AI and AI_power_decision)) and power_timer > power_timer_reset:
+		power_timer = 0
+		if power == "boost":
+			boosting = true
+			acceleration_forward += 70
+			weight += 0.5
+			acceleration_turning -= 0.8
+	if boosting:
 		speed[0] += (cos(rotation_degrees / 360 * 2 * PI)) * acceleration_forward
 		speed[1] += (sin(rotation_degrees / 360 * 2 * PI)) * acceleration_forward
-	if AI and AI_go_decision:
+	if boosting and power_timer > power_timer_reset / 3:
+		boosting = false
+		acceleration_forward -= 70
+		weight -= 0.5
+		acceleration_turning += 0.8
+
+var speed = Vector2(0, 0)
+var acceleration_forward = 25
+var drift = 11
+var top_speed = 1200
+func speed_handling():
+	move_and_slide(speed)
+	if (Input.is_action_pressed("w") and color == player_color) or (AI and AI_go_decision) and not dead:
 		speed[0] += (cos(rotation_degrees / 360 * 2 * PI)) * acceleration_forward
 		speed[1] += (sin(rotation_degrees / 360 * 2 * PI)) * acceleration_forward
 	speed[0] *= 1 - friction/(drift * 90)
@@ -43,6 +63,7 @@ func speed_handling():
 
 var dead = false
 var fell = false
+var boats = []
 func _on_Boat_animation_finished() -> void:
 	if get_node("Boat").animation == "falling":
 		fell = true
@@ -55,7 +76,8 @@ func dead_handling():
 var timer = 0.0
 var collision = false
 var other_boat = ""
-var weight = 4
+var weight = 0.4
+var bounce_vector = Vector2(0, 0)
 func _on_Area2D_body_entered(body: Node) -> void:
 	if timer > 0.5:
 		collision = true
@@ -66,9 +88,13 @@ func _on_Area2D_body_exited(body: Node) -> void:
 func collision_handler(delta):
 	timer += delta
 	if collision:
-		speed -= (other_boat.global_position - position) * other_boat.weight
+		bounce_vector = (other_boat.global_position - position) * other_boat.weight
+		speed -= bounce_vector * 5
 		if AI:
 			target = other_boat.name
+	speed -= bounce_vector
+	bounce_vector[0] *= 0.8
+	bounce_vector[1] *= 0.8
 
 var AI = false
 var RNG = RandomNumberGenerator.new()
@@ -76,13 +102,12 @@ var target = ""
 var target_info = {}
 var playersstillonboard = []
 var result
-var AI_intent = ""
-var possible_intents = ["spin", "go", "chase"]
 var AI_timer = 0
-var AI_arbitrary_value = 0
 var AI_go_decision = false
 var impending_doom = false
+var backstab_doom = false
 var dead_ahead_inside_arena = true
+var chase_failed = false
 var right_inside_arena = true
 var left_inside_arena = true
 func _on_Dead_Ahead_Sensor_area_entered(area: Area2D) -> void:
@@ -97,63 +122,77 @@ func _on_Left_Sensor_area_entered(area: Area2D) -> void:
 	left_inside_arena = true
 func _on_Left_Sensor_area_exited(area: Area2D) -> void:
 	left_inside_arena = false
-func target_handling():
+func _on_Back_Sensor_area_entered(area: Area2D) -> void:
+	backstab_doom = false
+func _on_Back_Sensor_area_exited(area: Area2D) -> void:
+	backstab_doom = true
+func target_choosing():
 	playersstillonboard = []
+	result = ""
 	for this in get_parent().get_children():
 		if this.name in colors:
 			playersstillonboard.append(this.name)
 	if not target in playersstillonboard and playersstillonboard.size() > 0:
 		RNG.randomize()
 		target = playersstillonboard[RNG.randi_range(0, playersstillonboard.size() - 1)]
+	return result
 func AI_chase():
-	target_info["angle_to"] = rad2deg(get_angle_to(get_parent().get_node(target).position))
-	if target_info["angle_to"] > 10:
-		AI_turning_decision = 1
-	elif target_info["angle_to"] < -10:
-		AI_turning_decision = -1
+	playersstillonboard = []
+	for this in get_parent().get_children():
+		if this.name in colors:
+			playersstillonboard.append(this.name)
+	if target in playersstillonboard:
+		target_info["angle_to"] = rad2deg(get_angle_to(get_parent().get_node(target).position))
+		if target_info["angle_to"] > 10:
+			AI_turning_decision = 1
+		elif target_info["angle_to"] < -10:
+			AI_turning_decision = -1
+		else:
+			AI_turning_decision = 0
+		AI_go_decision = abs(target_info["angle_to"]) < 20
+		if power == "boost" or power == "shoot":
+			AI_power_decision = AI_go_decision
 	else:
-		AI_turning_decision = 0
-	AI_go_decision = true
+		target = ""
+	if AI_timer > 1000:
+		AI_timer = 0
+		target = ""
 func AI_doom_detection():
 	impending_doom = !bool(int(dead_ahead_inside_arena) * int(right_inside_arena) * int(left_inside_arena))
 func AI_death_prevention():
-	if dead_ahead_inside_arena:
-		AI_go_decision = true
-	else:
-		AI_go_decision = false
+	AI_go_decision = false
 	if not right_inside_arena:
 		AI_turning_decision = -1
 	else:
 		AI_turning_decision = 1
-func AI_free_will(): # unused, doesnt quite work
-	print(AI_intent)
-	if AI_intent == "":
+func AI_freewheeling():
+	if AI_timer & 100 == 0:
 		RNG.randomize()
-		AI_intent = possible_intents[RNG.randi_range(0, possible_intents.size() - 1)]
-	elif AI_intent == "spin":
-		AI_go_decision = false
-		if AI_turning_decision == 0:
-			RNG.randomize()
-			AI_turning_decision == [-1, 1][RNG.randi_range(0, 1)]
-			RNG.randomize()
-			AI_arbitrary_value = RNG.randi_range(40, 100)
-			AI_timer = 0
-		AI_timer += 1
-		if AI_timer > AI_arbitrary_value:
-			AI_intent = ""
-	elif AI_intent == "chase":
-		AI_chase()
-	else:
-		AI_go_decision = true
-		AI_intent = ""
-
+		AI_turning_decision = RNG.randi_range(-1, 1)
+		RNG.randomize()
+		AI_go_decision = bool(RNG.randi_range(0, 1))
+	if AI_timer > 500:
+		AI_timer = 0
+		playersstillonboard = []
+		for this in get_parent().get_children():
+			if this.name in colors:
+				playersstillonboard.append(this.name)
+		target = playersstillonboard[0]
 func legitimately_skynet():
-	target_handling()
 	AI_doom_detection()
+	AI_power_decision = false
+	AI_timer += 1
 	if impending_doom:
 		AI_death_prevention()
-	else:
+	elif backstab_doom:
+		AI_turning_decision = 0
+		AI_go_decision = true
+		if power == "boost":
+			AI_power_decision = true
+	elif target != "":
 		AI_chase()
+	else:
+		AI_freewheeling()
 
 var colors = {
 	"Red": Color(1, 1, 1),
@@ -162,15 +201,11 @@ var colors = {
 	"Yellow": Color(0.75, 1, 0.25),
 }
 var color = ""
-var cam_init = false
 func _process(delta: float) -> void:
 	if color in colors:
 		get_node("Boat").modulate = colors[color]
 		if color != player_color: AI = true # actually skynet
-	if color == player_color and timer > 0.01 and not cam_init:
-		get_node("Camera2D").current = false
-		get_node("Camera2D").current = true
-		cam_init = true
+	power_handling()
 	turning_handling()
 	speed_handling()
 	dead_handling()

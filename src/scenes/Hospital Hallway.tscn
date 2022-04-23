@@ -148,13 +148,13 @@ shape = SubResource( 2 )
 [node name="teethingposter" type="AnimatedSprite" parent="."]
 position = Vector2( -698.467, -592.753 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Bench" type="AnimatedSprite" parent="."]
 position = Vector2( -1728.17, -203.647 )
 frames = SubResource( 4 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Uncle Room Door" type="Area2D" parent="."]
@@ -165,7 +165,6 @@ script = ExtResource( 21 )
 [node name="doorsprite" type="AnimatedSprite" parent="Uncle Room Door"]
 position = Vector2( 44.0867, 30.0141 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Uncle Room Door"]
@@ -213,7 +212,6 @@ flip_h = true
 position = Vector2( 16.9517, -411.071 )
 z_index = 5
 frames = SubResource( 10 )
-frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Deerman Daniel"]
