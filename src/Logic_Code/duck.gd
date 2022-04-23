@@ -55,6 +55,10 @@ func explode():
 		get_node("BOOM").play()
 	animation = "explosion"
 
+func _on_duck_animation_finished() -> void:
+	if animation == "explosion":
+		visible = false
+
 func _on_BOOM_finished() -> void:
 	queue_free()
 
@@ -66,4 +70,7 @@ func _process(delta: float) -> void:
 		stay()
 	elif mode == "dead":
 		explode()
+
+
+
 
