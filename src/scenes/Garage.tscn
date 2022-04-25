@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
@@ -15,6 +15,10 @@
 [ext_resource path="res://music/Ambient/cowboy.wav" type="AudioStream" id=13]
 [ext_resource path="res://ass/Rooms/Garage/western1.png" type="Texture" id=14]
 [ext_resource path="res://ass/Rooms/Garage/western2.png" type="Texture" id=15]
+[ext_resource path="res://ass/Rooms/Garage/sitting2.png" type="Texture" id=16]
+[ext_resource path="res://ass/Rooms/Garage/sitting1.png" type="Texture" id=17]
+[ext_resource path="res://noises/FX/mashing.wav" type="AudioStream" id=18]
+[ext_resource path="res://src/Logic_Code/homemade_looper.gd" type="Script" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -59,11 +63,20 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 5307.43, 41.8251 )
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
 [node name="Garage" type="Node2D"]
 
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 1947.85, 509.413 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 offset = Vector2( -65, 0 )
 
@@ -76,22 +89,24 @@ modulate = Color( 0.819608, 0.807843, 0.901961, 1 )
 position = Vector2( -1.39307, -203.187 )
 z_index = -2
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
 frames = SubResource( 4 )
+frame = 1
 playing = true
 
 [node name="smoke" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 46.2552, -243.275 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]
@@ -113,3 +128,18 @@ shape = SubResource( 6 )
 
 [node name="Matt" parent="." instance=ExtResource( 12 )]
 position = Vector2( 509.65, 991.31 )
+
+[node name="Jessie Sitting" type="AnimatedSprite" parent="."]
+position = Vector2( 1223.18, 717.067 )
+frames = SubResource( 7 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Jessie Sitting"]
+position = Vector2( -33.6359, 50.4537 )
+stream = ExtResource( 18 )
+volume_db = 3.03
+autoplay = true
+attenuation = 2.73208
+script = ExtResource( 19 )
