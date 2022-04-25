@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
@@ -19,6 +19,31 @@
 [ext_resource path="res://ass/Rooms/Garage/sitting1.png" type="Texture" id=17]
 [ext_resource path="res://noises/FX/mashing.wav" type="AudioStream" id=18]
 [ext_resource path="res://src/Logic_Code/homemade_looper.gd" type="Script" id=19]
+[ext_resource path="res://ass/Rooms/Garage/wall.png" type="Texture" id=20]
+[ext_resource path="res://ass/Rooms/Garage/guitar1.png" type="Texture" id=21]
+[ext_resource path="res://ass/Rooms/Garage/guitar2.png" type="Texture" id=22]
+[ext_resource path="res://ass/Rooms/Garage/neonsign1.png" type="Texture" id=23]
+[ext_resource path="res://ass/Rooms/Garage/neonsign2.png" type="Texture" id=24]
+[ext_resource path="res://src/Logic_Code/SceneMainCodeFiles/Garage.gd" type="Script" id=25]
+[ext_resource path="res://src/Logic_Code/jessiesgamingtable.gd" type="Script" id=26]
+[ext_resource path="res://ass/Rooms/Garage/paused1.png" type="Texture" id=27]
+[ext_resource path="res://ass/Rooms/Garage/paused2.png" type="Texture" id=28]
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -60,6 +85,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ ExtResource( 27 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 5307.43, 41.8251 )
 
@@ -67,11 +100,43 @@ extents = Vector2( 5307.43, 41.8251 )
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "idle",
+"name": "focused playing",
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 96.6582, 441.85 )
+
 [node name="Garage" type="Node2D"]
+script = ExtResource( 25 )
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="wall" type="Sprite" parent="bg"]
+position = Vector2( 1688.26, 460.876 )
+z_index = -3
+texture = ExtResource( 20 )
+
+[node name="wall2" type="Sprite" parent="bg"]
+position = Vector2( -124.439, 462.445 )
+z_index = -3
+texture = ExtResource( 20 )
+
+[node name="wall3" type="Sprite" parent="bg"]
+position = Vector2( 3490.3, 457.962 )
+z_index = -3
+texture = ExtResource( 20 )
+
+[node name="guitar" type="AnimatedSprite" parent="."]
+position = Vector2( 80.8661, 261.625 )
+frames = SubResource( 8 )
+playing = true
+
+[node name="neon sign" type="AnimatedSprite" parent="."]
+position = Vector2( 394, 336 )
+frames = SubResource( 9 )
+frame = 1
+playing = true
 
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 1947.85, 509.413 )
@@ -79,6 +144,7 @@ frames = SubResource( 1 )
 frame = 1
 playing = true
 offset = Vector2( -65, 0 )
+script = ExtResource( 26 )
 
 [node name="cowboy stuff" type="Node2D" parent="table"]
 z_index = -1
@@ -118,6 +184,13 @@ stream = ExtResource( 13 )
 volume_db = -5.049
 attenuation = 2.82843
 
+[node name="paused" type="AnimatedSprite" parent="table/cowboy stuff"]
+visible = false
+position = Vector2( 0, -204.92 )
+frames = SubResource( 11 )
+frame = 1
+playing = true
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
@@ -127,12 +200,12 @@ position = Vector2( 1864.68, 1043.21 )
 shape = SubResource( 6 )
 
 [node name="Matt" parent="." instance=ExtResource( 12 )]
-position = Vector2( 509.65, 991.31 )
+position = Vector2( -337.974, 984.583 )
 
 [node name="Jessie Sitting" type="AnimatedSprite" parent="."]
 position = Vector2( 1223.18, 717.067 )
 frames = SubResource( 7 )
-animation = "idle"
+animation = "focused playing"
 frame = 1
 playing = true
 
@@ -143,3 +216,14 @@ volume_db = 3.03
 autoplay = true
 attenuation = 2.73208
 script = ExtResource( 19 )
+
+[node name="In Front of TV" type="Area2D" parent="Jessie Sitting"]
+position = Vector2( 559.396, -131.373 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jessie Sitting/In Front of TV"]
+position = Vector2( 34.7059, 0 )
+shape = SubResource( 10 )
+
+[connection signal="CowboyInterruption" from="." to="Jessie Sitting/AudioStreamPlayer2D" method="_on_Garage_CowboyInterruption"]
+[connection signal="CowboyInterruption" from="." to="table" method="_on_Garage_CowboyInterruption"]
+[connection signal="body_entered" from="Jessie Sitting/In Front of TV" to="." method="_on_In_Front_of_TV_body_entered"]

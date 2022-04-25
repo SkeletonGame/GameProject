@@ -40,15 +40,18 @@ func targeting():
 
 var timer = 0
 var music = true
+var jessieplaying = true
 func _process(delta: float) -> void:
 	if music and not get_node("yeehaw").playing:
 		get_node("yeehaw").playing = true
 	elif not music:
 		get_node("yeehaw").playing = false
-	targeting()
+	if jessieplaying:
+		targeting()
 	timer += delta
-	if number_of_ducks < 3 and timer > RNG.randf_range(0.4, 3):
+	if number_of_ducks < 3 and timer > RNG.randf_range(0.4, 3) and jessieplaying:
 		addaduck()
 		timer = 0
 		RNG.randomize()
-	
+	if not jessieplaying:
+		get_node("paused").visible = true

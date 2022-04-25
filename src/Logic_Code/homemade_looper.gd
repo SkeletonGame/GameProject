@@ -6,3 +6,6 @@ func _process(delta: float) -> void:
 		playing = true
 	elif not loop:
 		playing = false
+
+func _on_Garage_CowboyInterruption() -> void:
+	loop = false

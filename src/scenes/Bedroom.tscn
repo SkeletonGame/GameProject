@@ -182,7 +182,6 @@ playing = true
 position = Vector2( -24, -320 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -207,12 +206,11 @@ playing = true
 position = Vector2( 3.24249e-05, -528 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 19 )
 
 [node name="Matt" parent="." instance=ExtResource( 2 )]
-position = Vector2( 257, -233 )
+position = Vector2( 268.327, -165.041 )
 
 [node name="Door2D" type="Area2D" parent="."]
 collision_layer = 0

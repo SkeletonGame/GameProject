@@ -25,13 +25,13 @@
 [ext_resource path="res://src/matt/newmatt/newAreaMatt.gd" type="Script" id=23]
 [ext_resource path="res://src/matt/newmatt/Matt.gd" type="Script" id=24]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 202.978, 407.852 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 80, 380.549 )
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
@@ -44,21 +44,21 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "joy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "mad",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "joy",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 7 ) ],
@@ -106,31 +106,31 @@ script = ExtResource( 23 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMatt"]
 position = Vector2( 24.1769, -449.112 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 8, -464 )
 offset = Vector2( 0, -80 )
 current = true
 zoom = Vector2( 1.26, 1.26 )
-limit_smoothed = true
-smoothing_enabled = true
 smoothing_speed = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, -392 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 8, -396 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Eyes" type="AnimatedSprite" parent="."]
 position = Vector2( 7.73807, -392.794 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Speech Bubble" type="Node2D" parent="."]
@@ -178,14 +178,12 @@ position = Vector2( -49.1681, -947.642 )
 position = Vector2( -17.4828, 3.96851 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/2option"]
 position = Vector2( 76.989, 5.55591 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="3option" type="Node2D" parent="Speech Bubble/circles"]
@@ -194,19 +192,20 @@ playing = true
 position = Vector2( -105.797, -943.011 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/3option"]
 position = Vector2( -18.4685, -942.042 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="circles3" type="AnimatedSprite" parent="Speech Bubble/circles/3option"]
 position = Vector2( 74.3867, -942.447 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="4option" type="Node2D" parent="Speech Bubble/circles"]
@@ -215,25 +214,23 @@ playing = true
 position = Vector2( -128.761, -942.735 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
 position = Vector2( -54.5162, -942.123 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="circles3" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
 position = Vector2( 23.5854, -940.817 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="circles4" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
 position = Vector2( 96.7374, -941.617 )
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
