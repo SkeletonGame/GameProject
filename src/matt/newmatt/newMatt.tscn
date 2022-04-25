@@ -1,0 +1,239 @@
+[gd_scene load_steps=33 format=2]
+
+[ext_resource path="res://ass/Matt/pass_l.png" type="Texture" id=1]
+[ext_resource path="res://ass/Matt/matt1.png" type="Texture" id=2]
+[ext_resource path="res://ass/Matt/matt2.png" type="Texture" id=3]
+[ext_resource path="res://ass/Matt/contact_l.png" type="Texture" id=4]
+[ext_resource path="res://ass/Matt/pass_r.png" type="Texture" id=5]
+[ext_resource path="res://ass/Matt/contact_r.png" type="Texture" id=6]
+[ext_resource path="res://ass/Matt/eyes/quizz2.png" type="Texture" id=7]
+[ext_resource path="res://ass/Matt/eyes/mad2.png" type="Texture" id=8]
+[ext_resource path="res://ass/Matt/eyes/joy1.png" type="Texture" id=9]
+[ext_resource path="res://ass/Matt/eyes/mad1.png" type="Texture" id=10]
+[ext_resource path="res://ass/Matt/eyes/idle1.png" type="Texture" id=11]
+[ext_resource path="res://ass/Matt/eyes/idle2.png" type="Texture" id=12]
+[ext_resource path="res://ass/Matt/eyes/joy2.png" type="Texture" id=13]
+[ext_resource path="res://ass/Matt/eyes/quizz1.png" type="Texture" id=14]
+[ext_resource path="res://ass/Matt/circle/text_filled1.png" type="Texture" id=15]
+[ext_resource path="res://ass/Matt/circle/text_filled2.png" type="Texture" id=16]
+[ext_resource path="res://ass/Matt/circle/text_circle1.png" type="Texture" id=17]
+[ext_resource path="res://ass/Matt/circle/text_circle2.png" type="Texture" id=18]
+[ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=19]
+[ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=20]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=21]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=22]
+[ext_resource path="res://src/matt/newmatt/newAreaMatt.gd" type="Script" id=23]
+[ext_resource path="res://src/matt/newmatt/Matt.gd" type="Script" id=24]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 202.978, 407.852 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 80, 380.549 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "strut",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "joy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "mad",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "quizz",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="DynamicFont" id=6]
+size = 70
+font_data = ExtResource( 22 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 70
+font_data = ExtResource( 21 )
+
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "filled",
+"speed": 5.0
+} ]
+
+[node name="Matt" type="KinematicBody2D"]
+script = ExtResource( 24 )
+
+[node name="AreaMatt" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 23 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaMatt"]
+position = Vector2( 24.1769, -449.112 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 8, -464 )
+offset = Vector2( 0, -80 )
+current = true
+zoom = Vector2( 1.26, 1.26 )
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 8, -392 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 8, -396 )
+frames = SubResource( 2 )
+animation = "idle"
+playing = true
+
+[node name="Eyes" type="AnimatedSprite" parent="."]
+position = Vector2( 7.73807, -392.794 )
+frames = SubResource( 3 )
+animation = "idle"
+playing = true
+
+[node name="Speech Bubble" type="Node2D" parent="."]
+position = Vector2( 14.7361, 11.3751 )
+z_index = 10
+
+[node name="Bubble" type="AnimatedSprite" parent="Speech Bubble"]
+position = Vector2( -13.2967, -976.017 )
+frames = SubResource( 5 )
+animation = "idle"
+playing = true
+
+[node name="Label2" type="Label" parent="Speech Bubble"]
+margin_left = -331.0
+margin_top = -1080.0
+margin_right = 298.0
+margin_bottom = -886.0
+custom_fonts/font = SubResource( 6 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+
+[node name="Label1" type="Label" parent="Speech Bubble"]
+margin_left = -331.0
+margin_top = -1080.0
+margin_right = 298.0
+margin_bottom = -886.0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 7 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+
+[node name="circles" type="Node2D" parent="Speech Bubble"]
+position = Vector2( -0.374573, 7.86612 )
+
+[node name="2option" type="Node2D" parent="Speech Bubble/circles"]
+position = Vector2( -49.1681, -947.642 )
+
+[node name="circles1" type="AnimatedSprite" parent="Speech Bubble/circles/2option"]
+position = Vector2( -17.4828, 3.96851 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/2option"]
+position = Vector2( 76.989, 5.55591 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="3option" type="Node2D" parent="Speech Bubble/circles"]
+
+[node name="circles1" type="AnimatedSprite" parent="Speech Bubble/circles/3option"]
+position = Vector2( -105.797, -943.011 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/3option"]
+position = Vector2( -18.4685, -942.042 )
+frames = SubResource( 8 )
+animation = "idle"
+playing = true
+
+[node name="circles3" type="AnimatedSprite" parent="Speech Bubble/circles/3option"]
+position = Vector2( 74.3867, -942.447 )
+frames = SubResource( 8 )
+animation = "idle"
+playing = true
+
+[node name="4option" type="Node2D" parent="Speech Bubble/circles"]
+
+[node name="circles1" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
+position = Vector2( -128.761, -942.735 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="circles2" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
+position = Vector2( -54.5162, -942.123 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="circles3" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
+position = Vector2( 23.5854, -940.817 )
+frames = SubResource( 8 )
+animation = "idle"
+playing = true
+
+[node name="circles4" type="AnimatedSprite" parent="Speech Bubble/circles/4option"]
+position = Vector2( 96.7374, -941.617 )
+frames = SubResource( 8 )
+animation = "idle"
+frame = 1
+playing = true

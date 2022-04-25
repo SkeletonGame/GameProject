@@ -1,7 +1,7 @@
 [gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/Logic_Code/Door/door.gd" type="Script" id=1]
-[ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/matt/newmatt/newMatt.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Logic_Code/FallThroughPlatforms.gd" type="Script" id=3]
 [ext_resource path="res://ass/Rooms/Bedroom/door1.png" type="Texture" id=4]
 [ext_resource path="res://ass/Rooms/Bedroom/wardrobe2.png" type="Texture" id=5]
@@ -182,6 +182,7 @@ playing = true
 position = Vector2( -24, -320 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 19 )
 
@@ -206,8 +207,12 @@ playing = true
 position = Vector2( 3.24249e-05, -528 )
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 script = ExtResource( 19 )
+
+[node name="Matt" parent="." instance=ExtResource( 2 )]
+position = Vector2( 257, -233 )
 
 [node name="Door2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -222,10 +227,6 @@ position = Vector2( 604.757, -659.683 )
 frames = SubResource( 12 )
 animation = "idle"
 playing = true
-
-[node name="Matt" parent="." instance=ExtResource( 2 )]
-position = Vector2( 256, -160 )
-script = null
 
 [node name="Lights" type="ParallaxBackground" parent="."]
 layer = 50

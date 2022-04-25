@@ -4,8 +4,7 @@ func loadjson(filename):
 	var file = File.new()
 	file.open("datafiles/" + filename + ".json", file.READ)  ## read json files
 	var data = {}
-	var text = file.get_as_text()
-	data = parse_json(text)
+	data = parse_json(file.get_as_text())
 	file.close()
 	return data ## return data
 

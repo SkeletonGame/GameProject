@@ -83,7 +83,13 @@ func slope_phys(delta):
 		velocity.y -= grav
 
 var motion_lock = false
+
 var jump_lock = false
+
+func jumplck():
+	jump_lock = true
+
+
 var up_arg = Vector2(0, 0)
 func velocity_handler(delta):
 	velocity = move_and_slide(velocity, up_arg, true)
@@ -141,16 +147,20 @@ var touched = ""
 var touched_list = []
 var touched_remove = []
 func _on_AreaMatt_body_entered(body: Node) -> void:
-	touched_list.append(body.name)
+	touched_list.append(body)
+	
+	
 
 func _on_AreaMatt_body_exited(body: Node) -> void:
-	touched_remove.append(body.name)
+	touched_remove.append(body)
 
 func touched_list_handler():
 	if touched_list.size() > 0:
-		touched = touched_list[touched_list.size() - 1]
+		touched = touched_list[touched_list.size() - 1].name
 		if touched_remove.size() > 0:
 			touched_list.erase(touched_remove[0])
 			touched_remove.erase(touched_remove[0])
 	else:
 		touched = ""
+
+
