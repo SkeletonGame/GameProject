@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://ass/Rooms/Garage/smoke1.png" type="Texture" id=11]
 [ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=12]
 [ext_resource path="res://music/Ambient/cowboy.wav" type="AudioStream" id=13]
+[ext_resource path="res://ass/Rooms/Garage/western1.png" type="Texture" id=14]
+[ext_resource path="res://ass/Rooms/Garage/western2.png" type="Texture" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -24,7 +26,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -32,7 +34,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -40,40 +42,56 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 5307.43, 41.8251 )
 
 [node name="Garage" type="Node2D"]
 
 [node name="table" type="AnimatedSprite" parent="."]
-position = Vector2( 1895.71, 576.685 )
+position = Vector2( 1947.85, 509.413 )
 frames = SubResource( 1 )
 playing = true
+offset = Vector2( -65, 0 )
 
 [node name="cowboy stuff" type="Node2D" parent="table"]
 z_index = -1
 script = ExtResource( 7 )
 
+[node name="western bg" type="AnimatedSprite" parent="table/cowboy stuff"]
+modulate = Color( 0.819608, 0.807843, 0.901961, 1 )
+position = Vector2( -1.39307, -203.187 )
+z_index = -2
+frames = SubResource( 2 )
+playing = true
+
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 frame = 1
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 playing = true
 
 [node name="smoke" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 46.2552, -243.275 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 playing = true
 
 [node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]
@@ -91,7 +109,7 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 1864.68, 1043.21 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="Matt" parent="." instance=ExtResource( 12 )]
 position = Vector2( 509.65, 991.31 )
