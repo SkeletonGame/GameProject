@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/matt/Young Matt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ass/Characters/Uncle/uncle_bed.png" type="Texture" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://ass/Rooms/Uncle Bedroom/door1.png" type="Texture" id=14]
 [ext_resource path="res://ass/Rooms/Uncle Bedroom/door2.png" type="Texture" id=15]
 [ext_resource path="res://ass/Rooms/Uncle Bedroom/floor.png" type="Texture" id=16]
+[ext_resource path="res://music/Ambient/Hanging With Uncle.wav" type="AudioStream" id=17]
+[ext_resource path="res://src/Logic_Code/homemadelooperNON2D.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1479.57, 77.8334 )
@@ -167,3 +169,9 @@ __meta__ = {
 [node name="Voicebox" type="AudioStreamPlayer2D" parent="Uncle Dave"]
 position = Vector2( -57.1718, -130.362 )
 volume_db = -13.126
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = 7.505
+autoplay = true
+script = ExtResource( 18 )

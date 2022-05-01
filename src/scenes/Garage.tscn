@@ -29,7 +29,7 @@
 [ext_resource path="res://ass/Rooms/Garage/paused1.png" type="Texture" id=27]
 [ext_resource path="res://ass/Rooms/Garage/paused2.png" type="Texture" id=28]
 
-[sub_resource type="SpriteFrames" id=8]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 21 ), ExtResource( 22 ) ],
 "loop": true,
@@ -37,7 +37,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=9]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 23 ), ExtResource( 24 ) ],
 "loop": true,
@@ -45,7 +45,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 4 ) ],
 "loop": true,
@@ -53,7 +53,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
@@ -61,7 +61,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 6 ) ],
 "loop": true,
@@ -69,7 +69,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=6]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 2 ) ],
 "loop": true,
@@ -77,7 +77,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": true,
@@ -85,7 +85,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
@@ -93,10 +93,10 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5307.43, 41.8251 )
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
 "loop": true,
@@ -104,7 +104,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 96.6582, 441.85 )
 
 [node name="Garage" type="Node2D"]
@@ -129,18 +129,18 @@ texture = ExtResource( 20 )
 
 [node name="guitar" type="AnimatedSprite" parent="."]
 position = Vector2( 80.8661, 261.625 )
-frames = SubResource( 8 )
+frames = SubResource( 1 )
 playing = true
 
 [node name="neon sign" type="AnimatedSprite" parent="."]
 position = Vector2( 394, 336 )
-frames = SubResource( 9 )
+frames = SubResource( 2 )
 frame = 1
 playing = true
 
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 1947.85, 509.413 )
-frames = SubResource( 1 )
+frames = SubResource( 3 )
 frame = 1
 playing = true
 offset = Vector2( -65, 0 )
@@ -154,24 +154,24 @@ script = ExtResource( 7 )
 modulate = Color( 0.819608, 0.807843, 0.901961, 1 )
 position = Vector2( -1.39307, -203.187 )
 z_index = -2
-frames = SubResource( 2 )
+frames = SubResource( 4 )
 frame = 1
 playing = true
 
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
-frames = SubResource( 3 )
+frames = SubResource( 5 )
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
-frames = SubResource( 4 )
+frames = SubResource( 6 )
 frame = 1
 playing = true
 
 [node name="smoke" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 46.2552, -243.275 )
-frames = SubResource( 5 )
+frames = SubResource( 7 )
 frame = 1
 playing = true
 
@@ -181,13 +181,13 @@ script = ExtResource( 9 )
 
 [node name="yeehaw" type="AudioStreamPlayer2D" parent="table/cowboy stuff"]
 stream = ExtResource( 13 )
-volume_db = -5.049
-attenuation = 2.82843
+volume_db = -3.03
+attenuation = 2.21914
 
 [node name="paused" type="AnimatedSprite" parent="table/cowboy stuff"]
 visible = false
 position = Vector2( 0, -204.92 )
-frames = SubResource( 11 )
+frames = SubResource( 8 )
 frame = 1
 playing = true
 
@@ -197,14 +197,14 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 1864.68, 1043.21 )
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 
 [node name="Matt" parent="." instance=ExtResource( 12 )]
 position = Vector2( -337.974, 984.583 )
 
 [node name="Jessie Sitting" type="AnimatedSprite" parent="."]
 position = Vector2( 1223.18, 717.067 )
-frames = SubResource( 7 )
+frames = SubResource( 10 )
 animation = "focused playing"
 frame = 1
 playing = true
@@ -222,7 +222,7 @@ position = Vector2( 559.396, -131.373 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jessie Sitting/In Front of TV"]
 position = Vector2( 34.7059, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [connection signal="CowboyInterruption" from="." to="Jessie Sitting/AudioStreamPlayer2D" method="_on_Garage_CowboyInterruption"]
 [connection signal="CowboyInterruption" from="." to="table" method="_on_Garage_CowboyInterruption"]
