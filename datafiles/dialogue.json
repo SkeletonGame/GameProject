@@ -1,116 +1,116 @@
 {
-  "Living Room": {
-    "Mom": {
-      "Interaction_Count": 0,
-      "Dialogues": {
-        "0": {
-          "0": {
-            "Speaker": "Matt",
-            "Line": "Hey, Mom!"
-          },
-          "1": {
-            "Speaker": "Mom",
-            "Line": "Good morning, son!"
-          },
-          "2": {
-            "Speaker": "Matt",
-            "Line": "I'm going to Ben's. I'll see you later!"
-          },
-          "3": {
-            "Speaker": "Mom",
-            "Line": "Ok!"
-          },
-          "4": {
-            "Speaker": "Matt",
-            "Line": "Do you want me to take the trash out when I leave?"
-          },
-          "5": {
-            "Speaker": "Mom",
-            "Line": "Yeah, that would be great. It's over there."
-          }
+    "Living Room": {
+        "Mom": {
+            "Interaction_Count": 0,
+            "Dialogues": {
+                "0": {
+                    "0": {
+                        "Speaker": "Matt",
+                        "Line": "Hey, Mom!"
+                    },
+                    "1": {
+                        "Speaker": "Mom",
+                        "Line": "Good morning, son!"
+                    },
+                    "2": {
+                        "Speaker": "Matt",
+                        "Line": "I'm going to Ben's. I'll see you later!"
+                    },
+                    "3": {
+                        "Speaker": "Mom",
+                        "Line": "Ok!"
+                    },
+                    "4": {
+                        "Speaker": "Matt",
+                        "Line": "Do you want me to take the trash out when I leave?"
+                    },
+                    "5": {
+                        "Speaker": "Mom",
+                        "Line": "Yeah, that would be great. It's over there."
+                    }
+                }
+            }
         }
-      }
-    }
-  },
-  "Hospital Hallway": {
-    "Deerman Daniel": {
-      "Interaction_Count": 0,
-      "Dialogues": {
-        "0": {
-          "0": {
-            "Speaker": "Deerman Daniel",
-            "Line": "Hey kid, your uncle's waiting in that room back behind you."
-          },
-          "1": {
-            "Speaker": "Matt",
-            "Line": "Oh, right. Thanks."
-          }
+    },
+    "Hospital Hallway": {
+        "Deerman Daniel": {
+            "Interaction_Count": 0,
+            "Dialogues": {
+                "0": {
+                    "0": {
+                        "Speaker": "Deerman Daniel",
+                        "Line": "Your uncle's in that room back behind you, kid."
+                    },
+                    "1": {
+                        "Speaker": "Matt",
+                        "Line": "Oh ok, thanks!"
+                    }
+                }
+            }
         }
-      }
-    }
-  },
-  "Uncle Bedroom": {
-    "Uncle Dave": {
-      "Interaction_Count": 0,
-      "Dialogues": {
-        "0": {
-          "0": {
-            "Speaker": "Matt",
-            "Line": "Hey Uncle Dave!",
-            "Emotion": "joy"
-          },
-          "1": {
-            "Speaker": "Uncle Dave",
-            "Line": "Well, if it isn't the coolest yellow canary!"
-          },
-          "2": {
-            "Speaker": "Uncle Dave",
-            "Line": "What's happening, little nephew?"
-          },
-          "3": {
-            "Speaker": "Matt",
-            "Line": "My mom's sorry she couldn't make it today."
-          },
-          "4": {
-            "Speaker": "Matt",
-            "Line": "Apparently, her boss called her in for some presentation.",
-            "Emotion": "quizz"
-          },
-          "5": {
-            "Speaker": "Uncle Dave",
-            "Line": "Hehe, that sister of mine has always been an overachiever!"
-          },
-          "6" : {
-            "Speaker": "Uncle Dave",
-            "Line": "So, do you still like that show we used to watch?"
-          },
-          "7": {
-            "Speaker": "Matt",
-            "Options": [
-              {
-                "OP_Line": "Yeah, Bagging Bones! I watch it all the time."
-              },
-              {
-                "OP_Line": "I catch an episode every now and then.",
-                "Flag": "Skip_9"
-              }
-            ]
-          },
-          "8" : {
-            "Speaker": "Uncle Dave",
-            "Line": "Bagging Bones! Oh my god, that takes me back.",
-            "Flag": "Skip_10"
-          },
-          "9" : {
-            "Speaker": "Uncle Dave",
-            "Line": "Hey now, you don't have to be ashamed of liking a show, Matt!"
-          },
-          "10" : {
-            "Speaker": "Uncle Dave",
-            "Line": "I love you, Matt."
-          }
+    },
+    "Uncle Bedroom": {
+        "Uncle Dave": {
+            "Interaction_Count": 0,
+            "Dialogues": {
+                "0": {
+                    "0": {
+                        "Speaker": "Matt",
+                        "Line": "Hey uncle!",
+                        "Emotion": "joy"
+                    },
+                    "1": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "Well, if it isn't the coolest yellow canary!"
+                    },
+                    "2": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "What's happening, little nephew?"
+                    },
+                    "3": {
+                        "Speaker": "Matt",
+                        "Line": "My mom's sorry she couldn't make it today."
+                    },
+                    "4": {
+                        "Speaker": "Matt",
+                        "Line": "Apparently, her boss called her in for some presentation.",
+                        "Emotion": "quizz"
+                    },
+                    "5": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "Hehe, that sister of mine has always been an overachiever!"
+                    },
+                    "6": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "So, do you still like that show we used to watch?"
+                    },
+                    "7": {
+                        "Speaker": "Matt",
+                        "Options": [
+                            {
+                                "OP_Line": "Yeah, Bagging Bones! I watch it all the time."
+                            },
+                            {
+                                "OP_Line": "I catch an episode every now and then.",
+                                "Flag": "Skip_9"
+                            }
+                        ]
+                    },
+                    "8": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "Bagging Bones! Oh my god, that takes me back.",
+                        "Flag": "Skip_10"
+                    },
+                    "9": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "Hey now, you don't have to be ashamed of liking a show, Matt!"
+                    },
+                    "10": {
+                        "Speaker": "Uncle Dave",
+                        "Line": "I love you, Matt."
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
