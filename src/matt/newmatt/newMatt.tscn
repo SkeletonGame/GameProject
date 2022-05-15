@@ -56,14 +56,14 @@ animations = [ {
 "name": "mad",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "joy",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "quizz",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "joy",
 "speed": 5.0
 } ]
 
@@ -97,6 +97,7 @@ animations = [ {
 } ]
 
 [node name="Matt" type="KinematicBody2D"]
+collision_mask = 4
 script = ExtResource( 24 )
 
 [node name="AreaMatt" type="Area2D" parent="."]

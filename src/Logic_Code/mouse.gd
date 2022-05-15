@@ -3,7 +3,7 @@ class_name Maus
 
 var mx = 0
 var my = 0
-func _process(delta):
+func _process(_delta):
 	mx = get_viewport().get_mouse_position()[0]
 	my = get_viewport().get_mouse_position()[1]
 
