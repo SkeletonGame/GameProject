@@ -11,7 +11,7 @@ func loadfile(filename):
 	return content
 
 var GDict = {}
-func _process(delta):
+func _process(_delta):
 	GDict['mx'] = mx
 	GDict['my'] = my
 	GDict['m1'] = m1
