@@ -235,7 +235,7 @@ position = Vector2( 34.7059, 0 )
 shape = SubResource( 11 )
 
 [node name="Ben" type="AnimatedSprite" parent="."]
-position = Vector2( 2270.01, 637.884 )
+position = Vector2( 2458.88, 634.32 )
 frames = SubResource( 12 )
 animation = "idle"
 playing = true
