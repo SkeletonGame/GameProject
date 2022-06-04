@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://ass/Rooms/Downtown/ramp1.png" type="Texture" id=1]
+[ext_resource path="res://ass/Rooms/Downtown/sidewalk2.png" type="Texture" id=2]
+[ext_resource path="res://ass/Rooms/Downtown/sidewalk1.png" type="Texture" id=3]
+[ext_resource path="res://ass/Rooms/Downtown/jessiehouse2.png" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Downtown/ramp2.png" type="Texture" id=5]
+[ext_resource path="res://ass/Rooms/Downtown/jessiehouse1.png" type="Texture" id=6]
+[ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6030.85, 80.6394 )
+
+[node name="Downtown" type="Node2D"]
+
+[node name="sidewalk collection" type="Node2D" parent="."]
+
+[node name="sidewalk" type="AnimatedSprite" parent="sidewalk collection"]
+position = Vector2( 1427.49, 544.339 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="sidewalk2" type="AnimatedSprite" parent="sidewalk collection"]
+position = Vector2( 5353.13, 547.434 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="sidewalk3" type="AnimatedSprite" parent="sidewalk collection"]
+position = Vector2( -2562.62, 541.788 )
+frames = SubResource( 1 )
+playing = true
+
+[node name="jessiehouse" type="AnimatedSprite" parent="."]
+position = Vector2( 1530.39, -1144.38 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="ramp" type="AnimatedSprite" parent="jessiehouse"]
+position = Vector2( -420.809, 1271.3 )
+frames = SubResource( 3 )
+frame = 1
+playing = true
+flip_h = true
+
+[node name="Matt" parent="." instance=ExtResource( 7 )]
+position = Vector2( -3019.07, -117.346 )
+
+[node name="floor" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="collision" type="CollisionShape2D" parent="floor"]
+position = Vector2( 1376.13, 43.8691 )
+shape = SubResource( 4 )
