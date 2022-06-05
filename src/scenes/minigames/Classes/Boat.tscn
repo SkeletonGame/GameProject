@@ -86,6 +86,8 @@ position = Vector2( -852.321, -3.56299 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Back Sensor"]
 shape = SubResource( 3 )
 
+[node name="Area2D2" type="Area2D" parent="."]
+
 [connection signal="animation_finished" from="Boat" to="." method="_on_Boat_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

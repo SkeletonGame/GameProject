@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ass/Minigames/Bumper Boats/dangerwave.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 123.815, 122.24 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="dangerwave" type="Sprite" parent="."]
+position = Vector2( -15.1399, -95.7224 )
+texture = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource( 1 )

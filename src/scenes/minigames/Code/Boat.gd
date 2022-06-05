@@ -110,6 +110,8 @@ var dead_ahead_inside_arena = true
 var chase_failed = false
 var right_inside_arena = true
 var left_inside_arena = true
+var center_close_score = 0
+var angle_to_center = 0
 func _on_Dead_Ahead_Sensor_area_entered(area: Area2D) -> void:
 	dead_ahead_inside_arena = true
 func _on_Dead_Ahead_Sensor_area_exited(area: Area2D) -> void:
@@ -167,10 +169,20 @@ func AI_death_prevention():
 		AI_turning_decision = 1
 func AI_freewheeling():
 	if AI_timer & 100 == 0:
-		RNG.randomize()
-		AI_turning_decision = RNG.randi_range(-1, 1)
-		RNG.randomize()
-		AI_go_decision = bool(RNG.randi_range(0, 1))
+		if center_close_score > 2000000:
+			angle_to_center = rad2deg(get_angle_to(Vector2(0, 0)))
+			if angle_to_center > 10:
+				AI_turning_decision = 1
+			elif angle_to_center < -10:
+				AI_turning_decision = -1
+			else:
+				AI_turning_decision = 0
+			AI_go_decision = abs(angle_to_center) < 20
+		else:
+			RNG.randomize()
+			AI_turning_decision = RNG.randi_range(-1, 1)
+			RNG.randomize()
+			AI_go_decision = bool(RNG.randi_range(0, 1))
 	if AI_timer > 500:
 		AI_timer = 0
 		playersstillonboard = []
@@ -182,6 +194,7 @@ func legitimately_skynet():
 	AI_doom_detection()
 	AI_power_decision = false
 	AI_timer += 1
+	center_close_score = pow(position.x, 2) + pow(position.y, 2)
 	if impending_doom:
 		AI_death_prevention()
 	elif backstab_doom:

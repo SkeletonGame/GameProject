@@ -1,6 +1,7 @@
 extends Node2D
 
 var boat = load("res://src/scenes/minigames/Classes/Boat.tscn")
+var dangerwave = load("res://src/scenes/minigames/Classes/Dangerwave.tscn")
 var starting_positions = [
 	[Vector2(1000, 1000), 225],
 	[Vector2(1000, -1000), 135],
@@ -24,4 +25,4 @@ func _ready() -> void:
 	get_node("Red").rotation_degrees = starting_positions[0][1]
 
 func _process(delta: float) -> void:
-	pass
+	add_child(dangerwave.instance())
