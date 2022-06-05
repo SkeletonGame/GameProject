@@ -29,7 +29,7 @@ var power_timer_reset = 1200
 var power_timer = power_timer_reset
 func power_handling():
 	power_timer += 1
-	if ((Input.is_action_pressed("space") and color == player_color) or (AI and AI_power_decision)) and power_timer > power_timer_reset:
+	if ((Input.is_action_pressed("space") and color == player_color) or (AI and AI_power_decision)) and power_timer > power_timer_reset and 1 == 0:
 		power_timer = 0
 		if power == "boost":
 			boosting = true
