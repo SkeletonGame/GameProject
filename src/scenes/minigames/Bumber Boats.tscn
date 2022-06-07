@@ -40,45 +40,48 @@ shape = SubResource( 1 )
 [node name="waves5" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( -2409.34, 226.349 )
 frames = SubResource( 2 )
-frame = 3
 playing = true
 
 [node name="waves2" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( -1524.09, -652.548 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="waves" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( 332.619, -340.179 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="waves3" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( 1427.16, 828.86 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="waves4" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( -944.218, 2217.56 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="waves6" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( 2204.78, -1143.62 )
 frames = SubResource( 2 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="waves7" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( -296.863, -2455.02 )
 frames = SubResource( 2 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="waves8" type="AnimatedSprite" parent="Arena/Waves"]
 position = Vector2( 1956.53, 1866.93 )
 frames = SubResource( 2 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Red" parent="." instance=ExtResource( 2 )]

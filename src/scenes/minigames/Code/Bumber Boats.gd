@@ -24,5 +24,48 @@ func _ready() -> void:
 	get_node("Red").position = starting_positions[0][0]
 	get_node("Red").rotation_degrees = starting_positions[0][1]
 
-func _process(delta: float) -> void:
+var current_camera = "Red"
+var spectate_num = 0
+var boatlist = ["Red", "Yellow", "Blue", "Green"]
+var boatlist_changed = true
+func camera_manager():
+	if boatlist_changed:
+		if spectate_num >= boatlist.size():
+			spectate_num = 0
+		current_camera = boatlist[spectate_num]
+		get_node(current_camera).get_node("Camera2D").current = true
+		boatlist_changed = false
+	if not "Red" in boatlist and Input.is_action_just_pressed("space"):
+		if spectate_num < boatlist.size() - 1:
+			spectate_num += 1
+		else:
+			spectate_num = 0
+		current_camera = boatlist[spectate_num]
+		get_node(current_camera).get_node("Camera2D").current = true
+
+var position_angle = 0
+var position_length = 0
+func random_wave():
 	add_child(dangerwave.instance())
+	RNG.randomize()
+	get_node("Dangerwave").velocity_power = RNG.randi_range(2000, 10000)
+	RNG.randomize()
+	get_node("Dangerwave").rotation_degrees = RNG.randf_range(0, 360)
+	RNG.randomize()
+	position_angle = RNG.randf_range(0, 2 * PI)
+	RNG.randomize()
+	position_length = RNG.randf_range(0, 3000)
+	#get_node("Dangerwave").position = Vector2(
+	#	cos(position_angle) * position_length,
+	#	sin(position_angle) * position_length)
+	get_node("Dangerwave").name = "DangerwaveInMotion"
+
+var wave_timer = 0
+var wave_frequency = 0.01
+func _process(delta: float) -> void:
+	camera_manager()
+	wave_timer += delta
+	if wave_timer > 1 - wave_frequency:
+		random_wave()
+		wave_frequency += 0.002
+		wave_timer = 0
