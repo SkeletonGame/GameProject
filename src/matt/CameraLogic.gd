@@ -49,6 +49,8 @@ var matt_x
 var matt_y
 var cam_x = 0
 var cam_y = -0.02 # default camera position
+var except_x = 0
+var except_y = 0
 func camera_move():
 	object = ""
 	c1 = get_parent().get_node("KinematicMatt").motion_lock
@@ -65,11 +67,14 @@ func camera_move():
 		object_y = get_parent().get_parent().get_node(object).get_position()[1]
 		matt_x = get_parent().get_node("KinematicMatt").get_position()[0] + matt_pos_start[0]
 		matt_y = get_parent().get_node("KinematicMatt").get_position()[1] + matt_pos_start[1]
-		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x - (matt_x - object_x) / 500
-		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y - (matt_y - object_y) / 1000 + 0.3
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = (cam_x - (matt_x - object_x) / 500) + (except_x / 2)
+		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = (cam_y - (matt_y - object_y) / 1000 + 0.3) + (except_y / 3)
 	else:
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_h = cam_x
 		get_parent().get_node("KinematicMatt").get_node("Camera2D").offset_v = cam_y
+	if not c1:
+		except_x = 0
+		except_y = 0
 
 var current = ""
 var new = "x1"

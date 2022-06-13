@@ -2,7 +2,7 @@ extends Node2D
 
 var x_change = 0
 var y_change = 0
-var x_m = 1.3
+var x_m = 1.4
 var y_m = 1.1
 
 var camera_current_pos = Vector2(0, 0)

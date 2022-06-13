@@ -6,6 +6,7 @@ func _ready() -> void:
 var scene_commands = {
 	"Cut The Music": false
 }
+
 func _process(delta: float) -> void:
 	if scene_commands["Cut The Music"]:
 		get_node("Ambient Music").current = ""

@@ -29,43 +29,62 @@ var spectate_num = 0
 var boatlist = ["Red", "Yellow", "Blue", "Green"]
 var boatlist_changed = true
 func camera_manager():
-	if boatlist_changed:
-		if spectate_num >= boatlist.size():
-			spectate_num = 0
-		current_camera = boatlist[spectate_num]
-		get_node(current_camera).get_node("Camera2D").current = true
-		boatlist_changed = false
-	if not "Red" in boatlist and Input.is_action_just_pressed("space"):
-		if spectate_num < boatlist.size() - 1:
-			spectate_num += 1
-		else:
-			spectate_num = 0
-		current_camera = boatlist[spectate_num]
-		get_node(current_camera).get_node("Camera2D").current = true
+	if boatlist.size() >= 1:
+		if boatlist_changed:
+			if spectate_num >= boatlist.size():
+				spectate_num = 0
+			current_camera = boatlist[spectate_num]
+			get_node(current_camera).get_node("Camera2D").current = true
+			boatlist_changed = false
+		if not "Red" in boatlist and Input.is_action_just_pressed("space"):
+			if spectate_num < boatlist.size() - 1:
+				spectate_num += 1
+			else:
+				spectate_num = 0
+			current_camera = boatlist[spectate_num]
+			get_node(current_camera).get_node("Camera2D").current = true
+	elif boatlist.size() == 0:
+		get_node("Camera2D").current = true
 
 var position_angle = 0
 var position_length = 0
 func random_wave():
 	add_child(dangerwave.instance())
 	RNG.randomize()
-	get_node("Dangerwave").velocity_power = RNG.randi_range(2000, 10000)
+	get_node("Dangerwave").velocity_power = RNG.randi_range(20, 30)
 	RNG.randomize()
 	get_node("Dangerwave").rotation_degrees = RNG.randf_range(0, 360)
 	RNG.randomize()
 	position_angle = RNG.randf_range(0, 2 * PI)
 	RNG.randomize()
-	position_length = RNG.randf_range(0, 3000)
-	#get_node("Dangerwave").position = Vector2(
-	#	cos(position_angle) * position_length,
-	#	sin(position_angle) * position_length)
+	position_length = RNG.randf_range(0, 100)
+	get_node("Dangerwave").position = Vector2(
+		cos(position_angle) * position_length,
+		sin(position_angle) * position_length)
 	get_node("Dangerwave").name = "DangerwaveInMotion"
 
 var wave_timer = 0
-var wave_frequency = 0.01
+var random_periods = 0
+var pattern = "calm"
+var patterns = ["calm", "random storm", "targeted storm"]
+var wave_release_timer = 0
+func wave_patterns(delta):
+	wave_timer += delta
+	if wave_timer > random_periods and boatlist.size() < 4 and boatlist.size() > 1 and pattern == "calm":
+		wave_release_timer = 0
+		RNG.randomize()
+		pattern = patterns[RNG.randi_range(0, patterns.size() - 1)]
+		RNG.randomize()
+		random_periods = RNG.randf_range(3, 4)
+		wave_timer = 0
+	if pattern == "random storm" and wave_timer < 4:
+		wave_release_timer += delta
+		if wave_release_timer > 0.3:
+			random_wave()
+			wave_release_timer = 0
+	else:
+		pattern = "calm"
+
 func _process(delta: float) -> void:
 	camera_manager()
-	wave_timer += delta
-	if wave_timer > 1 - wave_frequency:
-		random_wave()
-		wave_frequency += 0.002
-		wave_timer = 0
+	wave_patterns(delta)

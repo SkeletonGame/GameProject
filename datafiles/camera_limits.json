@@ -13,6 +13,7 @@
         "limit_l": -4200
     },
     "Uncle Bedroom": {
-        "limit_r": 2070
+        "limit_r": 2070,
+        "limit_l": -1890
     }
 }

@@ -57,7 +57,8 @@
                     "0": {
                         "Speaker": "Matt",
                         "Line": "Hey uncle!",
-                        "Emotion": "joy"
+                        "Emotion": "joy",
+                        "Stage": {"Matt_Move": -550, "Matt_Turn": "left"}
                     },
                     "1": {
                         "Speaker": "Uncle Dave",
@@ -78,7 +79,8 @@
                     },
                     "5": {
                         "Speaker": "Uncle Dave",
-                        "Line": "Hehe, that sister of mine has always been an overachiever!"
+                        "Line": "Haha, that sister of mine has always been an overachiever!",
+                        "Emotion": "joy"
                     },
                     "6": {
                         "Speaker": "Uncle Dave",
@@ -104,10 +106,25 @@
                     "9": {
                         "Speaker": "Uncle Dave",
                         "Line": "Hey now, you don't have to be ashamed of liking a show, Matt!"
-                    },
-                    "10": {
-                        "Speaker": "Uncle Dave",
-                        "Line": "I love you, Matt."
+                    }
+                }
+            }
+        }
+    },
+    "Garage": {
+        "Lily": {
+            "Interaction_Count": 0,
+            "Dialogues": {
+                "0": {
+                    "0": {
+                        "Speaker": "Matt",
+                        "Line": "Lily! How's it going?",
+                        "Emotion": "joy",
+                        "Stage": {"Matt_Move": 580, "Matt_Turn": "right"}
+                     },
+                    "1": {
+                        "Speaker": "Ben",
+                        "Line": "It's been forever since we've seen you!"
                     }
                 }
             }

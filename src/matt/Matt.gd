@@ -5,7 +5,7 @@ var animation = 'idle'
 var direction = 'none'
 func animation_handler():
 	get_node("Eyes").set_animation(eye_mood)
-	if motion_lock or direction == 'none':
+	if direction == 'none':
 		animation = "idle"
 	elif direction == 'left':
 		animation = "strut"
@@ -89,7 +89,8 @@ var jump_lock = false
 func jumplck():
 	jump_lock = true
 
-
+var stage_directions = {}
+var current_direction = {}
 var up_arg = Vector2(0, 0)
 func velocity_handler(delta):
 	velocity = move_and_slide(velocity, up_arg, true)
@@ -114,7 +115,31 @@ func velocity_handler(delta):
 				print("Node " + surface + " has a special property that is not implemented or incorrectly written.")
 		else:
 			surface_property = "default"
-	if !motion_lock: ## motion_lock stops motion
+	if get_parent().get_node("AreaMatt").stage_reset_flag == true:
+		current_direction = {}
+	if stage_directions.size() > 0:
+		for direction in stage_directions:
+			current_direction = {direction: stage_directions[direction]}
+			break
+		if "Matt_Move" in current_direction:
+			if get_parent().position.x + position.x + 10 > current_direction["Matt_Move"] and get_parent().position.x + position.x - 10 < current_direction["Matt_Move"]:
+				stage_directions.erase("Matt_Move")
+			if get_parent().position.x + position.x < current_direction["Matt_Move"]:
+				velocity.x += 7000 * delta
+			elif get_parent().position.x + position.x > current_direction["Matt_Move"]:
+				velocity.x += -7000 * delta
+			velocity.x *= 0.88
+		else:
+			velocity.x *= 0
+		if "Matt_Turn" in current_direction:
+			if current_direction["Matt_Turn"] == "left":
+				get_node("AnimatedSprite").set_flip_h(false)
+				get_node("Eyes").set_flip_h(false)
+			else:
+				get_node("AnimatedSprite").set_flip_h(true)
+				get_node("Eyes").set_flip_h(true)
+			stage_directions.erase("Matt_Turn")
+	elif !motion_lock: ## motion_lock stops motion
 		if surface_property == "default":
 			default_phys(delta)
 		if surface_property == "bounce":

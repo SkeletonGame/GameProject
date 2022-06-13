@@ -121,6 +121,8 @@ var dialogue_init = false
 var emotion_through = false # this flag is triggered by an "-" at the end of an emotion tag in the jsonfile
 var result
 var file_init = false
+var stage_reset_flag = true
+var NPC_type_string = ""
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 	if Input.is_action_just_pressed("interact") and not speaker_init:
 		if char_time_done:
@@ -131,7 +133,14 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		else:
 			display_text = text
 			char_counter = text.length()
-	if Input.is_action_just_pressed("interact") and speaker_init and get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").char_time_done:
+	if speaker == person:
+		NPC_type_string = "CollisionShape2D"
+	elif speaker != person and speaker != "" and speaker != "Matt":
+		NPC_type_string = "Speech Bubble"
+		print(speaker, get_parent().get_parent().get_node(speaker).position.x)
+		get_parent().get_node("CameraLogic").except_x = get_parent().get_parent().get_node(speaker).position.x
+		get_parent().get_node("CameraLogic").except_y = get_parent().get_parent().get_node(speaker).position.y
+	if Input.is_action_just_pressed("interact") and speaker_init and get_parent().get_parent().get_node(speaker).get_node(NPC_type_string).char_time_done:
 		flag_doer()
 	if speech_type == "interaction":
 		if inter_arg in file:
@@ -176,8 +185,13 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 				speaker = dialogue_lines[line_of_dialogue]["Speaker"]
 				display_text = ""
 				if not speaker_init:
-					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").init = false
-					get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").speaking = true
+					if speaker == person:
+						get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").init = false
+						get_parent().get_parent().get_node(speaker).get_node("CollisionShape2D").speaking = true
+					else:
+						get_parent().get_parent().get_node(speaker).get_node("Speech Bubble").dialogue_lines = dialogue_lines
+						get_parent().get_parent().get_node(speaker).get_node("Speech Bubble").init = false
+						get_parent().get_parent().get_node(speaker).get_node("Speech Bubble").speaking = true
 					speaker_init = true
 			else:
 				speaker_init = false
@@ -194,6 +208,9 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			elif dialogue_lines[line_of_dialogue]["Speaker"] == "Matt":
 				emotion = "idle"
 				emotion_through = false
+			if "Stage" in dialogue_lines[line_of_dialogue] and get_parent().get_node("KinematicMatt").current_direction.size() == 0:
+				get_parent().get_node("KinematicMatt").stage_directions = dialogue_lines[line_of_dialogue]["Stage"]
+				stage_reset_flag = false
 			if "Line" in dialogue_lines[line_of_dialogue]:
 				option_list = [] # resetting so that it is empty when an option arrives
 				result = dialogue_lines[line_of_dialogue]["Line"]
@@ -213,6 +230,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 			speaker_init = false
 			visibility_exception = false
 			file_init = false
+			stage_reset_flag = true
 			get_parent().get_node("KinematicMatt").motion_lock = false
 			return ""
 	elif speech_type == "direct input":

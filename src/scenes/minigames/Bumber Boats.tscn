@@ -90,6 +90,10 @@ rotation = 0.785398
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+volume_db = -7.866
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 4, 4 )
 
 [connection signal="body_exited" from="Arena" to="Arena" method="_on_Arena_body_exited"]

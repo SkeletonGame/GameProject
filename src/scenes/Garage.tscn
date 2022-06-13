@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
@@ -31,6 +31,15 @@
 [ext_resource path="res://ass/Characters/Ben/ben1.png" type="Texture" id=29]
 [ext_resource path="res://ass/Characters/Ben/ben2.png" type="Texture" id=30]
 [ext_resource path="res://ass/Characters/Lily/Lily1.png" type="Texture" id=31]
+[ext_resource path="res://ass/Characters/Lily/Lily2.png" type="Texture" id=32]
+[ext_resource path="res://ass/UI/interactable_speech1.png" type="Texture" id=33]
+[ext_resource path="res://ass/UI/interactable_speech2.png" type="Texture" id=34]
+[ext_resource path="res://ass/Fonts/Drawnfont1.ttf" type="DynamicFontData" id=35]
+[ext_resource path="res://ass/Matt/talkbox1.png" type="Texture" id=36]
+[ext_resource path="res://ass/Fonts/Drawnfont2.ttf" type="DynamicFontData" id=37]
+[ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=38]
+[ext_resource path="res://src/Logic_Code/NPC/NPC Collision.gd" type="Script" id=39]
+[ext_resource path="res://src/Logic_Code/NPC/NPC NonCollision.gd" type="Script" id=40]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -99,6 +108,49 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5307.43, 41.8251 )
 
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ ExtResource( 29 ), ExtResource( 30 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 36 ), ExtResource( 38 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+} ]
+
+[sub_resource type="DynamicFont" id=17]
+size = 70
+font_data = ExtResource( 35 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 70
+font_data = ExtResource( 37 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 198.425, 388.876 )
+
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [ ExtResource( 31 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 33 ), ExtResource( 34 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
@@ -109,22 +161,6 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 96.6582, 441.85 )
-
-[sub_resource type="SpriteFrames" id=12]
-animations = [ {
-"frames": [ ExtResource( 29 ), ExtResource( 30 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=13]
-animations = [ {
-"frames": [ ExtResource( 31 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-} ]
 
 [node name="Garage" type="Node2D"]
 script = ExtResource( 25 )
@@ -137,7 +173,7 @@ z_index = -3
 texture = ExtResource( 20 )
 
 [node name="wall2" type="Sprite" parent="bg"]
-position = Vector2( -124.439, 462.445 )
+position = Vector2( -25.6624, 455.71 )
 z_index = -3
 texture = ExtResource( 20 )
 
@@ -218,6 +254,123 @@ collision_mask = 0
 position = Vector2( 1864.68, 1043.21 )
 shape = SubResource( 9 )
 
+[node name="Ben" type="Node2D" parent="."]
+position = Vector2( -31.0565, 577.409 )
+
+[node name="BenSprite" type="AnimatedSprite" parent="Ben"]
+frames = SubResource( 12 )
+animation = "idle"
+playing = true
+flip_h = true
+
+[node name="Speech Bubble" type="AnimatedSprite" parent="Ben"]
+position = Vector2( -1.8877, -566.946 )
+z_index = 10
+frames = SubResource( 16 )
+animation = "idle"
+playing = true
+flip_h = true
+script = ExtResource( 40 )
+
+[node name="Label1" type="Label" parent="Ben/Speech Bubble"]
+margin_left = -316.636
+margin_top = -109.771
+margin_right = 312.364
+margin_bottom = 84.2294
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 17 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Ben/Speech Bubble"]
+margin_left = -317.168
+margin_top = -110.242
+margin_right = 311.832
+margin_bottom = 83.758
+custom_fonts/font = SubResource( 18 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Voicebox" type="AudioStreamPlayer2D" parent="Ben"]
+position = Vector2( -57.1718, -130.362 )
+volume_db = -9.445
+
+[node name="Lily" type="KinematicBody2D" parent="."]
+position = Vector2( 845.503, 593.243 )
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lily"]
+position = Vector2( -0.620056, -15.3218 )
+shape = SubResource( 14 )
+script = ExtResource( 39 )
+
+[node name="LilySprite" type="AnimatedSprite" parent="Lily"]
+frames = SubResource( 13 )
+animation = "idle"
+playing = true
+
+[node name="Speechable" type="AnimatedSprite" parent="Lily"]
+position = Vector2( -4.29454, -508.054 )
+z_index = 5
+frames = SubResource( 15 )
+playing = true
+
+[node name="Speech Bubble" type="AnimatedSprite" parent="Lily"]
+position = Vector2( -1.8877, -566.946 )
+z_index = 10
+frames = SubResource( 16 )
+animation = "idle"
+playing = true
+flip_h = true
+
+[node name="Label1" type="Label" parent="Lily/Speech Bubble"]
+margin_left = -316.636
+margin_top = -109.771
+margin_right = 312.364
+margin_bottom = 84.2294
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 17 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Lily/Speech Bubble"]
+margin_left = -317.168
+margin_top = -110.242
+margin_right = 311.832
+margin_bottom = 83.758
+custom_fonts/font = SubResource( 18 )
+text = "hello there
+"
+align = 1
+autowrap = true
+max_lines_visible = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Voicebox" type="AudioStreamPlayer2D" parent="Lily"]
+position = Vector2( -57.1718, -130.362 )
+volume_db = -9.445
+
 [node name="Matt" parent="." instance=ExtResource( 12 )]
 position = Vector2( -337.974, 984.583 )
 
@@ -243,17 +396,6 @@ position = Vector2( 559.396, -131.373 )
 position = Vector2( 34.7059, 0 )
 shape = SubResource( 11 )
 
-[node name="Ben" type="AnimatedSprite" parent="."]
-position = Vector2( 2458.88, 634.32 )
-frames = SubResource( 12 )
-animation = "idle"
-playing = true
-
-[node name="Lily" type="AnimatedSprite" parent="."]
-position = Vector2( 2772.47, 595.119 )
-frames = SubResource( 13 )
-animation = "idle"
-
-[connection signal="CowboyInterruption" from="." to="Jessie Sitting/AudioStreamPlayer2D" method="_on_Garage_CowboyInterruption"]
 [connection signal="CowboyInterruption" from="." to="table" method="_on_Garage_CowboyInterruption"]
+[connection signal="CowboyInterruption" from="." to="Jessie Sitting/AudioStreamPlayer2D" method="_on_Garage_CowboyInterruption"]
 [connection signal="body_entered" from="Jessie Sitting/In Front of TV" to="." method="_on_In_Front_of_TV_body_entered"]
