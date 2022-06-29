@@ -113,7 +113,7 @@ func char_time(delta, text):  ## make things not all appear at once
 		display_text += text[char_counter]
 		char_counter += 1
 		if !(char_counter % 3):
-			get_parent().get_node("Voicebox").play()
+			get_parent().get_node("Voicebox").playing = true
 	if char_counter >= text.length():
 		char_time_done = 1
 	get_parent().get_node("Speech Bubble/Label1").set_text(display_text)

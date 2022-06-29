@@ -58,7 +58,10 @@
                         "Speaker": "Matt",
                         "Line": "Hey uncle!",
                         "Emotion": "joy",
-                        "Stage": {"Matt_Move": -550, "Matt_Turn": "left"}
+                        "Stage": {
+                            "Matt_Move": -550,
+                            "Matt_Turn": "left"
+                        }
                     },
                     "1": {
                         "Speaker": "Uncle Dave",
@@ -120,11 +123,30 @@
                         "Speaker": "Matt",
                         "Line": "Lily! How's it going?",
                         "Emotion": "joy",
-                        "Stage": {"Matt_Move": 580, "Matt_Turn": "right"}
-                     },
+                        "Stage": {
+                            "Matt_Move": 580,
+                            "Matt_Turn": "right"
+                        }
+                    },
                     "1": {
                         "Speaker": "Ben",
                         "Line": "It's been forever since we've seen you!"
+                    },
+                    "2": {
+                        "Speaker": "Matt",
+                        "Line": "Matt says something"
+                    },
+                    "3": {
+                        "Speaker": "Lily",
+                        "Line": "Hey! It's really nice to be back home."
+                    },
+                    "4": {
+                        "Speaker": "Lily",
+                        "Line": "I just got here a couple minutes ago, I don't think Jessie knows we're here."
+                    },
+                    "5": {
+                        "Speaker": "Lily",
+                        "Line": "He's just got complete tunnel vision on that cowboy game. He is really good at it, to be fair."
                     }
                 }
             }

@@ -66,6 +66,7 @@ func text_display(delta):
 			char_counter = text.length()
 	if String(line_of_dialogue) in dialogue_lines:
 		if dialogue_lines[String(line_of_dialogue)]["Speaker"] != get_parent().name:
+			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").nonpersonspeaker = false
 			get_parent().get_parent().get_node("Matt").get_node("AreaMatt").speaker = dialogue_lines[String(line_of_dialogue)]["Speaker"]
 			return "done"
 		else:

@@ -1,0 +1,55 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/matt/Matt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ass/Rooms/Office Dream/cubicleA1.png" type="Texture" id=2]
+[ext_resource path="res://ass/Rooms/Office Dream/cubicleA2.png" type="Texture" id=3]
+[ext_resource path="res://ass/Rooms/Office Dream/watercooler2.png" type="Texture" id=4]
+[ext_resource path="res://ass/Rooms/Office Dream/tieguyidle.png" type="Texture" id=5]
+[ext_resource path="res://ass/Rooms/Office Dream/watercooler1.png" type="Texture" id=6]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 2925.13, 75.9021 )
+
+[node name="Office Dream" type="Node2D"]
+
+[node name="Watercooler" type="AnimatedSprite" parent="."]
+position = Vector2( 381.407, -305.125 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="tieguyidle" type="Sprite" parent="Watercooler"]
+position = Vector2( 302.423, -117.741 )
+texture = ExtResource( 5 )
+
+[node name="CubicleA" type="AnimatedSprite" parent="."]
+position = Vector2( -803.093, -551.377 )
+frames = SubResource( 2 )
+frame = 1
+playing = true
+
+[node name="Matt" parent="." instance=ExtResource( 1 )]
+position = Vector2( 4.23804, 50.8542 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 14.2705, 128.434 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 1 )

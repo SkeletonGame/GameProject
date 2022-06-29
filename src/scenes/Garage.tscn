@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://ass/Rooms/Garage/table1.png" type="Texture" id=1]
 [ext_resource path="res://ass/Rooms/Garage/cowboyarm2.png" type="Texture" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://ass/Matt/talkbox2.png" type="Texture" id=38]
 [ext_resource path="res://src/Logic_Code/NPC/NPC Collision.gd" type="Script" id=39]
 [ext_resource path="res://src/Logic_Code/NPC/NPC NonCollision.gd" type="Script" id=40]
+[ext_resource path="res://noises/voice/Deerman Daniel.wav" type="AudioStream" id=42]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -108,7 +109,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5307.43, 41.8251 )
 
-[sub_resource type="SpriteFrames" id=12]
+[sub_resource type="SpriteFrames" id=10]
 animations = [ {
 "frames": [ ExtResource( 29 ), ExtResource( 30 ) ],
 "loop": true,
@@ -116,7 +117,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=16]
+[sub_resource type="SpriteFrames" id=11]
 animations = [ {
 "frames": [ ExtResource( 36 ), ExtResource( 38 ) ],
 "loop": true,
@@ -124,18 +125,18 @@ animations = [ {
 "speed": 2.5
 } ]
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="DynamicFont" id=12]
 size = 70
 font_data = ExtResource( 35 )
 
-[sub_resource type="DynamicFont" id=18]
+[sub_resource type="DynamicFont" id=13]
 size = 70
 font_data = ExtResource( 37 )
 
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 198.425, 388.876 )
 
-[sub_resource type="SpriteFrames" id=13]
+[sub_resource type="SpriteFrames" id=15]
 animations = [ {
 "frames": [ ExtResource( 31 ), ExtResource( 32 ) ],
 "loop": true,
@@ -143,7 +144,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=15]
+[sub_resource type="SpriteFrames" id=16]
 animations = [ {
 "frames": [ ExtResource( 33 ), ExtResource( 34 ) ],
 "loop": true,
@@ -151,7 +152,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=17]
 animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 16 ) ],
 "loop": true,
@@ -159,7 +160,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 96.6582, 441.85 )
 
 [node name="Garage" type="Node2D"]
@@ -185,18 +186,17 @@ texture = ExtResource( 20 )
 [node name="guitar" type="AnimatedSprite" parent="."]
 position = Vector2( 80.8661, 261.625 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="neon sign" type="AnimatedSprite" parent="."]
 position = Vector2( 394, 336 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="table" type="AnimatedSprite" parent="."]
 position = Vector2( 1947.85, 509.413 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 offset = Vector2( -65, 0 )
 script = ExtResource( 26 )
@@ -210,24 +210,22 @@ modulate = Color( 0.819608, 0.807843, 0.901961, 1 )
 position = Vector2( -1.39307, -203.187 )
 z_index = -2
 frames = SubResource( 4 )
-frame = 1
 playing = true
 
 [node name="cowboy" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 180.19, -196.728 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="cowboyarm" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 196.516, -192.302 )
 frames = SubResource( 6 )
-frame = 1
 playing = true
 
 [node name="smoke" type="AnimatedSprite" parent="table/cowboy stuff"]
 position = Vector2( 46.2552, -243.275 )
 frames = SubResource( 7 )
-frame = 1
 playing = true
 
 [node name="duck" parent="table/cowboy stuff" instance=ExtResource( 8 )]
@@ -243,7 +241,6 @@ attenuation = 2.21914
 visible = false
 position = Vector2( 0, -204.92 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -258,16 +255,18 @@ shape = SubResource( 9 )
 position = Vector2( -31.0565, 577.409 )
 
 [node name="BenSprite" type="AnimatedSprite" parent="Ben"]
-frames = SubResource( 12 )
+frames = SubResource( 10 )
 animation = "idle"
+frame = 1
 playing = true
 flip_h = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Ben"]
 position = Vector2( -1.8877, -566.946 )
 z_index = 10
-frames = SubResource( 16 )
+frames = SubResource( 11 )
 animation = "idle"
+frame = 1
 playing = true
 flip_h = true
 script = ExtResource( 40 )
@@ -278,7 +277,7 @@ margin_top = -109.771
 margin_right = 312.364
 margin_bottom = 84.2294
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 12 )
 text = "hello there
 "
 align = 1
@@ -293,7 +292,7 @@ margin_left = -317.168
 margin_top = -110.242
 margin_right = 311.832
 margin_bottom = 83.758
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 13 )
 text = "hello there
 "
 align = 1
@@ -305,7 +304,8 @@ __meta__ = {
 
 [node name="Voicebox" type="AudioStreamPlayer2D" parent="Ben"]
 position = Vector2( -57.1718, -130.362 )
-volume_db = -9.445
+stream = ExtResource( 42 )
+volume_db = -23.059
 
 [node name="Lily" type="KinematicBody2D" parent="."]
 position = Vector2( 845.503, 593.243 )
@@ -318,21 +318,24 @@ shape = SubResource( 14 )
 script = ExtResource( 39 )
 
 [node name="LilySprite" type="AnimatedSprite" parent="Lily"]
-frames = SubResource( 13 )
+frames = SubResource( 15 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Speechable" type="AnimatedSprite" parent="Lily"]
 position = Vector2( -4.29454, -508.054 )
 z_index = 5
-frames = SubResource( 15 )
+frames = SubResource( 16 )
+frame = 1
 playing = true
 
 [node name="Speech Bubble" type="AnimatedSprite" parent="Lily"]
 position = Vector2( -1.8877, -566.946 )
 z_index = 10
-frames = SubResource( 16 )
+frames = SubResource( 11 )
 animation = "idle"
+frame = 1
 playing = true
 flip_h = true
 
@@ -342,7 +345,7 @@ margin_top = -109.771
 margin_right = 312.364
 margin_bottom = 84.2294
 size_flags_stretch_ratio = 0.0
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 12 )
 text = "hello there
 "
 align = 1
@@ -357,7 +360,7 @@ margin_left = -317.168
 margin_top = -110.242
 margin_right = 311.832
 margin_bottom = 83.758
-custom_fonts/font = SubResource( 18 )
+custom_fonts/font = SubResource( 13 )
 text = "hello there
 "
 align = 1
@@ -369,16 +372,16 @@ __meta__ = {
 
 [node name="Voicebox" type="AudioStreamPlayer2D" parent="Lily"]
 position = Vector2( -57.1718, -130.362 )
-volume_db = -9.445
+stream = ExtResource( 42 )
+volume_db = -15.231
 
 [node name="Matt" parent="." instance=ExtResource( 12 )]
 position = Vector2( -337.974, 984.583 )
 
 [node name="Jessie Sitting" type="AnimatedSprite" parent="."]
 position = Vector2( 1223.18, 717.067 )
-frames = SubResource( 10 )
+frames = SubResource( 17 )
 animation = "focused playing"
-frame = 1
 playing = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Jessie Sitting"]
@@ -394,8 +397,8 @@ position = Vector2( 559.396, -131.373 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jessie Sitting/In Front of TV"]
 position = Vector2( 34.7059, 0 )
-shape = SubResource( 11 )
+shape = SubResource( 18 )
 
-[connection signal="CowboyInterruption" from="." to="table" method="_on_Garage_CowboyInterruption"]
 [connection signal="CowboyInterruption" from="." to="Jessie Sitting/AudioStreamPlayer2D" method="_on_Garage_CowboyInterruption"]
+[connection signal="CowboyInterruption" from="." to="table" method="_on_Garage_CowboyInterruption"]
 [connection signal="body_entered" from="Jessie Sitting/In Front of TV" to="." method="_on_In_Front_of_TV_body_entered"]

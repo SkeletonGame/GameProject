@@ -123,7 +123,9 @@ var result
 var file_init = false
 var stage_reset_flag = true
 var NPC_type_string = ""
+var nonpersonspeaker = false
 func text_getter(delta, inter_arg): # inter_arg = interactable_argument
+	print(nonpersonspeaker)
 	if Input.is_action_just_pressed("interact") and not speaker_init:
 		if char_time_done:
 			flag_doer()
@@ -137,7 +139,7 @@ func text_getter(delta, inter_arg): # inter_arg = interactable_argument
 		NPC_type_string = "CollisionShape2D"
 	elif speaker != person and speaker != "" and speaker != "Matt":
 		NPC_type_string = "Speech Bubble"
-		print(speaker, get_parent().get_parent().get_node(speaker).position.x)
+		nonpersonspeaker = true
 		get_parent().get_node("CameraLogic").except_x = get_parent().get_parent().get_node(speaker).position.x
 		get_parent().get_node("CameraLogic").except_y = get_parent().get_parent().get_node(speaker).position.y
 	if Input.is_action_just_pressed("interact") and speaker_init and get_parent().get_parent().get_node(speaker).get_node(NPC_type_string).char_time_done:
