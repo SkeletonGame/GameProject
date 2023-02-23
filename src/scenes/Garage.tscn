@@ -305,7 +305,7 @@ __meta__ = {
 [node name="Voicebox" type="AudioStreamPlayer2D" parent="Ben"]
 position = Vector2( -57.1718, -130.362 )
 stream = ExtResource( 42 )
-volume_db = -23.059
+volume_db = 1.174
 
 [node name="Lily" type="KinematicBody2D" parent="."]
 position = Vector2( 845.503, 593.243 )

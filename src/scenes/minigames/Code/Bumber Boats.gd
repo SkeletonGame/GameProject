@@ -66,11 +66,11 @@ func random_wave():
 var wave_timer = 0
 var random_periods = 0
 var pattern = "calm"
-var patterns = ["calm", "random storm", "targeted storm"]
+var patterns = ["calm", "random storm"]
 var wave_release_timer = 0
 func wave_patterns(delta):
 	wave_timer += delta
-	if wave_timer > random_periods and boatlist.size() < 4 and boatlist.size() > 1 and pattern == "calm":
+	if wave_timer > random_periods and boatlist.size() > 1 and pattern == "calm":
 		wave_release_timer = 0
 		RNG.randomize()
 		pattern = patterns[RNG.randi_range(0, patterns.size() - 1)]
@@ -79,7 +79,7 @@ func wave_patterns(delta):
 		wave_timer = 0
 	if pattern == "random storm" and wave_timer < 4:
 		wave_release_timer += delta
-		if wave_release_timer > 0.3:
+		if wave_release_timer > 0.5:
 			random_wave()
 			wave_release_timer = 0
 	else:

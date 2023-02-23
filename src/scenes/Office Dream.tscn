@@ -7,7 +7,7 @@
 [ext_resource path="res://ass/Rooms/Office Dream/tieguyidle.png" type="Texture" id=5]
 [ext_resource path="res://ass/Rooms/Office Dream/watercooler1.png" type="Texture" id=6]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 6 ), ExtResource( 4 ) ],
 "loop": true,
@@ -23,14 +23,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 2925.13, 75.9021 )
 
 [node name="Office Dream" type="Node2D"]
 
 [node name="Watercooler" type="AnimatedSprite" parent="."]
 position = Vector2( 381.407, -305.125 )
-frames = SubResource( 3 )
+frames = SubResource( 1 )
 playing = true
 
 [node name="tieguyidle" type="Sprite" parent="Watercooler"]
@@ -52,4 +52,4 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 1 )
+shape = SubResource( 3 )

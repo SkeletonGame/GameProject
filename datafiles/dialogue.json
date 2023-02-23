@@ -121,7 +121,7 @@
                 "0": {
                     "0": {
                         "Speaker": "Matt",
-                        "Line": "Lily! How's it going?",
+                        "Line": "Hey Lily!",
                         "Emotion": "joy",
                         "Stage": {
                             "Matt_Move": 580,
@@ -130,23 +130,19 @@
                     },
                     "1": {
                         "Speaker": "Ben",
-                        "Line": "It's been forever since we've seen you!"
+                        "Line": "It's great to see you!"
                     },
                     "2": {
-                        "Speaker": "Matt",
-                        "Line": "Matt says something"
+                        "Speaker": "Lily",
+                        "Line": "Hey! I'm happy you guys could make it."
                     },
                     "3": {
                         "Speaker": "Lily",
-                        "Line": "Hey! It's really nice to be back home."
+                        "Line": "I don't think Jessie knows we're here..."
                     },
                     "4": {
                         "Speaker": "Lily",
-                        "Line": "I just got here a couple minutes ago, I don't think Jessie knows we're here."
-                    },
-                    "5": {
-                        "Speaker": "Lily",
-                        "Line": "He's just got complete tunnel vision on that cowboy game. He is really good at it, to be fair."
+                        "Line": "He's really good at that cowboy game."
                     }
                 }
             }
